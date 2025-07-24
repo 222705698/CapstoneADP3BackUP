@@ -1,4 +1,4 @@
-package za.ac.cput.Domain;
+package za.ac.cput.Domain.bookings;
 //Emihle Thole
 import java.time.LocalDate;
 

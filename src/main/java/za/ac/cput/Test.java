@@ -1,6 +1,6 @@
 package za.ac.cput;
 
-import za.ac.cput.Domain.TestType;
+import za.ac.cput.Domain.bookings.TestType;
 
 import java.time.LocalDate;
 import java.util.Objects;
