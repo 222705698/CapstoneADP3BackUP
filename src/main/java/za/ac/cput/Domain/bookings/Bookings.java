@@ -1,9 +1,12 @@
 package za.ac.cput.Domain.bookings;
 //Emihle Thole
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
-
+@Entity
 public class Bookings {
-
+@Id
     private int bookingId;
     private LocalDate bookingDate;
     private String bookingType;

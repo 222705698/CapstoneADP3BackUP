@@ -2,8 +2,12 @@
 //221755349
 package za.ac.cput.Domain;
 
-public class License {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
+public class License {
+@Id
     private int licenseId;
     private String licenseType;
     private String issueDate;
