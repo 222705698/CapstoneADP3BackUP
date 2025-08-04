@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 public class Bookings {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
     protected Booktype booktype;
     @Enumerated(EnumType.STRING)
@@ -29,5 +30,90 @@ private  Test test;
     }
     public Bookings() {
     }
+    public Bookings(Builder builder) {
+        this.bookingId = builder.bookingId;
+        this.booktype = builder.booktype;
+        this.bookingDate = builder.bookingDate;
+        this.vehicleDisc = builder.vehicleDisc;
+        this.test = builder.test;
+    }
 
+    public int getBookingId() {
+        return bookingId;
+    }
+
+    public Booktype getBooktype() {
+        return booktype;
+    }
+
+    public LocalDate getBookingDate() {
+        return bookingDate;
+    }
+
+    public VehicleDisc getVehicleDisc() {
+        return vehicleDisc;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "bookingId=" + bookingId +
+                ", booktype=" + booktype +
+                ", bookingDate=" + bookingDate +
+                ", vehicleDisc=" + vehicleDisc +
+                ", test=" + test +
+                '}';
+    }
+    public static class Builder{
+        private int bookingId;
+        private Booktype booktype;
+        private LocalDate bookingDate;
+        private VehicleDisc vehicleDisc;
+        private Test test;
+
+        public Builder setBookingId(int bookingId) {
+            this.bookingId = bookingId;
+            return this;
+        }
+
+        public Builder setBooktype(Booktype booktype) {
+            this.booktype = booktype;
+            return this;
+        }
+
+        public Builder setBookingDate(LocalDate bookingDate) {
+            this.bookingDate = bookingDate;
+            return this;
+        }
+
+        public Builder setVehicleDisc(VehicleDisc vehicleDisc) {
+            this.vehicleDisc = vehicleDisc;
+            return this;
+        }
+
+        public Builder setTest(Test test) {
+            this.test = test;
+            return this;
+
+        }
+        public Builder copy(Bookings bookings) {
+
+            bookings.bookingId = this.bookingId;
+            bookings.booktype = this.booktype;
+            bookings.bookingDate = this.bookingDate;
+            bookings.vehicleDisc = this.vehicleDisc;
+            bookings.test = this.test;
+            return this;
+        }
+        public Bookings build() {
+            return new Bookings(this);
+        }
+
+
+
+    }
 }
