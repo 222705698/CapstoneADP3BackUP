@@ -1,17 +1,21 @@
-package za.ac.cput.Domain;
+package za.ac.cput.Domain.bookings;
 
-import za.ac.cput.Domain.bookings.TestType;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
-
+@Entity
 public class Test {
-    private int TestId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long TestId;
     private String testAddress;
     private String testVenue;
     private LocalDate testDate;
     private boolean testResult;
     private String licenseCode;
+
+    @Enumerated(EnumType.STRING)
     private TestType testype;
     private double testAmount;
 
@@ -47,7 +51,7 @@ public class Test {
         return testResult;
     }
 
-    public int getTestId() {
+    public Long getTestId() {
         return TestId;
     }
 
@@ -55,39 +59,47 @@ public class Test {
         return testVenue;
     }
 
+    public TestType getTestype() {
+        return testype;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Test test = (Test) o;
-        return testResult == test.testResult && testAmount == test.testAmount && Objects.equals(TestId, test.TestId) && Objects.equals(testAddress, test.testAddress) && Objects.equals(testVenue, test.testVenue) && Objects.equals(testDate, test.testDate) && Objects.equals(licenseCode, test.licenseCode);
+        return testResult == test.testResult && Double.compare(testAmount, test.testAmount) == 0 && Objects.equals(TestId, test.TestId) && Objects.equals(testAddress, test.testAddress) && Objects.equals(testVenue, test.testVenue) && Objects.equals(testDate, test.testDate) && Objects.equals(licenseCode, test.licenseCode) && testype == test.testype;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(TestId, testAddress, testVenue, testDate, testResult, licenseCode, testAmount);
+        return Objects.hash(TestId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
     }
+
     @Override
     public String toString() {
         return "Test{" +
-                "TestId='" + TestId + '\'' +
+                "licenseCode='" + licenseCode + '\'' +
+                ", TestId=" + TestId +
                 ", testAddress='" + testAddress + '\'' +
                 ", testVenue='" + testVenue + '\'' +
                 ", testDate=" + testDate +
                 ", testResult=" + testResult +
-                ", licenseCode='" + licenseCode + '\'' +
+                ", testype=" + testype +
                 ", testAmount=" + testAmount +
                 '}';
     }
+
     public static class Builder {
-        private int TestId;
+        private Long TestId;
         private String testAddress;
         private String testVenue;
         private LocalDate testDate;
         private boolean testResult;
         private String licenseCode;
         private double testAmount;
+        private TestType testype;
 
-        public Builder setTestId(int TestId) {
+        public Builder setTestId(Long TestId) {
             this.TestId = TestId;
             return this;
         }
@@ -121,6 +133,10 @@ public class Test {
             this.testAmount = testAmount;
             return this;
         }
+        public Builder setTestype(TestType testype) {
+            this.testype = testype;
+            return this;
+        }
         public Builder copy(Test test) {
             this.TestId = test.TestId;
             this.testAddress = test.testAddress;
@@ -129,6 +145,7 @@ public class Test {
             this.testResult = test.testResult;
             this.licenseCode = test.licenseCode;
             this.testAmount = test.testAmount;
+            this.testype = test.testype;
             return this;
 
         }
