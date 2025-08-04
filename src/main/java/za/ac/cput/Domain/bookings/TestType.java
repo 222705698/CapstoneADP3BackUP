@@ -1,4 +1,6 @@
 package za.ac.cput.Domain.bookings;
 
-public class TestType {
+public enum TestType {
+    DriversLicenseTest,
+    LearnersLicenseTest,
 }
