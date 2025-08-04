@@ -29,6 +29,7 @@ public class Test {
         this.testResult = builder.testResult;
         this.licenseCode = builder.licenseCode;
         this.testAmount = builder.testAmount;
+        this.testype = builder.testype;
     }
 
     public String getLicenseCode() {

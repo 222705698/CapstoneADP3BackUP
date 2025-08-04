@@ -1,6 +1,6 @@
 package za.ac.cput.Factory;
 
-import za.ac.cput.Domain.License;
+import za.ac.cput.Domain.User.License;
 import za.ac.cput.Util.Helper;
 
 public class LicenseFactory {

@@ -1,27 +1,33 @@
-//Emihle Thole
-//221755349
-package za.ac.cput.Domain;
+package za.ac.cput.Domain.User;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+
+/*Emihle Thole
+  221755349
+  18/05/18*/
 @Entity
 public class License {
-@Id
-    private int licenseId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int licenseId; // Changed to Long
     private String licenseType;
     private String issueDate;
     private String expiryDate;
 
+
+
     public License() {
     }
-    public License (Builder builder){
 
+
+
+    public License(Builder builder) {
         this.licenseId = builder.licenseId;
         this.licenseType = builder.licenseType;
         this.issueDate = builder.issueDate;
         this.expiryDate = builder.expiryDate;
-
 
     }
 
@@ -41,6 +47,7 @@ public class License {
         return expiryDate;
     }
 
+
     @Override
     public String toString() {
         return "License{" +
@@ -50,21 +57,23 @@ public class License {
                 ", expiryDate='" + expiryDate + '\'' +
                 '}';
     }
-    public static class Builder{
-        private int licenseId;
+
+    public static class Builder {
+
+        private int licenseId; // Changed to Long
         private String licenseType;
         private String issueDate;
         private String expiryDate;
 
-        public Builder setLicenseId(int licenseId) {
+                public Builder setLicenseId(int licenseId) {
             this.licenseId = licenseId;
             return this;
         }
-
         public Builder setLicenseType(String licenseType) {
             this.licenseType = licenseType;
             return this;
         }
+
 
         public Builder setIssueDate(String issueDate) {
             this.issueDate = issueDate;
@@ -75,16 +84,20 @@ public class License {
             this.expiryDate = expiryDate;
             return this;
         }
-        
-        public Builder copy(License license){
 
-           this.licenseId = license.licenseId;
-           this.licenseType = license.licenseType;
-           this.issueDate = license.issueDate;
-           this.expiryDate = license.expiryDate;
-           return this;
 
+
+        public Builder copy(License license) {
+            this.licenseId = license.licenseId;
+            this.licenseType = license.licenseType;
+            this.issueDate = license.issueDate;
+            this.expiryDate = license.expiryDate;
+
+            return this;
         }
-        public License build(){return new License(this);}
+
+        public License build() {
+            return new License(this);
+        }
     }
 }
