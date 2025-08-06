@@ -1,4 +1,4 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.Registration;
 
 
 import za.ac.cput.Domain.Registrations.Registration;

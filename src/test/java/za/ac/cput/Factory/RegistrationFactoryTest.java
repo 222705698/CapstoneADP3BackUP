@@ -1,0 +1,63 @@
+package za.ac.cput.Factory;
+
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import za.ac.cput.Domain.Registrations.Registration;
+import za.ac.cput.Domain.Registrations.Vehicle;
+import za.ac.cput.Factory.Registration.RegistrationFactory;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class RegistrationFactoryTest {
+
+    private Vehicle vehicle;
+
+    @BeforeEach
+    void setUp() {
+        // You can also use a VehicleFactory if you have one
+        vehicle = new Vehicle.Builder()
+                .setVehicleID(1)
+                .setVehicleName("Toyota Corolla")
+                .setVehicleType("Sedan")
+                .setVehicleModel("2020")
+                .setVehicleYear("2020")
+                .setVehicleColor("White")
+                .build();
+    }
+
+    @Test
+    void createRegistration_successful() {
+        Registration registration = RegistrationFactory.createRegistration(
+                "REG2025-01",
+                "2025-08-06",
+                vehicle
+        );
+
+        assertNotNull(registration);
+        assertEquals("REG2025-01", registration.getRegistrationNumber());
+        assertEquals("2025-08-06", registration.getRegistrationDate());
+        assertNotNull(registration.getVehicle());
+        assertEquals("Toyota Corolla", registration.getVehicle().getVehicleName());
+    }
+
+    @Test
+    void createRegistration_withNullRegistrationNumber_shouldReturnNull() {
+        Registration registration = RegistrationFactory.createRegistration(
+                null,
+                "2025-08-06",
+                vehicle
+        );
+        assertNull(registration);
+    }
+
+    @Test
+    void createRegistration_withNullVehicle_shouldReturnNull() {
+        Registration registration = RegistrationFactory.createRegistration(
+                "REG2025-01",
+                "2025-08-06",
+                null
+        );
+        assertNull(registration);
+    }
+}
