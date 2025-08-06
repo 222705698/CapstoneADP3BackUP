@@ -6,8 +6,8 @@ import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.bookings.TestAppointment;
 
 @Repository
-public interface TestAppointmentRepository extends JpaRepository<Bookings, Long> {
-    TestAppointment findByTestId(Integer id);
+public interface TestAppointmentRepository extends JpaRepository<TestAppointment, Long> {
+    TestAppointment findByTestId(Long testAppointmentId);
 
 
 

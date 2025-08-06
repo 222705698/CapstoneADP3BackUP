@@ -49,7 +49,7 @@ class TestAppointmentFactoryTest {
     }
 
     @Test
-    void testCreateTestAppointment_invalidData_shouldReturnNull() {
+    void testCreateTestAppointment_invalidData_shouldReturnNotNull() {
         // Null testType
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
                 1001L, "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", null
