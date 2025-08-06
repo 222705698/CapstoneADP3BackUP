@@ -15,14 +15,14 @@ public class User {
 
     protected String UserName;
     protected String UserSurname;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     protected Contact Contact;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_books_booking_id")
     protected Bookings UserBooks;
+;
 
     @Enumerated(EnumType.STRING)
     protected Role Role;

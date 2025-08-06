@@ -2,107 +2,85 @@ package za.ac.cput.Service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.User.Applicant;
-import za.ac.cput.Domain.User.License;
-import za.ac.cput.Domain.User.User;
-import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
-import za.ac.cput.Factory.User.ApplicantFactory;
-import za.ac.cput.Repository.ApplicantRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-public class ApplicantServiceTest {
+@SpringBootTest
+class ApplicantServiceTest {
 
-    private ApplicantService service;
-    private ApplicantRepository repository;
-    private Applicant testApplicant;
+    @Autowired
+    private ApplicantService applicantService;
+
+    private Applicant applicant;
 
     @BeforeEach
     void setUp() {
-        repository = mock(ApplicantRepository.class);
-        service = new ApplicantService(repository);
-
         Contact contact = new Contact.Builder()
-                .setEmail("applicant@email.com")
-                .setCellphone("0812345678")
+                .setContactId(1)
+                .setCellphone("0740000000")
+                .setEmail("applicant@example.com")
                 .build();
 
         Address address = new Address.Builder()
-                .setStreet("123 Main Street")
+                .setAddressId(1)
+                .setStreet("45 Main Street")
                 .setCity("Cape Town")
                 .setProvince("Western Cape")
                 .setCountry("South Africa")
                 .build();
 
-        License license = new License.Builder()
-                .setlicenseCode("Code 10")
-                .setIssueDate((LocalDate.of(2015, 1, 10)))
-                .setExpiryDate((LocalDate.of(2025, 1, 10)))
+        applicant = new Applicant.Builder()
+                .setUserName("John")
+                .setUserSurname("Doe")
+                .setIdNumber("9001015800087")
+                .setBirthDate(LocalDate.of(1990, 1, 1))
+                .setContact(contact)
+                .setAddress(address)
+                .setRole(Applicant.Role.APPLICANT)
                 .build();
-
-        Bookings bookings = new Bookings.Builder()
-                .setBookingDate(LocalDate.now())
-                .build();
-
-        testApplicant = ApplicantFactory.createApplicant(
-                "Masibuve",
-                "Sikhulume",
-                "0001015009087",
-                contact,
-                address,
-                license,
-                bookings,
-                User.Role.APPLICANT
-        );
     }
 
     @Test
-    void create() {
-        when(repository.save(testApplicant)).thenReturn(testApplicant);
+    void testCreateAndReadApplicant() {
+        Applicant saved = applicantService.create(applicant);
+        assertNotNull(saved);
+        assertTrue(saved.getUserId() > 0);
 
-        Applicant created = (Applicant) service.create(testApplicant);
-
-        System.out.println("Created: " + created);
-        assertNotNull(created);
-        verify(repository).save(testApplicant);
-    }
-
-    @Test
-    void read() {
-        when(repository.findById(testApplicant.getUserId())).thenReturn(java.util.Optional.of(testApplicant));
-
-        Applicant found = (Applicant) service.read(testApplicant.getUserId());
-
-        System.out.println("Found: " + found);
+        Applicant found = applicantService.read(saved.getUserId());
         assertNotNull(found);
-        verify(repository).findById(testApplicant.getUserId());
+        assertEquals("John", found.getUserName());
     }
 
     @Test
-    void update() {
-        when(repository.save(testApplicant)).thenReturn(testApplicant);
+    void testUpdateApplicant() {
+        Applicant saved = applicantService.create(applicant);
+        saved.setUserName("UpdatedName");
 
-        Applicant updated = (Applicant) service.update(testApplicant);
-
-        System.out.println("Updated: " + updated);
-        assertNotNull(updated);
-        verify(repository).save(testApplicant);
+        Applicant updated = applicantService.update(saved);
+        assertEquals("UpdatedName", updated.getUserName());
     }
 
     @Test
-    void getAll() {
-        when(repository.findAll()).thenReturn(List.of(testApplicant));
+    void testDeleteApplicant() {
+        Applicant saved = applicantService.create(applicant);
+        applicantService.delete(saved.getUserId());
 
-        List<Applicant> list = service.getAll();
+        Applicant deleted = applicantService.read(saved.getUserId());
+        assertNull(deleted);
+    }
 
-        System.out.println("All Applicants: " + list);
-        assertFalse(list.isEmpty());
-        verify(repository).findAll();
+    @Test
+    void testGetAllApplicants() {
+        applicantService.create(applicant);
+        List<Applicant> all = applicantService.getAll();
+        assertFalse(all.isEmpty());
     }
 }
