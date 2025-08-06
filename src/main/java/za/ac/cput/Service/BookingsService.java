@@ -3,17 +3,17 @@ package za.ac.cput.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.Bookings;
-import za.ac.cput.Repository.IBookingsRepository;
+import za.ac.cput.Repository.BookingsRepository;
 
 import java.util.List;
 
 @Service
 public class BookingsService implements IBookingsService{
     @Autowired
-    private IBookingsRepository repository;
+    private BookingsRepository repository;
 
     @Autowired
-    public BookingsService(IBookingsRepository bookingsRepository) {
+    public BookingsService(BookingsRepository bookingsRepository) {
         this.repository = bookingsRepository;
     }
 

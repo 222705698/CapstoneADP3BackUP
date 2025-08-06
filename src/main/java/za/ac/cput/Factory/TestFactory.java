@@ -1,12 +1,12 @@
 package za.ac.cput.Factory;
 
-import za.ac.cput.Domain.bookings.Test;
+import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
 
 import java.time.LocalDate;
 
 public class TestFactory {
-    public static Test createTest(Long TestId, String testAddress, String testVenue, LocalDate testDate, boolean testResult, String licenseCode, TestType testType) {
+    public static TestAppointment createTest(Long TestAppointmentId, String testAddress, String testVenue, LocalDate testDate, boolean testResult, String licenseCode, TestType testType) {
         if (TestId == null || testAddress == null || testVenue == null || testDate == null || licenseCode == null) {
             return null;
         }
@@ -15,8 +15,8 @@ public class TestFactory {
             return null;
         }
 
-        return new Test.Builder()
-                .setTestId(TestId)
+        return new TestAppointment.Builder()
+                .set
                 .setTestAddress(testAddress)
                 .setTestVenue(testVenue)
                 .setTestDate(testDate)

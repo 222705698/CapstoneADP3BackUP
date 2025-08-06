@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class Applicant extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int UserId;
     private String IdNumber;
     private LocalDate BirthDate;
     @OneToOne(cascade = CascadeType.ALL)
@@ -36,6 +37,11 @@ public class Applicant extends User {
         this.Role = builder.Role;
     }
 
+    @Override
+    public int getUserId() {
+        return UserId;
+    }
+
     public String getIdNumber() {
         return IdNumber;
     }
@@ -55,7 +61,8 @@ public class Applicant extends User {
     @Override
     public String toString() {
         return "Applicant{" +
-                "IdNumber='" + IdNumber + '\'' +
+                "UserId=" + UserId +
+                ", IdNumber='" + IdNumber + '\'' +
                 ", BirthDate=" + BirthDate +
                 ", address=" + address +
                 ", license=" + license +
@@ -67,12 +74,14 @@ public class Applicant extends User {
                 ", Role=" + Role +
                 '}';
     }
+
     public static class Builder{
+        private int UserId;
         private String IdNumber;
         private LocalDate BirthDate;
         private Address address;
         private License license;
-        private int UserId;
+
         private String UserName;
         private String UserSurname;
         private Contact Contact;
