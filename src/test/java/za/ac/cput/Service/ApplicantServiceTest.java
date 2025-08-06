@@ -42,8 +42,8 @@ public class ApplicantServiceTest {
 
         License license = new License.Builder()
                 .setlicenseCode("Code 10")
-                .setIssueDate(String.valueOf(LocalDate.of(2015, 1, 10)))
-                .setExpiryDate(String.valueOf(LocalDate.of(2025, 1, 10)))
+                .setIssueDate((LocalDate.of(2015, 1, 10)))
+                .setExpiryDate((LocalDate.of(2025, 1, 10)))
                 .build();
 
         Bookings bookings = new Bookings.Builder()
