@@ -32,22 +32,14 @@ public class Helper {
         return validator.isValid(email);
     }
 
-    // Extract date of birth from South African ID number
-    public static LocalDate getDateOfBirth(String identityNumber) {
-        if (identityNumber == null || identityNumber.length() != 13) {
-            throw new IllegalArgumentException("Invalid Identity Number");
-        }
+    public static LocalDate getDateOfBirth(String IdentityNumber) {
+        int Year = Integer.parseInt(IdentityNumber.substring(0, 2));
+        int Month = Integer.parseInt(IdentityNumber.substring(2, 4));
+        int Day = Integer.parseInt(IdentityNumber.substring(4,6));
+        LocalDate date = LocalDate.of(Year, Month, Day);
+        return date;
 
-        int year = Integer.parseInt(identityNumber.substring(0, 2));
-        int month = Integer.parseInt(identityNumber.substring(2, 4));
-        int day = Integer.parseInt(identityNumber.substring(4, 6));
-
-        // Determine century (assume IDs are for 1900s or 2000s)
-        year += (year <= LocalDate.now().getYear() % 100) ? 2000 : 1900;
-
-        return LocalDate.of(year, month, day);
     }
-
     // Validate contact number
     public static boolean isValidContactNumber(String contactNumber) {
         if (contactNumber == null || contactNumber.length() != 10) {
