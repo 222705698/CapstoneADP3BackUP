@@ -1,0 +1,9 @@
+package za.ac.cput.Service;
+
+import za.ac.cput.Domain.bookings.VehicleDisc;
+
+import java.util.List;
+
+public interface IVehicleDiscService extends IService <VehicleDisc, Integer> {
+    List<VehicleDisc> getAll();
+}
