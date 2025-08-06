@@ -1,14 +1,15 @@
 package za.ac.cput.Domain.bookings;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
 @Entity
 public class TestAppointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long TestAppointmentId;
+    private Long testAppointmentId;  // lowercase t here
+
     private String testAddress;
     private String testVenue;
     private LocalDate testDate;
@@ -17,12 +18,14 @@ public class TestAppointment {
 
     @Enumerated(EnumType.STRING)
     private TestType testype;
+
     private double testAmount;
 
     public TestAppointment() {
     }
+
     private TestAppointment(Builder builder) {
-        this.TestAppointmentId = builder.TestAppointmentId;
+        this.testAppointmentId = builder.testAppointmentId;
         this.testAddress = builder.testAddress;
         this.testVenue = builder.testVenue;
         this.testDate = builder.testDate;
@@ -32,16 +35,16 @@ public class TestAppointment {
         this.testype = builder.testype;
     }
 
-    public String getLicenseCode() {
-        return licenseCode;
+    public Long getTestAppointmentId() {
+        return testAppointmentId;
     }
 
     public String getTestAddress() {
         return testAddress;
     }
 
-    public double getTestAmount() {
-        return testAmount;
+    public String getTestVenue() {
+        return testVenue;
     }
 
     public LocalDate getTestDate() {
@@ -52,56 +55,64 @@ public class TestAppointment {
         return testResult;
     }
 
-    public Long getTestAppointmentId() {
-        return TestAppointmentId;
-    }
-
-    public String getTestVenue() {
-        return testVenue;
+    public String getLicenseCode() {
+        return licenseCode;
     }
 
     public TestType getTestype() {
         return testype;
     }
 
+    public double getTestAmount() {
+        return testAmount;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (!(o instanceof TestAppointment)) return false;
         TestAppointment test = (TestAppointment) o;
-        return testResult == test.testResult && Double.compare(testAmount, test.testAmount) == 0 && Objects.equals(TestAppointmentId, test.TestAppointmentId) && Objects.equals(testAddress, test.testAddress) && Objects.equals(testVenue, test.testVenue) && Objects.equals(testDate, test.testDate) && Objects.equals(licenseCode, test.licenseCode) && testype == test.testype;
+        return testResult == test.testResult &&
+                Double.compare(test.testAmount, testAmount) == 0 &&
+                Objects.equals(testAppointmentId, test.testAppointmentId) &&
+                Objects.equals(testAddress, test.testAddress) &&
+                Objects.equals(testVenue, test.testVenue) &&
+                Objects.equals(testDate, test.testDate) &&
+                Objects.equals(licenseCode, test.licenseCode) &&
+                testype == test.testype;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(TestAppointmentId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
+        return Objects.hash(testAppointmentId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
     }
 
     @Override
     public String toString() {
-        return "Test{" +
-                "licenseCode='" + licenseCode + '\'' +
-                ", TestAppointmentId=" + TestAppointmentId +
+        return "TestAppointment{" +
+                "testAppointmentId=" + testAppointmentId +
                 ", testAddress='" + testAddress + '\'' +
                 ", testVenue='" + testVenue + '\'' +
                 ", testDate=" + testDate +
                 ", testResult=" + testResult +
+                ", licenseCode='" + licenseCode + '\'' +
                 ", testype=" + testype +
                 ", testAmount=" + testAmount +
                 '}';
     }
 
     public static class Builder {
-        private Long TestAppointmentId;
+        private Long testAppointmentId;
         private String testAddress;
         private String testVenue;
         private LocalDate testDate;
         private boolean testResult;
         private String licenseCode;
-        private double testAmount;
         private TestType testype;
+        private double testAmount;
 
-        public Builder setTestAppointmentId(Long TestAppointmentId) {
-            this.TestAppointmentId = TestAppointmentId;
+        public Builder setTestAppointmentId(Long testAppointmentId) {
+            this.testAppointmentId = testAppointmentId;
             return this;
         }
 
@@ -130,29 +141,30 @@ public class TestAppointment {
             return this;
         }
 
-        public Builder setTestAmount(double testAmount) {
-            this.testAmount = testAmount;
-            return this;
-        }
         public Builder setTestype(TestType testype) {
             this.testype = testype;
             return this;
         }
+
+        public Builder setTestAmount(double testAmount) {
+            this.testAmount = testAmount;
+            return this;
+        }
+
         public Builder copy(TestAppointment test) {
-            this.TestAppointmentId = test.TestAppointmentId;
+            this.testAppointmentId = test.testAppointmentId;
             this.testAddress = test.testAddress;
             this.testVenue = test.testVenue;
             this.testDate = test.testDate;
             this.testResult = test.testResult;
             this.licenseCode = test.licenseCode;
-            this.testAmount = test.testAmount;
             this.testype = test.testype;
+            this.testAmount = test.testAmount;
             return this;
-
         }
+
         public TestAppointment build() {
             return new TestAppointment(this);
         }
     }
-
 }

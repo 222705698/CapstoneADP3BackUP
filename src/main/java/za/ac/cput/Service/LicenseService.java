@@ -32,6 +32,12 @@ public class LicenseService implements ILicenseService{
     public License update(License license) {
         return this.repository.save(license);
     }
+
+    @Override
+    public void delete(Integer integer) {
+
+    }
+
     @Override
     public List<License> getall() {
         return this.repository.findAll();

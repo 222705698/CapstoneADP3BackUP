@@ -1,7 +1,7 @@
 package za.ac.cput.Domain.bookings;
-//Emihle Thole
-import jakarta.persistence.*;
 
+// Emihle Thole
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -9,27 +9,29 @@ public class Bookings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
-    protected Booktype booktype;
-    @Enumerated(EnumType.STRING)
-    private LocalDate bookingDate;
 
+    protected Booktype booktype;
+
+    // Removed @Enumerated annotation here
+    private LocalDate bookingDate;
 
     @OneToOne
     @JoinColumn(name = "vehicle_disc_id")
     private VehicleDisc vehicleDisc;
-@OneToOne
-@JoinColumn(name = "test_test_id")
-private  TestAppointment test;
 
+    @OneToOne
+    @JoinColumn(name = "test_test_id")
+    private TestAppointment test;
 
-
-    // Enum for user roles
+    // Enum for booking types
     public enum Booktype {
-        VEHICLE_DISC ,
+        VEHICLE_DISC,
         TEST
     }
+
     public Bookings() {
     }
+
     public Bookings(Builder builder) {
         this.bookingId = builder.bookingId;
         this.booktype = builder.booktype;
@@ -68,7 +70,8 @@ private  TestAppointment test;
                 ", test=" + test +
                 '}';
     }
-    public static class Builder{
+
+    public static class Builder {
         private int bookingId;
         private Booktype booktype;
         private LocalDate bookingDate;
@@ -98,22 +101,19 @@ private  TestAppointment test;
         public Builder setTest(TestAppointment test) {
             this.test = test;
             return this;
-
         }
-        public Builder copy(Bookings bookings) {
 
-            bookings.bookingId = this.bookingId;
-            bookings.booktype = this.booktype;
-            bookings.bookingDate = this.bookingDate;
-            bookings.vehicleDisc = this.vehicleDisc;
-            bookings.test = this.test;
+        public Builder copy(Bookings bookings) {
+            this.bookingId = bookings.bookingId;
+            this.booktype = bookings.booktype;
+            this.bookingDate = bookings.bookingDate;
+            this.vehicleDisc = bookings.vehicleDisc;
+            this.test = bookings.test;
             return this;
         }
+
         public Bookings build() {
             return new Bookings(this);
         }
-
-
-
     }
 }

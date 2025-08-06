@@ -19,28 +19,27 @@ public class ApplicantService implements IApplicantService {
     }
 
     @Override
-    public Applicant create(Object o) {
-        if (o instanceof Applicant applicant) {
+    public Applicant create(Applicant applicant) {
+        return applicantRepository.save(applicant);
+    }
+
+    @Override
+    public Applicant read(Integer id) {
+        Optional<Applicant> applicant = applicantRepository.findById(id);
+        return applicant.orElse(null);
+    }
+
+    @Override
+    public Applicant update(Applicant applicant) {
+        if (applicantRepository.existsById(applicant.getUserId())) {
             return applicantRepository.save(applicant);
         }
         return null;
     }
 
     @Override
-    public Applicant read(Object o) {
-        if (o instanceof Integer id) {
-            Optional<Applicant> applicant = applicantRepository.findById(id);
-            return applicant.orElse(null);
-        }
-        return null;
-    }
-
-    @Override
-    public Applicant update(Object o) {
-        if (o instanceof Applicant applicant && applicantRepository.existsById(applicant.getUserId())) {
-            return applicantRepository.save(applicant);
-        }
-        return null;
+    public void delete(Integer id) {
+        applicantRepository.deleteById(id);
     }
 
     @Override
