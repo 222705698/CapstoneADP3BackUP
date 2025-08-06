@@ -1,19 +1,22 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.User;
 
 import za.ac.cput.Domain.User.License;
 import za.ac.cput.Util.Helper;
 
+import java.time.LocalDate;
+
 public class LicenseFactory {
 
-public static License createLicense(String licenseType, String issueDate, String expiryDate){
+public static License createLicense(String licenseCode, LocalDate issueDate, LocalDate expiryDate){
 
     int licenseId = Helper.generateUniqueId();
-    if (Helper.isNullOrEmpty(licenseType) || Helper.isNullOrEmpty(issueDate) || Helper.isNullOrEmpty(expiryDate))
+    if (Helper.isNullOrEmpty(licenseCode) || issueDate == null || expiryDate == null) {
         return null;
+    }
 
     return new License.Builder()
             .setLicenseId(licenseId)
-            .setLicenseType(licenseType)
+            .setlicenseCode(licenseCode)
             .setIssueDate(issueDate)
             .setExpiryDate(expiryDate)
             .build();

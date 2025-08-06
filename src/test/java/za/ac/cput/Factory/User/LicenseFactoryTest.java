@@ -19,9 +19,9 @@ class LicenseFactoryTest {
         License license = LicenseFactory.createLicense(licenseCode, issueDate, expiryDate);
 
         assertNotNull(license);
-        assertEquals(licenseCode, license.getlicenseCode());
-        assertEquals(issueDate.toString(), license.getIssueDate());
-        assertEquals(expiryDate.toString(), license.getExpiryDate());
+        assertEquals(licenseCode, license.getLicenseCode());
+        assertEquals(issueDate.toString(), license.getIssueDate().toString());
+        assertEquals(expiryDate.toString(), license.getExpiryDate().toString());
         assertTrue(license.getLicenseId() > 0);
 
         System.out.println("License created: " + license);

@@ -38,7 +38,7 @@ public class License {
         return licenseId;
     }
 
-    public String getlicenseCode() {
+    public String getLicenseCode() {
         return licenseCode;
     }
 
@@ -76,14 +76,12 @@ public class License {
             return this;
         }
 
-
-        public Builder setIssueDate(String issueDate) {
-            this.issueDate = issueDate;
+        public Builder setIssueDate(LocalDate issueDate) {
+            this.issueDate = issueDate.toString();
             return this;
         }
-
-        public Builder setExpiryDate(String expiryDate) {
-            this.expiryDate = expiryDate;
+        public Builder setExpiryDate(LocalDate expiryDate) {
+            this.expiryDate = expiryDate.toString();
             return this;
         }
 
