@@ -35,7 +35,7 @@ public class ApplicantFactoryTest {
                 .build();
 
         license = new License.Builder()
-                .setLicenseType("Code 10")
+                .setlicenseCode("Code 10")
                 .setIssueDate(String.valueOf(LocalDate.of(2015, 1, 10)))
                 .setExpiryDate(String.valueOf(LocalDate.of(2025, 1, 10)))
                 .build();

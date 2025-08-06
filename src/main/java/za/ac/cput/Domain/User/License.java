@@ -2,6 +2,8 @@ package za.ac.cput.Domain.User;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 
 /*Emihle Thole
   221755349
@@ -13,8 +15,8 @@ public class License {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int licenseId; // Changed to Long
     private String licenseCode;
-    private String issueDate;
-    private String expiryDate;
+    private LocalDate issueDate;
+    private LocalDate expiryDate;
 
 
 
@@ -26,8 +28,9 @@ public class License {
     public License(Builder builder) {
         this.licenseId = builder.licenseId;
         this.licenseCode = builder.licenseCode;
-        this.issueDate = builder.issueDate;
-        this.expiryDate = builder.expiryDate;
+        this.issueDate = LocalDate.parse(builder.issueDate);
+        this.expiryDate = LocalDate.parse(builder.expiryDate);
+
 
     }
 
@@ -39,11 +42,10 @@ public class License {
         return licenseCode;
     }
 
-    public String getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
-
-    public String getExpiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
@@ -90,8 +92,8 @@ public class License {
         public Builder copy(License license) {
             this.licenseId = license.licenseId;
             this.licenseCode = license.licenseCode;
-            this.issueDate = license.issueDate;
-            this.expiryDate = license.expiryDate;
+            this.issueDate = license.issueDate.toString();
+            this.expiryDate = license.expiryDate.toString();
 
             return this;
         }
