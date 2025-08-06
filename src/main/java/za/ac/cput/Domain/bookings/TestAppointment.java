@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 @Entity
-public class Test {
+public class TestAppointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long TestId;
+    private Long TestAppointmentId;
     private String testAddress;
     private String testVenue;
     private LocalDate testDate;
@@ -19,10 +19,10 @@ public class Test {
     private TestType testype;
     private double testAmount;
 
-    public Test() {
+    public TestAppointment() {
     }
-    private Test(Builder builder) {
-        this.TestId = builder.TestId;
+    private TestAppointment(Builder builder) {
+        this.TestAppointmentId = builder.TestAppointmentId;
         this.testAddress = builder.testAddress;
         this.testVenue = builder.testVenue;
         this.testDate = builder.testDate;
@@ -52,8 +52,8 @@ public class Test {
         return testResult;
     }
 
-    public Long getTestId() {
-        return TestId;
+    public Long getTestAppointmentId() {
+        return TestAppointmentId;
     }
 
     public String getTestVenue() {
@@ -67,20 +67,20 @@ public class Test {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Test test = (Test) o;
-        return testResult == test.testResult && Double.compare(testAmount, test.testAmount) == 0 && Objects.equals(TestId, test.TestId) && Objects.equals(testAddress, test.testAddress) && Objects.equals(testVenue, test.testVenue) && Objects.equals(testDate, test.testDate) && Objects.equals(licenseCode, test.licenseCode) && testype == test.testype;
+        TestAppointment test = (TestAppointment) o;
+        return testResult == test.testResult && Double.compare(testAmount, test.testAmount) == 0 && Objects.equals(TestAppointmentId, test.TestAppointmentId) && Objects.equals(testAddress, test.testAddress) && Objects.equals(testVenue, test.testVenue) && Objects.equals(testDate, test.testDate) && Objects.equals(licenseCode, test.licenseCode) && testype == test.testype;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(TestId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
+        return Objects.hash(TestAppointmentId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
     }
 
     @Override
     public String toString() {
         return "Test{" +
                 "licenseCode='" + licenseCode + '\'' +
-                ", TestId=" + TestId +
+                ", TestAppointmentId=" + TestAppointmentId +
                 ", testAddress='" + testAddress + '\'' +
                 ", testVenue='" + testVenue + '\'' +
                 ", testDate=" + testDate +
@@ -91,7 +91,7 @@ public class Test {
     }
 
     public static class Builder {
-        private Long TestId;
+        private Long TestAppointmentId;
         private String testAddress;
         private String testVenue;
         private LocalDate testDate;
@@ -100,8 +100,8 @@ public class Test {
         private double testAmount;
         private TestType testype;
 
-        public Builder setTestId(Long TestId) {
-            this.TestId = TestId;
+        public Builder setTestAppointmentId(Long TestAppointmentId) {
+            this.TestAppointmentId = TestAppointmentId;
             return this;
         }
 
@@ -138,8 +138,8 @@ public class Test {
             this.testype = testype;
             return this;
         }
-        public Builder copy(Test test) {
-            this.TestId = test.TestId;
+        public Builder copy(TestAppointment test) {
+            this.TestAppointmentId = test.TestAppointmentId;
             this.testAddress = test.testAddress;
             this.testVenue = test.testVenue;
             this.testDate = test.testDate;
@@ -150,8 +150,8 @@ public class Test {
             return this;
 
         }
-        public Test build() {
-            return new Test(this);
+        public TestAppointment build() {
+            return new TestAppointment(this);
         }
     }
 
