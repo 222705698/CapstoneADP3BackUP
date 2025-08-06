@@ -1,15 +1,15 @@
 package za.ac.cput.Domain.User;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
 
 import java.time.LocalDate;
-
+@Entity
 public class Applicant extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String IdNumber;
     private LocalDate BirthDate;
     @OneToOne(cascade = CascadeType.ALL)

@@ -9,7 +9,8 @@ import java.util.List;
 
 @Entity
 public class Admin extends User {
-
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @OneToMany
 //    @JoinColumn(name = "admin_id")
 //    private List<Bookings> adminBookings;
