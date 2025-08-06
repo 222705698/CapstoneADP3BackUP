@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IBookingsService extends IService<Bookings, Integer> {
 
-    List<Bookings> findAll();
-    void delete(Integer id);
+    List<Bookings> getall();
+//    void delete(Integer id);
 }

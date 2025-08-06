@@ -3,17 +3,17 @@ package za.ac.cput.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.Bookings;
-import za.ac.cput.Repository.BookingsRepository;
+import za.ac.cput.Repository.IBookingsRepository;
 
 import java.util.List;
 
 @Service
 public class BookingsService implements IBookingsService{
     @Autowired
-    private BookingsRepository repository;
+    private IBookingsRepository repository;
 
     @Autowired
-    public BookingsService(BookingsRepository bookingsRepository) {
+    public BookingsService(IBookingsRepository bookingsRepository) {
         this.repository = bookingsRepository;
     }
 
@@ -38,13 +38,13 @@ public class BookingsService implements IBookingsService{
 
 
     @Override
-    public List<Bookings> findAll() { return this.repository.findAll(); }
+    public List<Bookings> getall() { return this.repository.findAll(); }
 
 
 
-    @Override
-    public void delete(Integer id) {
-
-    }
+//    @Override
+//    public void delete(Integer id) {
+//
+//    }
 
 }

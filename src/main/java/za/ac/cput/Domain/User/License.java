@@ -12,7 +12,7 @@ public class License {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int licenseId; // Changed to Long
-    private String licenseType;
+    private String licenseCode;
     private String issueDate;
     private String expiryDate;
 
@@ -25,7 +25,7 @@ public class License {
 
     public License(Builder builder) {
         this.licenseId = builder.licenseId;
-        this.licenseType = builder.licenseType;
+        this.licenseCode = builder.licenseCode;
         this.issueDate = builder.issueDate;
         this.expiryDate = builder.expiryDate;
 
@@ -35,8 +35,8 @@ public class License {
         return licenseId;
     }
 
-    public String getLicenseType() {
-        return licenseType;
+    public String getlicenseCode() {
+        return licenseCode;
     }
 
     public String getIssueDate() {
@@ -52,7 +52,7 @@ public class License {
     public String toString() {
         return "License{" +
                 "licenseId=" + licenseId +
-                ", licenseType='" + licenseType + '\'' +
+                ", licenseCode='" + licenseCode + '\'' +
                 ", issueDate='" + issueDate + '\'' +
                 ", expiryDate='" + expiryDate + '\'' +
                 '}';
@@ -61,7 +61,7 @@ public class License {
     public static class Builder {
 
         private int licenseId; // Changed to Long
-        private String licenseType;
+        private String licenseCode;
         private String issueDate;
         private String expiryDate;
 
@@ -69,8 +69,8 @@ public class License {
             this.licenseId = licenseId;
             return this;
         }
-        public Builder setLicenseType(String licenseType) {
-            this.licenseType = licenseType;
+        public Builder setlicenseCode(String licenseCode) {
+            this.licenseCode = licenseCode;
             return this;
         }
 
@@ -89,7 +89,7 @@ public class License {
 
         public Builder copy(License license) {
             this.licenseId = license.licenseId;
-            this.licenseType = license.licenseType;
+            this.licenseCode = license.licenseCode;
             this.issueDate = license.issueDate;
             this.expiryDate = license.expiryDate;
 
