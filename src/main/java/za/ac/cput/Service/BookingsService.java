@@ -35,6 +35,10 @@ public class BookingsService implements IBookingsService{
         return this.repository.save(bookings);
     }
 
+    @Override
+    public void delete(Integer integer) {
+
+    }
 
 
     @Override

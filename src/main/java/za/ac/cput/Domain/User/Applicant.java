@@ -6,15 +6,17 @@ import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
 
 import java.time.LocalDate;
+
+
 @Entity
+@DiscriminatorValue("APPLICANT")
 public class Applicant extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int UserId;
+
     private String IdNumber;
     private LocalDate BirthDate;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -23,23 +25,18 @@ public class Applicant extends User {
 
     public Applicant() {
     }
-    public Applicant(Builder builder) {
 
+    private Applicant(Builder builder) {
+        this.UserId = builder.UserId;
         this.IdNumber = builder.IdNumber;
         this.BirthDate = builder.BirthDate;
         this.address = builder.address;
         this.license = builder.license;
-        this.UserId = builder.UserId;
         this.UserName = builder.UserName;
         this.UserSurname = builder.UserSurname;
         this.Contact = builder.Contact;
         this.UserBooks = builder.UserBooks;
         this.Role = builder.Role;
-    }
-
-    @Override
-    public int getUserId() {
-        return UserId;
     }
 
     public String getIdNumber() {
@@ -66,7 +63,6 @@ public class Applicant extends User {
                 ", BirthDate=" + BirthDate +
                 ", address=" + address +
                 ", license=" + license +
-                ", UserId=" + UserId +
                 ", UserName='" + UserName + '\'' +
                 ", UserSurname='" + UserSurname + '\'' +
                 ", Contact=" + Contact +
@@ -75,65 +71,74 @@ public class Applicant extends User {
                 '}';
     }
 
-    public static class Builder{
+    public static class Builder {
         private int UserId;
         private String IdNumber;
         private LocalDate BirthDate;
         private Address address;
         private License license;
-
         private String UserName;
         private String UserSurname;
         private Contact Contact;
         private Bookings UserBooks;
         private Role Role;
 
+        public Builder setUserId(int userId) {
+            this.UserId = userId;
+            return this;
+        }
+
         public Builder setIdNumber(String idNumber) {
-            IdNumber = idNumber;
+            this.IdNumber = idNumber;
             return this;
         }
+
         public Builder setBirthDate(LocalDate birthDate) {
-            BirthDate = birthDate;
+            this.BirthDate = birthDate;
             return this;
         }
+
         public Builder setAddress(Address address) {
             this.address = address;
             return this;
         }
+
         public Builder setLicense(License license) {
             this.license = license;
             return this;
         }
-        public Builder setUserId(int userId) {
-            UserId = userId;
-            return this;
-        }
+
         public Builder setUserName(String userName) {
-            UserName = userName;
+            this.UserName = userName;
             return this;
         }
+
         public Builder setUserSurname(String userSurname) {
-            UserSurname = userSurname;
+            this.UserSurname = userSurname;
             return this;
         }
+
         public Builder setContact(Contact contact) {
-            Contact = contact;
+            this.Contact = contact;
             return this;
         }
+
         public Builder setUserBooks(Bookings userBooks) {
-            UserBooks = userBooks;
+            this.UserBooks = userBooks;
             return this;
         }
+
         public Builder setRole(Role role) {
-            Role = role;
+            this.Role = role;
             return this;
         }
+
         public Builder copy(Applicant applicant) {
+            this.UserId = applicant.UserId;
             this.IdNumber = applicant.IdNumber;
             this.BirthDate = applicant.BirthDate;
             this.address = applicant.address;
             this.license = applicant.license;
-            this.UserId = applicant.UserId;
             this.UserName = applicant.UserName;
             this.UserSurname = applicant.UserSurname;
             this.Contact = applicant.Contact;
@@ -141,12 +146,9 @@ public class Applicant extends User {
             this.Role = applicant.Role;
             return this;
         }
+
         public Applicant build() {
             return new Applicant(this);
         }
-
-
-
     }
-
 }

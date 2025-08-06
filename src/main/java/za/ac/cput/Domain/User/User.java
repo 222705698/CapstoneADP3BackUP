@@ -4,18 +4,17 @@ import jakarta.persistence.*;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Contact;
 
-/*Masibuve Sikhulume
-221807144
- */
 @Entity
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int UserId;
+
     protected String UserName;
     protected String UserSurname;
-
 
     @OneToOne
     @JoinColumn(name = "contact_id")
@@ -28,7 +27,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     protected Role Role;
 
-    // Enum for user roles
     public enum Role {
         ADMIN,
         APPLICANT
@@ -37,6 +35,7 @@ public class User {
     public User() {
     }
 
+    // Getters and setters
     public int getUserId() {
         return UserId;
     }

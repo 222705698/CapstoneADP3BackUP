@@ -1,19 +1,18 @@
 package za.ac.cput.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.User.Admin;
-import za.ac.cput.Domain.Registrations.Registration;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.payment.Payments;
-import za.ac.cput.Domain.User.Applicant;
+import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Repository.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdminService implements IAdminService {
+public class AdminService {
 
     private final AdminRepository adminRepository;
     private final ApplicantRepository applicantRepository;
@@ -21,7 +20,6 @@ public class AdminService implements IAdminService {
     private final PaymentRepository paymentRepository;
     private final RegistrationRepository registrationRepository;
 
-    @Autowired
     public AdminService(AdminRepository adminRepository,
                         ApplicantRepository applicantRepository,
                         BookingsRepository bookingsRepository,
@@ -34,61 +32,52 @@ public class AdminService implements IAdminService {
         this.registrationRepository = registrationRepository;
     }
 
-    // === CRUD Methods ===
+    // Create
+    public Admin create(Admin admin) {
+        return adminRepository.save(admin);
+    }
 
-    @Override
-    public Admin create(Object o) {
-        if (o instanceof Admin admin) {
+    // Read by id
+    public Admin read(int id) {
+        Optional<Admin> opt = adminRepository.findById(id);
+        return opt.orElse(null);
+    }
+
+    // Update
+    public Admin update(Admin admin) {
+        if(adminRepository.existsById(admin.getUserId())) {
             return adminRepository.save(admin);
         }
         return null;
     }
 
-    @Override
-    public Admin read(Object id) {
-        if (id instanceof Integer adminId) {
-            Optional<Admin> admin = adminRepository.findById(adminId);
-            return admin.orElse(null);
+    // Delete
+    public boolean delete(int id) {
+        if(adminRepository.existsById(id)) {
+            adminRepository.deleteById(id);
+            return true;
         }
-        return null;
+        return false;
     }
 
-    @Override
-    public Admin update(Object o) {
-        if (o instanceof Admin admin && adminRepository.existsById(admin.getUserId())) {
-            return adminRepository.save(admin);
-        }
-        return null;
-    }
-
-    @Override
+    // Other methods
     public List<Admin> getAllAdmins() {
         return adminRepository.findAll();
     }
 
-    // === Custom Admin Functions ===
-
-    @Override
-    public void getAllApplicants() {
-        List<Applicant> applicants = applicantRepository.findAll();
-        applicants.forEach(System.out::println);
+    public List<Applicant> getAllApplicants() {
+        return applicantRepository.findAll();
     }
 
-    @Override
-    public void getBookings() {
-        List<Bookings> bookings = bookingsRepository.findAll();
-        bookings.forEach(System.out::println);
+    public List<Bookings> getBookings() {
+        return bookingsRepository.findAll();
     }
 
-    @Override
-    public void getPayments() {
-        List<Payments> payments = paymentRepository.findAll();
-        payments.forEach(System.out::println);
+    public List<Payments> getPayments() {
+        return paymentRepository.findAll();
     }
 
-    @Override
-    public void getRegistration() {
-        List<Registration> registrations = registrationRepository.findAll();
-        registrations.forEach(System.out::println);
+    public List<Registration> getRegistration() {
+        return registrationRepository.findAll();
     }
 }
