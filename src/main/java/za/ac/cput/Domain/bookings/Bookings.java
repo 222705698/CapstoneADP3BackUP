@@ -19,7 +19,7 @@ public class Bookings {
     private VehicleDisc vehicleDisc;
 @OneToOne
 @JoinColumn(name = "test_test_id")
-private  Test test;
+private  TestAppointment test;
 
 
 
@@ -54,7 +54,7 @@ private  Test test;
         return vehicleDisc;
     }
 
-    public Test getTest() {
+    public TestAppointment getTest() {
         return test;
     }
 
@@ -73,7 +73,7 @@ private  Test test;
         private Booktype booktype;
         private LocalDate bookingDate;
         private VehicleDisc vehicleDisc;
-        private Test test;
+        private TestAppointment test;
 
         public Builder setBookingId(int bookingId) {
             this.bookingId = bookingId;
@@ -95,7 +95,7 @@ private  Test test;
             return this;
         }
 
-        public Builder setTest(Test test) {
+        public Builder setTest(TestAppointment test) {
             this.test = test;
             return this;
 

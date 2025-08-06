@@ -11,6 +11,7 @@ import java.util.List;
 public class Admin extends User {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+private int UserId;
 //    @OneToMany
 //    @JoinColumn(name = "admin_id")
 //    private List<Bookings> adminBookings;
@@ -52,6 +53,10 @@ public class Admin extends User {
 
     }
 
+    @Override
+    public int getUserId() {
+        return UserId;
+    }
 
     public List<Payments> getPayments() {
         return payments;
@@ -68,7 +73,8 @@ public class Admin extends User {
     @Override
     public String toString() {
         return "Admin{" +
-                "payments=" + payments +
+                "UserId=" + UserId +
+                ", payments=" + payments +
                 ", status=" + status +
                 ", reason='" + reason + '\'' +
                 ", UserId=" + UserId +
@@ -79,6 +85,7 @@ public class Admin extends User {
                 ", Role=" + Role +
                 '}';
     }
+
     public static class Builder {
         private int UserId;
         private String UserName;

@@ -18,8 +18,8 @@ class AdminFactoryTest {
 
     Contact getContact() {
         return new Contact.Builder()
-                .setEmail("admin@example.com")
-                .setCellphone("0723456789")
+                .setEmail("asisiphopeter@gmail.com")
+                .setCellphone("0655528976")
                 .build();
     }
 
