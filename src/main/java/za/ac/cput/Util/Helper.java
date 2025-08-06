@@ -2,6 +2,7 @@ package za.ac.cput.Util;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Helper {
@@ -62,5 +63,23 @@ public class Helper {
             return false;
         }
         return postalCode.matches("\\d+");
+    }
+
+    // cheking vevihle disc expiry date
+
+    // Method to check if expiry date is within 5 years from issue date
+    public static boolean isDiscValid(LocalDate issueDate, LocalDate expiryDate) {
+        if (issueDate == null || expiryDate == null) {
+            System.out.println("Issue date or expiry date cannot be null.");
+            return false;
+        }
+
+        long yearsBetween = ChronoUnit.YEARS.between(issueDate, expiryDate);
+
+        if (yearsBetween > 5) {
+            System.out.println("Your vehicle disc has expired.");
+            return false;
+        }
+        return true;
     }
 }

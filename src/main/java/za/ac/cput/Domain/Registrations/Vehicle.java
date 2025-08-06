@@ -4,6 +4,10 @@ package za.ac.cput.Domain.Registrations;
 
 import jakarta.persistence.*;
 import za.ac.cput.Domain.bookings.VehicleDisc;
+import za.ac.cput.Domain.payment.Ticket;
+
+import java.util.List;
+
 @Entity
 public class Vehicle {
     @Id
@@ -13,9 +17,14 @@ public class Vehicle {
     private String VehicleModel;
     private String VehicleYear;
     private String VehicleColor;
+
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "vehicle_disc_id")
     private VehicleDisc VehicleDisc;
+
+    @OneToMany
+    @JoinColumn(name = "ticket_ticket_id")
+    private List<Ticket> ticket;
 
     public Vehicle() {
     }
@@ -28,6 +37,7 @@ public class Vehicle {
         this.VehicleYear = builder.VehicleYear;
         this.VehicleColor = builder.VehicleColor;
         this.VehicleDisc = builder.VehicleDisc;
+        this.ticket = builder.ticket;
 
 
     }
@@ -60,6 +70,10 @@ public class Vehicle {
         return VehicleDisc;
     }
 
+    public List<Ticket> getTicket() {
+        return ticket;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -70,6 +84,7 @@ public class Vehicle {
                 ", VehicleYear='" + VehicleYear + '\'' +
                 ", VehicleColor='" + VehicleColor + '\'' +
                 ", VehicleDisc=" + VehicleDisc +
+                ", ticket=" + ticket +
                 '}';
     }
 
@@ -81,6 +96,7 @@ public class Vehicle {
         private String VehicleYear;
         private String VehicleColor;
         private VehicleDisc VehicleDisc;
+        private List<Ticket> ticket;
 
         public Builder setVehicleID(int vehicleID) {
             VehicleID = vehicleID;
@@ -116,6 +132,10 @@ public class Vehicle {
             VehicleDisc = vehicleDisc;
             return this;
         }
+        public Builder setTicket(List<Ticket> ticket) {
+            this.ticket = ticket;
+            return this;
+        }
 
         public Builder copy(Vehicle vehicle) {
             VehicleID = vehicle.VehicleID;
@@ -125,6 +145,7 @@ public class Vehicle {
             VehicleYear = vehicle.VehicleYear;
             VehicleColor = vehicle.VehicleColor;
             VehicleDisc = vehicle.VehicleDisc;
+            ticket = vehicle.ticket;
             return this;
         }
         public Vehicle build() {
