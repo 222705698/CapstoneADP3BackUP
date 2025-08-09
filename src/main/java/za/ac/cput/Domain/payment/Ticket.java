@@ -94,4 +94,15 @@ public class Ticket {
             return new Ticket(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "issueDate=" + issueDate +
+                ", ticketId=" + ticketId +
+                ", ticketAmount=" + ticketAmount +
+                ", status='" + status + '\'' +
+                ", payment=" + payment +
+                '}';
+    }
 }
