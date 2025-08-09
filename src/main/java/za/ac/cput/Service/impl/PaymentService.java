@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PaymentService implements IPaymentService {
 
-    @Autowired
+   // @Autowired
     private PaymentRepository paymentRepository;
 
     @Autowired

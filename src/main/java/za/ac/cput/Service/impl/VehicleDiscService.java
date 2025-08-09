@@ -9,7 +9,9 @@ import za.ac.cput.Service.IVehicleDiscService;
 import java.util.List;
 @Service
 public class VehicleDiscService implements IVehicleDiscService {
+
    private VehicleDiscRepository repository;
+
 @Autowired
     public VehicleDiscService(VehicleDiscRepository repository) {
         this.repository = repository;
@@ -21,8 +23,8 @@ public class VehicleDiscService implements IVehicleDiscService {
     }
 
     @Override
-    public VehicleDisc read(Integer integer) {
-        return this.repository.findById(integer).orElse(null);
+    public VehicleDisc read(Long id) {
+        return this.repository.findById(id).orElse(null);
     }
 
     @Override
@@ -31,8 +33,8 @@ public class VehicleDiscService implements IVehicleDiscService {
     }
 
     @Override
-    public void delete(Integer integer) {
-    this.repository.deleteById(integer);
+    public void delete(Long id) {
+    this.repository.deleteById(id);
 
     }
 

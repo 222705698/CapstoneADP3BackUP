@@ -4,13 +4,16 @@ package za.ac.cput.Domain.bookings;
 Author: Sibahle shange (222529571)*/
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 @Entity
 public class VehicleDisc {
     @Id
-    private String discId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long discId;
     private LocalDate issueDate;
     private LocalDate expiryDate;
 
@@ -24,7 +27,7 @@ public class VehicleDisc {
 
     }
 
-    public String getDiscId() {
+    public Long getDiscId() {
         return discId;
     }
 
@@ -46,11 +49,11 @@ public class VehicleDisc {
     }
     
     public static class Builder {
-        private String discId;
+        private Long discId;
         private LocalDate issueDate;
         private LocalDate expiryDate;
 
-        public Builder setDiscId(String discId) {
+        public Builder setDiscId(Long discId) {
             this.discId = discId;
             return this;
         }

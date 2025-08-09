@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class VehicleService implements IVehicleService {
+
     private VehicleRepository vehicleRepository;
 @Autowired
     public VehicleService(VehicleRepository vehicleRepository) {

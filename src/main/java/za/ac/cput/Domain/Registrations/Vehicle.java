@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 public class Vehicle {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int VehicleID;
     private String VehicleName;
     private String VehicleType;
@@ -18,7 +19,7 @@ public class Vehicle {
     private String VehicleYear;
     private String VehicleColor;
 
-@OneToOne(cascade = CascadeType.ALL)
+@OneToOne //(cascade = CascadeType.ALL)
 @JoinColumn(name = "vehicle_disc_id")
     private VehicleDisc VehicleDisc;
 
