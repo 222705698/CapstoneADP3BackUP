@@ -6,7 +6,7 @@ import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Repository.RegistrationRepository;
 import za.ac.cput.Service.IRegistrationService;
 
-import java.util.List;
+import java.util.List;//
 @Service
 public class RegistrationService implements IRegistrationService {
     @Autowired
@@ -19,7 +19,7 @@ public class RegistrationService implements IRegistrationService {
     public Registration create(Registration registration) {
         return this.repository.save(registration);
     }
-
+    //  Sinokholo Singazi
     @Override
     public Registration read(Integer integer) {
         return this.repository.findById(integer).orElse(null);

@@ -29,7 +29,7 @@ class RegistrationServiceTest {
                 .setRegistrationId(1)
                 .setRegistrationNumber("REG-12345")
                 .setRegistrationDate("2025-08-07")
-                .setVehicle(new Vehicle()) // you can also mock a Vehicle if needed
+                .setVehicle(new Vehicle())
                 .build();
     }
 

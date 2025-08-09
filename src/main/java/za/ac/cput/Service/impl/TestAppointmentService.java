@@ -24,7 +24,7 @@ public class TestAppointmentService implements ITestAppointmentService {
 
     @Override
     public TestAppointment read(Long id) {
-        return testAppointmentRepository.findById(id).orElse(null); // Use Long here
+        return testAppointmentRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TestAppointmentService implements ITestAppointmentService {
     }
     @Override
     public void delete(Long id) {
-        testAppointmentRepository.deleteById(id); // Use
+        testAppointmentRepository.deleteById(id);
 
     }
     @Override
