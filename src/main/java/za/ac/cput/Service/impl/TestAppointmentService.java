@@ -28,7 +28,7 @@ public class TestAppointmentService implements ITestAppointmentService {
     }
 
     @Override
-    public TestAppointment update(TestAppointment testAppointment) {
+    public TestAppointment update(TestAppointment testAppointment) { // updates
         return testAppointmentRepository.save(testAppointment);
     }
     @Override

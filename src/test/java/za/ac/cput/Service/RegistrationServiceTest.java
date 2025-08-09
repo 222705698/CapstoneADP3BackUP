@@ -29,7 +29,7 @@ class RegistrationServiceTest {
                 .setRegistrationId(1)
                 .setRegistrationNumber("REG-12345")
                 .setRegistrationDate("2025-08-07")
-                .setVehicle(new Vehicle())
+                .setVehicle(new Vehicle())// gives me null
                 .build();
     }
 
