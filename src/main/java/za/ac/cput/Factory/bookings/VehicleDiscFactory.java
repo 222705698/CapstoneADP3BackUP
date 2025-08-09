@@ -13,6 +13,7 @@ public class VehicleDiscFactory {
 
     if(!Helper.isDiscValid(issueDate, expiryDate))
         return null;
+
  return new VehicleDisc.Builder()
          .setIssueDate(issueDate)
          .setExpiryDate(expiryDate)

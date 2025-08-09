@@ -2,6 +2,7 @@ package za.ac.cput.Factory.Registration;
 
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Domain.bookings.VehicleDisc;
+import za.ac.cput.Domain.payment.Ticket;
 import za.ac.cput.Util.Helper;
 
 import java.util.List;

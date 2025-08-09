@@ -1,12 +1,12 @@
 package za.ac.cput.Util;
 
 import org.apache.commons.validator.routines.EmailValidator;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Helper {
-
     // Validate if a string is null or empty
     public static boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
@@ -22,7 +22,7 @@ public class Helper {
         return date != null && date.isBefore(LocalDate.now());
     }
     // Validate if a date is in the future
-    private static final AtomicInteger idCounter = new AtomicInteger(1000); // Start from 1000
+    private static final AtomicInteger idCounter = new AtomicInteger(1000); // Start from 1000
     public static int generateUniqueId() {
         return idCounter.getAndIncrement();
     }
@@ -75,7 +75,7 @@ public class Helper {
         return true;
     }
 
-    public static boolean isAmountValid(double amount) {
-        return false;
+    public static Boolean isAmountValid(double amount) {
+        return true? !(amount == 0) && isNullOrEmpty(String.valueOf(amount)): false;
     }
 }

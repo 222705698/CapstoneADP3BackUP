@@ -3,7 +3,7 @@ package za.ac.cput.Domain.User;
 import jakarta.persistence.*;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Contact;
-import za.ac.cput.Domain.payment.Payments;
+import za.ac.cput.Domain.payment.Payment;
 
 import java.util.List;
 @Entity
@@ -12,7 +12,7 @@ public class Admin extends User {
 
     @OneToMany
     @JoinColumn(name = "admin_id")  // FK column in Payments table pointing to Admin
-    private List<Payments> payments;
+    private List<Payment> payments;
 
     @Enumerated(EnumType.STRING)
     protected Status status;
@@ -40,7 +40,7 @@ public class Admin extends User {
         this.reason = builder.reason;
     }
 
-    public List<Payments> getPayments() {
+    public List<Payment> getPayments() {
         return payments;
     }
 
@@ -74,7 +74,7 @@ public class Admin extends User {
         private Contact Contact;
         private Bookings UserBooks;
         private Role Role;
-        private List<Payments> payments;
+        private List<Payment> payments;
         private Status status;
         private String reason;
 
@@ -108,7 +108,7 @@ public class Admin extends User {
             return this;
         }
 
-        public Builder setPayments(List<Payments> payments) {
+        public Builder setPayments(List<Payment> payments) {
             this.payments = payments;
             return this;
         }
