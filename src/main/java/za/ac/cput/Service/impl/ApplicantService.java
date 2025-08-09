@@ -1,9 +1,10 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Repository.ApplicantRepository;
+import za.ac.cput.Service.IApplicantService;
 
 import java.util.List;
 import java.util.Optional;

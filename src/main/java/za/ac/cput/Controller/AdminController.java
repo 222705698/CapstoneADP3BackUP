@@ -8,7 +8,7 @@ import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.Registrations.Registration;
-import za.ac.cput.Service.AdminService;
+import za.ac.cput.Service.impl.AdminService;
 
 import java.util.List;
 

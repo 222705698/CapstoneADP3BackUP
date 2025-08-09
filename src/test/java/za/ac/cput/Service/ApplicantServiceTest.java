@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
+import za.ac.cput.Service.impl.ApplicantService;
 
 import java.time.LocalDate;
 import java.util.List;

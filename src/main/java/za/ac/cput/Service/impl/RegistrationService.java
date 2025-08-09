@@ -1,13 +1,14 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Repository.RegistrationRepository;
+import za.ac.cput.Service.IRegistrationService;
 
 import java.util.List;
 @Service
-public class RegistrationService implements IRegistrationService{
+public class RegistrationService implements IRegistrationService {
     @Autowired
     private RegistrationRepository repository;
     @Autowired

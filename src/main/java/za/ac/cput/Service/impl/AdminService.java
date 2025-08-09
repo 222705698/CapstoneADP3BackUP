@@ -1,4 +1,4 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.User.Admin;

@@ -1,13 +1,14 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 
 import za.ac.cput.Domain.User.License;
 
 import za.ac.cput.Repository.LicenseRepository;
+import za.ac.cput.Service.ILicenseService;
 
 import java.util.List;
 
-public class LicenseService implements ILicenseService{
+public class LicenseService implements ILicenseService {
     
 
     private LicenseRepository repository;
