@@ -24,15 +24,18 @@ public class TestAppointmentService implements ITestAppointmentService {
 
     @Override
     public TestAppointment read(Long id) {
-        return testAppointmentRepository.findById(id).orElse(null); // Use Long here
+        return testAppointmentRepository.findById(id).orElse(null);
     }
 
     @Override
-    public TestAppointment update(TestAppointment testAppointment) {
+    public TestAppointment update(TestAppointment testAppointment) { // updates
         return testAppointmentRepository.save(testAppointment);
     }
+    @Override
+    public void delete(Long id) {
+        testAppointmentRepository.deleteById(id);
 
-
+    }
     @Override
     public List<TestAppointment> findByTestId(Long testAppointmentId) {
         return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));

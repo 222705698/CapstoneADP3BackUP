@@ -29,7 +29,7 @@ class RegistrationServiceTest {
                 .setRegistrationId(1)
                 .setRegistrationNumber("REG-12345")
                 .setRegistrationDate("2025-08-07")
-                .setVehicle(new Vehicle()) // you can also mock a Vehicle if needed
+                .setVehicle(new Vehicle())// gives me null
                 .build();
     }
 
@@ -64,6 +64,7 @@ class RegistrationServiceTest {
 
         when(registrationRepository.save(updatedRegistration)).thenReturn(updatedRegistration);
 
+        System.out.println("Updated Registration: " + updatedRegistration);
         Registration updated = registrationService.update(updatedRegistration);
         assertNotNull(updated);
         assertEquals("REG-UPDATED", updated.getRegistrationNumber());
