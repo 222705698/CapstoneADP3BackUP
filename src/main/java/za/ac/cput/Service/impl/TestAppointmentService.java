@@ -37,10 +37,10 @@ public class TestAppointmentService implements ITestAppointmentService {
         testAppointmentRepository.deleteById(id);
 
     }
-    @Override
-    public List<TestAppointment> findByTestId(Long testAppointmentId) {
-        return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));
-    }
+//    @Override
+//    public List<TestAppointment> findByTestId(Long testAppointmentId) {
+//        return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));
+//    }
 
     @Override
     public Optional<TestAppointment> findById(Long id) {

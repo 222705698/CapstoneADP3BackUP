@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITestAppointmentService extends IService<TestAppointment, Long> {
-    List<TestAppointment> findByTestId(Long testAppointmentId);
+//    List<TestAppointment> findByTestId(Long testAppointmentId);
 
     Optional<TestAppointment> findById(Long id);
 

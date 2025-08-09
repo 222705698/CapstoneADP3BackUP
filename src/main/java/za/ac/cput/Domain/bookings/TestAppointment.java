@@ -8,7 +8,7 @@ import java.util.Objects;
 public class TestAppointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long testAppointmentId;  // lowercase t here
+    private Long testAppointmentId;  // lowercase
 
     private String testAddress;
     private String testVenue;

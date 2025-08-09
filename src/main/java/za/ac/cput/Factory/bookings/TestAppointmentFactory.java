@@ -7,8 +7,8 @@ import za.ac.cput.Util.Helper;
 import java.time.LocalDate;
 
 public class TestAppointmentFactory {
-    public static TestAppointment createTestAppointment(Long TestAppointmentId, String testAddress, String testVenue, LocalDate testDate, boolean testResult, String licenseCode, TestType testType) {
-        if (Helper.isNullOrEmpty(String.valueOf(TestAppointmentId)) || Helper.isNullOrEmpty(testAddress) || Helper.isNullOrEmpty(licenseCode) || Helper.isNullOrEmpty(testVenue) || Helper.isNullOrEmpty(testVenue)) {
+    public static TestAppointment createTestAppointment(String testAddress, String testVenue, LocalDate testDate, boolean testResult, String licenseCode, TestType testType) {
+        if ( Helper.isNullOrEmpty(testAddress) || Helper.isNullOrEmpty(licenseCode) || Helper.isNullOrEmpty(testVenue) || Helper.isNullOrEmpty(testVenue)) {
             return null;
         }
 
@@ -17,7 +17,6 @@ public class TestAppointmentFactory {
         }
 
         return new TestAppointment.Builder()
-                .setTestAppointmentId(TestAppointmentId)
                 .setTestAddress(testAddress)
                 .setTestVenue(testVenue)
                 .setTestDate(testDate)
