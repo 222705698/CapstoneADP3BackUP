@@ -1,4 +1,4 @@
-package za.ac.cput.Controller;
+package za.ac.cput.Controller.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
