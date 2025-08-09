@@ -74,4 +74,8 @@ public class Helper {
         }
         return true;
     }
+
+    public static boolean isAmountValid(double amount) {
+        return false;
+    }
 }

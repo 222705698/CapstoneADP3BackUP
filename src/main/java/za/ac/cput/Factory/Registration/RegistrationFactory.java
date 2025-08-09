@@ -8,7 +8,6 @@ import static za.ac.cput.Util.Helper.generateUniqueId;
 
 public class RegistrationFactory {
     public static Registration createRegistration(String registrationNumber, String registrationDate, Vehicle vehicle) {
-        int registrationId = generateUniqueId();
         if(Helper.isNullOrEmpty(registrationNumber) || Helper.isNullOrEmpty(registrationDate)|| vehicle == null) {
             return null;
         }

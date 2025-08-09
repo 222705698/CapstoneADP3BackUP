@@ -30,8 +30,11 @@ public class TestAppointmentService implements ITestAppointmentService {
     public TestAppointment update(TestAppointment testAppointment) {
         return testAppointmentRepository.save(testAppointment);
     }
+    @Override
+    public void delete(Long id) {
+        testAppointmentRepository.deleteById(id); // Use
 
-
+    }
     @Override
     public List<TestAppointment> findByTestId(Long testAppointmentId) {
         return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));

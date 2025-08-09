@@ -37,7 +37,7 @@ public class ApplicantService implements IApplicantService {
         return null;
     }
 
-    @Override
+    //@Override
     public void delete(Integer id) {
         applicantRepository.deleteById(id);
     }

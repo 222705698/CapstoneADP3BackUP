@@ -64,6 +64,7 @@ class RegistrationServiceTest {
 
         when(registrationRepository.save(updatedRegistration)).thenReturn(updatedRegistration);
 
+        System.out.println("Updated Registration: " + updatedRegistration);
         Registration updated = registrationService.update(updatedRegistration);
         assertNotNull(updated);
         assertEquals("REG-UPDATED", updated.getRegistrationNumber());
