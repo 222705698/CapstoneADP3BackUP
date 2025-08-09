@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.User.Admin;
 import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.Bookings;
-import za.ac.cput.Domain.payment.Payments;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Repository.*;
 
@@ -73,7 +73,7 @@ public class AdminService {
         return bookingsRepository.findAll();
     }
 
-    public List<Payments> getPayments() {
+    public List<Payment> getPayments() {
         return paymentRepository.findAll();
     }
 

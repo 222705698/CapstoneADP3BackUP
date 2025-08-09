@@ -5,7 +5,7 @@ import za.ac.cput.Domain.User.Admin;
 import za.ac.cput.Domain.User.User;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Contact;
-import za.ac.cput.Domain.payment.Payments;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.PaymentType;
 
 import java.time.LocalDate;
@@ -30,8 +30,8 @@ class AdminFactoryTest {
                 .build();
     }
 
-    List<Payments> getPayments() {
-        Payments payment = new Payments.Builder()
+    List<Payment> getPayments() {
+        Payment payment = new Payment.Builder()
                 .setPaymentType(PaymentType.TICKET)
                 .setPaymentMethod("Visa")
                 .setPaymentDetails("Paid online")

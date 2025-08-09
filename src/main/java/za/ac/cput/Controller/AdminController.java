@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.cput.Domain.User.Admin;
 import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.Bookings;
-import za.ac.cput.Domain.payment.Payments;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Service.AdminService;
 
@@ -63,7 +63,7 @@ public class AdminController {
     }
 
     @GetMapping("/payments")
-    public ResponseEntity<List<Payments>> getPayments() {
+    public ResponseEntity<List<Payment>> getPayments() {
         return ResponseEntity.ok(adminService.getPayments());
     }
 

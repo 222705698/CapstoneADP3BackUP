@@ -1,33 +1,50 @@
 package za.ac.cput.Domain.payment;
 
-//Thando Robert Tinto - 221482210
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+/*
+Thando Tinto
+221482210
+*/
+
 @Entity
 public class Payment {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentId;
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
+    private String paymentMethod, paymentDetails;
     private double paymentAmount;
-    private String paymentDetails;
     private LocalDate paymentDate;
 
-    protected Payment(){}
-
+    public Payment() {
+    }
     private Payment(Builder builder) {
         this.paymentId = builder.paymentId;
+        this.paymentType = builder.paymentType;
         this.paymentMethod = builder.paymentMethod;
-        this.paymentAmount = builder.paymentAmount;
         this.paymentDetails = builder.paymentDetails;
+        this.paymentAmount = builder.paymentAmount;
         this.paymentDate = builder.paymentDate;
+    }
+
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public String getPaymentDetails() {
+        return paymentDetails;
     }
 
     public double getPaymentAmount() {
@@ -38,24 +55,44 @@ public class Payment {
         return paymentDate;
     }
 
-    public String getPaymentDetails() {
-        return paymentDetails;
+    @Override
+    public String toString() {
+        return "Payments{" +
+                "paymentId=" + paymentId +
+                ", paymentType=" + paymentType +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", paymentDetails='" + paymentDetails + '\'' +
+                ", paymentAmount=" + paymentAmount +
+                ", paymentDate=" + paymentDate +
+                '}';
     }
-
-    public int getPaymentId() {
-        return paymentId;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
     public static class Builder {
         private int paymentId;
+        private PaymentType paymentType;
         private String paymentMethod;
-        private double paymentAmount;
         private String paymentDetails;
+        private double paymentAmount;
         private LocalDate paymentDate;
+
+        public Builder setPaymentId(int paymentId) {
+            this.paymentId = paymentId;
+            return this;
+        }
+
+        public Builder setPaymentType(PaymentType paymentType) {
+            this.paymentType = paymentType;
+            return this;
+        }
+
+        public Builder setPaymentMethod(String paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder setPaymentDetails(String paymentDetails) {
+            this.paymentDetails = paymentDetails;
+            return this;
+        }
 
         public Builder setPaymentAmount(double paymentAmount) {
             this.paymentAmount = paymentAmount;
@@ -67,27 +104,20 @@ public class Payment {
             return this;
         }
 
-        public Builder setPaymentDetails(String paymentDetails) {
-            this.paymentDetails = paymentDetails;
+        public Builder copy(Payment payment) {
+            this.paymentId = payment.paymentId;
+            this.paymentType = payment.paymentType;
+            this.paymentMethod = payment.paymentMethod;
+            this.paymentDetails = payment.paymentDetails;
+            this.paymentAmount = payment.paymentAmount;
+            this.paymentDate = payment.paymentDate;
             return this;
         }
-
-        public Builder setPaymentMethod(String paymentMethod) {
-            this.paymentMethod = paymentMethod;
-            return this;
-        }
-
-        public Builder copy(Builder builder){
-            this.paymentId = builder.paymentId;
-            this.paymentMethod = builder.paymentMethod;
-            this.paymentAmount = builder.paymentAmount;
-            this.paymentDetails = builder.paymentDetails;
-            this.paymentDate = builder.paymentDate;
-            return this;
-        }
-
-        public Payment build() {
+       public Payment build() {
             return new Payment(this);
         }
+
+
     }
+
 }
