@@ -21,4 +21,18 @@ public class TicketFactory {
                 .setStatus(status)
                 .build();
     }
+    public static Ticket createTicket(double ticketAmount, String status,Payment payment) {
+        if(Helper.isAmountValid(ticketAmount) || Helper.isNullOrEmpty(status)) {
+            return null;
+        }
+
+        LocalDate issueDate = LocalDate.now();
+
+        return new Ticket.Builder()
+                .setTicketAmount(ticketAmount)
+                .setIssueDate(issueDate)
+                .setStatus(status)
+                .setPayment(payment)
+                .build();
+    }
 }
