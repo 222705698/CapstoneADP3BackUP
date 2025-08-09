@@ -1,9 +1,10 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Repository.VehicleRepository;
+import za.ac.cput.Service.IVehicleService;
 
 import java.util.List;
 
