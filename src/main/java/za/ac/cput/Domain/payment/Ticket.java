@@ -1,43 +1,32 @@
 package za.ac.cput.Domain.payment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+//Thando Robert Tinto - 221482210
+
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
-/*
-Thando Tinto
-221482210
-*/
 
 @Entity
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ticketId;
-    private double amount;
+    private double ticketAmount;
     private LocalDate issueDate;
     private String status;
 
-    public Ticket() {
-    }
+    @ManyToOne
+    @Column(name = "payment_id")
+    private Payment ticketPayment;
+
+    protected Ticket(){}
 
     private Ticket(Builder builder) {
         this.ticketId = builder.ticketId;
-        this.amount = builder.amount;
+        this.ticketAmount = builder.ticketAmount;
         this.issueDate = builder.issueDate;
         this.status = builder.status;
-    }
-
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public double getAmount() {
-        return amount;
+        this.ticketPayment = builder.ticketPayment;
     }
 
     public LocalDate getIssueDate() {
@@ -48,31 +37,24 @@ public class Ticket {
         return status;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "ticketId=" + ticketId +
-                ", amount=" + amount +
-                ", issueDate=" + issueDate +
-                ", status='" + status + '\'' +
-                '}';
+    public double getTicketAmount() {
+        return ticketAmount;
+    }
+
+    public int getTicketId() {
+        return ticketId;
+    }
+
+    public Payment getTicketPayment() {
+        return ticketPayment;
     }
 
     public static class Builder {
         private int ticketId;
-        private double amount;
+        private double ticketAmount;
         private LocalDate issueDate;
         private String status;
-
-        public Builder setTicketId(int ticketId) {
-            this.ticketId = ticketId;
-            return this;
-        }
-
-        public Builder setAmount(double amount) {
-            this.amount = amount;
-            return this;
-        }
+        private Payment ticketPayment;
 
         public Builder setIssueDate(LocalDate issueDate) {
             this.issueDate = issueDate;
@@ -84,11 +66,27 @@ public class Ticket {
             return this;
         }
 
-        public Builder copy(Ticket ticket) {
-            this.ticketId = ticket.ticketId;
-            this.amount = ticket.amount;
-            this.issueDate = ticket.issueDate;
-            this.status = ticket.status;
+        public Builder setTicketAmount(double ticketAmount) {
+            this.ticketAmount = ticketAmount;
+            return this;
+        }
+
+        public Builder setTicketId(int ticketId) {
+            this.ticketId = ticketId;
+            return this;
+        }
+
+        public Builder setTicketPayment(Payment ticketPayment) {
+            this.ticketPayment = ticketPayment;
+            return this;
+        }
+
+        public Builder copy(Builder builder) {
+            this.ticketId = builder.ticketId;
+            this.ticketAmount = builder.ticketAmount;
+            this.issueDate = builder.issueDate;
+            this.status = builder.status;
+            this.ticketPayment = builder.ticketPayment;
             return this;
         }
 
@@ -96,5 +94,4 @@ public class Ticket {
             return new Ticket(this);
         }
     }
-
 }

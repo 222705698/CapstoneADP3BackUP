@@ -1,7 +1,7 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.payment;
 
-import za.ac.cput.Domain.Payment;
-import za.ac.cput.Domain.Ticket;
+import za.ac.cput.Domain.payment.Payment;
+import za.ac.cput.Domain.payment.Ticket;
 import za.ac.cput.Util.Helper;
 
 import java.time.LocalDate;

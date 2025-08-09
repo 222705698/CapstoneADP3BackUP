@@ -1,4 +1,4 @@
-package za.ac.cput.Domain;
+package za.ac.cput.Domain.payment;
 
 //Thando Robert Tinto - 221482210
 

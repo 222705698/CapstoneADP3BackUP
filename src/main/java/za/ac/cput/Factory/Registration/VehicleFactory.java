@@ -1,12 +1,7 @@
 package za.ac.cput.Factory.Registration;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Domain.bookings.VehicleDisc;
-import za.ac.cput.Domain.payment.Ticket;
 import za.ac.cput.Util.Helper;
 
 import java.util.List;
