@@ -15,9 +15,9 @@ public class Ticket {
     private LocalDate issueDate;
     private String status;
 
-    @ManyToOne
-    @Column(name = "payment_id")
-    private Payment ticketPayment;
+    @OneToOne
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 
     protected Ticket(){}
 
@@ -26,7 +26,7 @@ public class Ticket {
         this.ticketAmount = builder.ticketAmount;
         this.issueDate = builder.issueDate;
         this.status = builder.status;
-        this.ticketPayment = builder.ticketPayment;
+        this.payment = builder.payment;
     }
 
     public LocalDate getIssueDate() {
@@ -45,8 +45,8 @@ public class Ticket {
         return ticketId;
     }
 
-    public Payment getTicketPayment() {
-        return ticketPayment;
+    public Payment getPayment() {
+        return payment;
     }
 
     public static class Builder {
@@ -54,7 +54,7 @@ public class Ticket {
         private double ticketAmount;
         private LocalDate issueDate;
         private String status;
-        private Payment ticketPayment;
+        private Payment payment;
 
         public Builder setIssueDate(LocalDate issueDate) {
             this.issueDate = issueDate;
@@ -76,8 +76,8 @@ public class Ticket {
             return this;
         }
 
-        public Builder setTicketPayment(Payment ticketPayment) {
-            this.ticketPayment = ticketPayment;
+        public Builder setPayment(Payment payment) {
+            this.payment = payment;
             return this;
         }
 
@@ -86,7 +86,7 @@ public class Ticket {
             this.ticketAmount = builder.ticketAmount;
             this.issueDate = builder.issueDate;
             this.status = builder.status;
-            this.ticketPayment = builder.ticketPayment;
+            this.payment = builder.payment;
             return this;
         }
 

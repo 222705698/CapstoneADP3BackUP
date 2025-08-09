@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class TicketFactory {
 
-    public static Ticket createTicket(double ticketAmount, String status, Payment ticketPayment) {
+    public static Ticket createTicket(double ticketAmount, String status) {
         if(Helper.isAmountValid(ticketAmount) || Helper.isNullOrEmpty(status)) {
             return null;
         }
@@ -19,7 +19,6 @@ public class TicketFactory {
                 .setTicketAmount(ticketAmount)
                 .setIssueDate(issueDate)
                 .setStatus(status)
-                .setTicketPayment(ticketPayment)
                 .build();
     }
 }

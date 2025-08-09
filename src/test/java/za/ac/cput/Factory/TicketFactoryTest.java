@@ -10,9 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class TicketFactoryTest {
 
-
-    Ticket tickets = TicketFactory.createTicket(3000,"Pending", null);
-
+    Ticket tickets = TicketFactory.createTicket(3000,"Pending");
 
     @Test
     public void isTicketNull(){
