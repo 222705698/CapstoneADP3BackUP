@@ -13,7 +13,7 @@ public class TestAppointment {
     private String testAddress;
     private String testVenue;
     private LocalDate testDate;
-    private boolean testResult;
+    private Boolean testResult;
     private String licenseCode;
 
     @Enumerated(EnumType.STRING)
@@ -51,7 +51,7 @@ public class TestAppointment {
         return testDate;
     }
 
-    public boolean isTestResult() {
+    public boolean getTestResult() {
         return testResult;
     }
 

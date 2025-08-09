@@ -7,6 +7,7 @@ import za.ac.cput.Service.ITestAppointmentService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TestAppointmentService implements ITestAppointmentService {
@@ -40,4 +41,15 @@ public class TestAppointmentService implements ITestAppointmentService {
     public List<TestAppointment> findByTestId(Long testAppointmentId) {
         return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));
     }
+
+    @Override
+    public Optional<TestAppointment> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<TestAppointment> getAll() {
+        return List.of();
+    }
+
 }
