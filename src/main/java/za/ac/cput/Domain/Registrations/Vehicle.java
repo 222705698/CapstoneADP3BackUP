@@ -23,10 +23,13 @@ public class Vehicle {
 @JoinColumn(name = "vehicle_disc_id")
     private VehicleDisc VehicleDisc;
 
-    @OneToMany
-    @JoinColumn(name = "ticket_ticket_id")
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vehicle_id")
     private List<Ticket> ticket;
 
+//    @OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)
+//    private List<Ticket> ticket;
+//
     public Vehicle() {
     }
 

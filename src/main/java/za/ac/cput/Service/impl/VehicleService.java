@@ -25,11 +25,14 @@ public class VehicleService implements IVehicleService {
     @Override
     public Vehicle read(Integer integer) {
         return this.vehicleRepository.findById(integer).orElse(null);
+
+
     }
 
     @Override
     public Vehicle update(Vehicle vehicle) {
         return this.vehicleRepository.save(vehicle);
+
     }
 
     @Override
