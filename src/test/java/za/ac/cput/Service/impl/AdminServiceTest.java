@@ -1,4 +1,4 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.User.Admin;
 import za.ac.cput.Domain.contact.Contact;
-import za.ac.cput.Service.impl.AdminService;
 
 import java.util.List;
 

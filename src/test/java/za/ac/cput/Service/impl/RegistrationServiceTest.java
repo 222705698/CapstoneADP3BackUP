@@ -1,11 +1,10 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Repository.RegistrationRepository;
-import za.ac.cput.Service.impl.RegistrationService;
 
 import java.util.Optional;
 import java.util.List;
