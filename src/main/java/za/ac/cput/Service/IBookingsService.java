@@ -4,8 +4,9 @@ import za.ac.cput.Domain.bookings.Bookings;
 
 import java.util.List;
 
-public interface IBookingsService extends IService<Bookings, Integer> {
+public interface IBookingsService extends IService<Bookings, Long> {
 
-    List<Bookings> getall();
-//    void delete(Integer id);
+
+    List<Bookings> getAll();
+
 }

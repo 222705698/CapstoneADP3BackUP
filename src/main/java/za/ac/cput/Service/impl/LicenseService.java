@@ -1,22 +1,20 @@
 package za.ac.cput.Service.impl;
 
-
+import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.User.License;
-
 import za.ac.cput.Repository.LicenseRepository;
 import za.ac.cput.Service.ILicenseService;
 
 import java.util.List;
 
+@Service
 public class LicenseService implements ILicenseService {
-    
 
-    private LicenseRepository repository;
+    private final LicenseRepository repository;
+
     public LicenseService(LicenseRepository licenseRepository) {
         this.repository = licenseRepository;
     }
-
-
 
     @Override
     public License create(License license) {
@@ -24,9 +22,8 @@ public class LicenseService implements ILicenseService {
     }
 
     @Override
-    public License read(Integer integer) {
-        return this.repository.findById(integer)
-                .orElse(null);
+    public License read(Long id) {
+        return this.repository.findById(id).orElse(null);
     }
 
     @Override
@@ -35,18 +32,12 @@ public class LicenseService implements ILicenseService {
     }
 
     @Override
-    public void delete(Integer integer) {
-
-    }
-
-    @Override
     public List<License> getall() {
-        return this.repository.findAll();
+        return repository.findAll();
     }
+
     @Override
-    public License findById(Integer id) {
-        return this.repository.findById(id)
-                .orElse(null);
+    public void delete(Long id) {
+        this.repository.deleteById(id);
     }
 }
-

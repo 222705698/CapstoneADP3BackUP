@@ -6,10 +6,10 @@ import za.ac.cput.Domain.bookings.Bookings;
 
 import java.util.List;
 
-public interface ILicenseService extends IService <License, Integer> {
+public interface ILicenseService extends IService <License, Long> {
 
     List<License> getall();
-    License findById(Integer id);
+//    License findById(Long id);
 
 
 }

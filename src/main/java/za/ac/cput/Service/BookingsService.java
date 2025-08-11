@@ -1,24 +1,24 @@
-package za.ac.cput.Service.impl;
+package za.ac.cput.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Repository.BookingsRepository;
-import za.ac.cput.Service.IBookingsService;
+import za.ac.cput.Repository.LicenseRepository;
+import za.ac.cput.Repository.TestAppointmentRepository;
+import za.ac.cput.Repository.VehicleDiscRepository;
 
 import java.util.List;
-
 @Service
 public class BookingsService implements IBookingsService {
-    @Autowired
-    private BookingsRepository repository;
 
-    @Autowired
+    private TestAppointmentRepository testAppointmentRepository;
+    private BookingsRepository repository;
+    private VehicleDiscRepository vehicleDiscRepository;
+
+
     public BookingsService(BookingsRepository bookingsRepository) {
         this.repository = bookingsRepository;
     }
-
-
 
     @Override
     public Bookings create(Bookings bookings) {
@@ -26,8 +26,8 @@ public class BookingsService implements IBookingsService {
     }
 
     @Override
-    public Bookings read(Integer integer) {
-        return this.repository.findById(integer)
+    public Bookings read(Long aLong) {
+        return this.repository.findById(aLong)
                 .orElse(null);
     }
 
@@ -37,19 +37,13 @@ public class BookingsService implements IBookingsService {
     }
 
     @Override
-    public void delete(Integer integer) {
+    public void delete(Long aLong) {
 
     }
-
-
     @Override
-    public List<Bookings> getall() { return this.repository.findAll(); }
+    public List<Bookings> getAll() {
+        return List.of();
+    }
 
-
-
-//    @Override
-//    public void delete(Integer id) {
-//
-//    }
 
 }

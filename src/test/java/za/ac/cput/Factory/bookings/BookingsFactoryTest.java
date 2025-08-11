@@ -1,10 +1,9 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.bookings;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.VehicleDisc;
-import za.ac.cput.Factory.bookings.BookingsFactory;
 
 import java.time.LocalDate;
 

@@ -13,7 +13,7 @@ public class License {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int licenseId; // Changed to Long
+    private Long licenseId; // Changed to Long
     private String licenseCode;
     private LocalDate issueDate;
     private LocalDate expiryDate;
@@ -34,7 +34,7 @@ public class License {
 
     }
 
-    public int getLicenseId() {
+    public Long getLicenseId() {
         return licenseId;
     }
 
@@ -62,12 +62,12 @@ public class License {
 
     public static class Builder {
 
-        private int licenseId; // Changed to Long
+        private Long licenseId; // Changed to Long
         private String licenseCode;
         private String issueDate;
         private String expiryDate;
 
-                public Builder setLicenseId(int licenseId) {
+                public Builder setLicenseId(Long licenseId) {
             this.licenseId = licenseId;
             return this;
         }

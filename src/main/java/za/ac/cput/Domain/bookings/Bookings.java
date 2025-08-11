@@ -1,6 +1,5 @@
 package za.ac.cput.Domain.bookings;
 
-// Emihle Thole
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -8,11 +7,11 @@ import java.time.LocalDate;
 public class Bookings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookingId;
+    private Long bookingId;
 
-    protected Booktype booktype;
+    @Enumerated(EnumType.STRING)
+    private Booktype booktype;
 
-    // Removed @Enumerated annotation here
     private LocalDate bookingDate;
 
     @OneToOne
@@ -23,14 +22,12 @@ public class Bookings {
     @JoinColumn(name = "test_test_id")
     private TestAppointment test;
 
-    // Enum for booking types
     public enum Booktype {
         VEHICLE_DISC,
         TEST
     }
 
-    public Bookings() {
-    }
+    public Bookings() {}
 
     public Bookings(Builder builder) {
         this.bookingId = builder.bookingId;
@@ -40,7 +37,7 @@ public class Bookings {
         this.test = builder.test;
     }
 
-    public int getBookingId() {
+    public Long getBookingId() {
         return bookingId;
     }
 
@@ -72,13 +69,13 @@ public class Bookings {
     }
 
     public static class Builder {
-        private int bookingId;
+        private Long bookingId;
         private Booktype booktype;
         private LocalDate bookingDate;
         private VehicleDisc vehicleDisc;
         private TestAppointment test;
 
-        public Builder setBookingId(int bookingId) {
+        public Builder setBookingId(Long bookingId) {
             this.bookingId = bookingId;
             return this;
         }
