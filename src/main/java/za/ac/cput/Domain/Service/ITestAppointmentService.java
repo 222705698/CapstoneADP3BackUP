@@ -1,4 +1,4 @@
-package za.ac.cput.Service;
+package za.ac.cput.Domain.Service;
 
 import za.ac.cput.Domain.bookings.TestAppointment;
 

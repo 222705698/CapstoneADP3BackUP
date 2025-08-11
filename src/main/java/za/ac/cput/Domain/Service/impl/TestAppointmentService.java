@@ -1,11 +1,10 @@
-package za.ac.cput.Service.impl;
+package za.ac.cput.Domain.Service.impl;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Repository.TestAppointmentRepository;
-import za.ac.cput.Service.ITestAppointmentService;
+import za.ac.cput.Domain.Service.ITestAppointmentService;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +36,6 @@ public class TestAppointmentService implements ITestAppointmentService {
         testAppointmentRepository.deleteById(id);
 
     }
-//    @Override
-//    public List<TestAppointment> findByTestId(Long testAppointmentId) {
-//        return Collections.singletonList(testAppointmentRepository.findByTestId(testAppointmentId));
-//    }
 
     @Override
     public Optional<TestAppointment> findById(Long id) {

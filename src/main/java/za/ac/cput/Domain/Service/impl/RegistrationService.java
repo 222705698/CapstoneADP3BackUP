@@ -1,10 +1,10 @@
-package za.ac.cput.Service.impl;
+package za.ac.cput.Domain.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Repository.RegistrationRepository;
-import za.ac.cput.Service.IRegistrationService;
+import za.ac.cput.Domain.Service.IRegistrationService;
 
 import java.util.List;//
 @Service
