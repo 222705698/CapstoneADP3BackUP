@@ -1,4 +1,4 @@
-package za.ac.cput.Service.impl;
+package za.ac.cput.Service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
