@@ -12,8 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest // Loads full Spring context & uses H2 in-memory DB by default
-  // Rolls back changes after each test so DB stays clean
+@SpringBootTest
 class RegistrationServiceTest {
 
 //    @Autowired
