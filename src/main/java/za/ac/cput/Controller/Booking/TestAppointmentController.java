@@ -32,7 +32,7 @@ public class TestAppointmentController {
         );
 
         if (created == null) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().build(); // Invalid input
         }
 
         TestAppointment saved = service.create(created);
