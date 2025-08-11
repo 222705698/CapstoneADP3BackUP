@@ -1,11 +1,10 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.Registration;
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Domain.Registrations.Vehicle;
-import za.ac.cput.Factory.Registration.RegistrationFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +47,7 @@ public class RegistrationFactoryTest {
                 "2025-08-06",
                 vehicle
         );
+        //System.out.println("Registration: " + registration);
         assertNull(registration);
     }
 

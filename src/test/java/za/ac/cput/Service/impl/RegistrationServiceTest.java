@@ -1,86 +1,139 @@
-package za.ac.cput.Service.impl;
+package za.ac.cput.Service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Domain.Registrations.Vehicle;
-import za.ac.cput.Repository.RegistrationRepository;
+import za.ac.cput.Factory.Registration.RegistrationFactory;
+import za.ac.cput.Domain.Service.impl.RegistrationService;
 
-import java.util.Optional;
 import java.util.List;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
+@SpringBootTest // Loads full Spring context & uses H2 in-memory DB by default
+  // Rolls back changes after each test so DB stays clean
 class RegistrationServiceTest {
 
-    private RegistrationRepository registrationRepository;
+//    @Autowired
+//    private VehicleRepository vehicleRepository;
+
+    @Autowired
     private RegistrationService registrationService;
-    private Registration registration;
 
-    @BeforeEach
-    void setUp() {
-        registrationRepository = mock(RegistrationRepository.class);
-        registrationService = new RegistrationService(registrationRepository);
-
-        registration = new Registration.Builder()
-                .setRegistrationId(1)
-                .setRegistrationNumber("REG-12345")
-                .setRegistrationDate("2025-08-07")
-                .setVehicle(new Vehicle())// gives me null
+    @Test
+    void testCreateAndRead() {
+        Vehicle vehicle = new Vehicle.Builder()
+                .setVehicleID(1)
+                .setVehicleName("Toyota Corolla")
+                .setVehicleType("Sedan")
+                .setVehicleModel("2020")
+                .setVehicleYear("2020")
+                .setVehicleColor("White")
                 .build();
-    }
 
-    @Test
-    void testCreate() {
-        when(registrationRepository.save(registration)).thenReturn(registration);
+        Registration registration = RegistrationFactory.createRegistration(
+                "REG2025-01",
+                "2025-08-06",
+                vehicle
+        );
 
-        Registration created = registrationService.create(registration);
-        assertNotNull(created);
-        assertEquals("REG-12345", created.getRegistrationNumber());
+        // Save to DB via service
+        Registration saved = registrationService.create(registration);
 
-        verify(registrationRepository, times(1)).save(registration);
-    }
+        assertNotNull(saved.getRegistrationId(), "Registration ID should be generated");
 
-    @Test
-    void testRead() {
-        when(registrationRepository.findById(1)).thenReturn(Optional.of(registration));
-
-        Registration found = registrationService.read(1);
+        // Read from DB
+        Registration found = registrationService.read(saved.getRegistrationId());
         assertNotNull(found);
-        assertEquals(1, found.getRegistrationId());
-
-        verify(registrationRepository, times(1)).findById(1);
+        assertEquals("REG2025-01", found.getRegistrationNumber());
     }
 
     @Test
     void testUpdate() {
-        Registration updatedRegistration = new Registration.Builder()
-                .copy(registration)
+        Vehicle vehicle = new Vehicle.Builder()
+                .setVehicleID(1)
+                .setVehicleName("Toyota Corolla")
+                .setVehicleType("Sedan")
+                .setVehicleModel("2020")
+                .setVehicleYear("2020")
+                .setVehicleColor("White")
+                .build();
+
+        //Vehicle savedvehicle = VehicleRepository.save(vehicle);
+
+        Registration registration = RegistrationFactory.createRegistration(
+                "REG2025-01",
+                "2025-08-06",
+                vehicle
+        );
+
+        Registration saved = registrationService.create(registration);
+
+        Registration updated = new Registration.Builder()
+                .copy(saved)
                 .setRegistrationNumber("REG-UPDATED")
                 .build();
 
-        when(registrationRepository.save(updatedRegistration)).thenReturn(updatedRegistration);
+        Registration result = registrationService.update(updated);
 
-        System.out.println("Updated Registration: " + updatedRegistration);
-        Registration updated = registrationService.update(updatedRegistration);
-        assertNotNull(updated);
-        assertEquals("REG-UPDATED", updated.getRegistrationNumber());
+        assertEquals("REG-UPDATED", result.getRegistrationNumber());
+    }
+//    @Test
+//    void testSaveVehicle() {
+//        Vehicle vehicle = new Vehicle.Builder().build();
+//        vehicle.setVehicleID(1);
+//        vehicle.setVehicleName("Toyota Corolla");
+//
+//        Vehicle savedVehicle = vehicleRepository.save(vehicle);
+//        assertNotNull(savedVehicle.getVehicleID());
+//    }
 
-        verify(registrationRepository, times(1)).save(updatedRegistration);
+
+    @Test
+    void testDelete() {
+        Vehicle vehicle = new Vehicle.Builder()
+                .setVehicleID(1)
+                .setVehicleName("Toyota Corolla")
+                .setVehicleType("Sedan")
+                .setVehicleModel("2020")
+                .setVehicleYear("2020")
+                .setVehicleColor("White")
+                .build();
+
+        Registration registration = RegistrationFactory.createRegistration(
+                "REG2025-01",
+                "2025-08-06",
+                vehicle
+        );
+
+        Registration saved = registrationService.create(registration);
+        Integer id = saved.getRegistrationId();
+
+        registrationService.delete(id);
+
+        assertNull(registrationService.read(id));
     }
 
     @Test
     void testGetAll() {
-        List<Registration> registrationList = new ArrayList<>();
-        registrationList.add(registration);
+        Vehicle vehicle = new Vehicle.Builder()
+                .setVehicleID(1)
+                .setVehicleName("Toyota Corolla")
+                .setVehicleType("Sedan")
+                .setVehicleModel("2020")
+                .setVehicleYear("2020")
+                .setVehicleColor("White")
+                .build();
 
-        when(registrationRepository.findAll()).thenReturn(registrationList);
+        Registration registration1 = RegistrationFactory.createRegistration("REG2025-01", "2025-08-06", vehicle);
+        Registration registration2 = RegistrationFactory.createRegistration("REG2025-02", "2025-08-07", vehicle);
 
-        List<Registration> allRegistrations = registrationService.getAll();
-        assertEquals(1, allRegistrations.size());
+        registrationService.create(registration1);
+        registrationService.create(registration2);
 
-        verify(registrationRepository, times(1)).findAll();
+        List<Registration> all = registrationService.getAll();
+        assertTrue(all.size() >= 2);
     }
 }

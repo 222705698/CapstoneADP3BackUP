@@ -20,6 +20,7 @@ class TestAppointmentFactoryTest {
                 "B",
                 TestType.DRIVERSLICENSETEST
         );
+        System.out.println("Test Appointment: " + testAppointment);
         assertNotNull(testAppointment);
     }
 
@@ -37,6 +38,7 @@ class TestAppointmentFactoryTest {
                 address, venue, date, result, licenseCode, testType
         );
 
+        //System.out.println("Test Appointment: " + testAppointment);
         assertEquals(id, testAppointment.getTestAppointmentId());
         assertEquals(address, testAppointment.getTestAddress());
         assertEquals(venue, testAppointment.getTestVenue());
