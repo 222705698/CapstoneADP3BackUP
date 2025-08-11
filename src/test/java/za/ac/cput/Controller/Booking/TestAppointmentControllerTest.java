@@ -140,7 +140,7 @@ class TestAppointmentControllerTest {
                 TestAppointment.class
         ).getBody();
 
-        assertNotNull(created);
+        assertNotNull(created); //Created
 
         // Delete
         restTemplate.delete(getBaseUrl() + "/delete/" + created.getTestAppointmentId());
