@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class PaymentService implements IPaymentService {
 
-   // @Autowired
-    private PaymentRepository paymentRepository;
+
+    private final PaymentRepository paymentRepository;
 
     @Autowired
-    public void setPaymentRepository(PaymentRepository paymentRepository) {
+    public PaymentService(PaymentRepository paymentRepository) {
         this.paymentRepository = paymentRepository;
     }
 
@@ -31,8 +31,12 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public Payment update(Payment payment) {
-        return paymentRepository.save(payment);
+        if (paymentRepository.existsById(payment.getPaymentId())) {
+            return paymentRepository.save(payment);
+        }
+        return null;
     }
+
     @Deprecated
     @Override
     public void delete(Integer integer) {

@@ -11,8 +11,8 @@ import java.util.List;
 @Service
 public class TicketService implements ITicketService {
 
-    //@Autowired
-    private TicketRepository ticketRepository;
+
+    private final TicketRepository ticketRepository;
 
     @Autowired
     public TicketService(TicketRepository ticketRepository) {
@@ -31,7 +31,10 @@ public class TicketService implements ITicketService {
 
     @Override
     public Ticket update(Ticket ticket) {
-        return ticketRepository.save(ticket);
+        if (ticketRepository.existsById(ticket.getTicketId())) {
+            return ticketRepository.save(ticket);
+        }
+        return null;
     }
 
     @Override
