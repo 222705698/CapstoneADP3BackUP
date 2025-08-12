@@ -69,17 +69,9 @@ class VehicleServiceTest {
             Payment savedPayment2 = paymentService.create(payment2);
 
             // Create Tickets with persisted Payments
-            Ticket ticket1 = TicketFactory.createTicket(
-                    3000,
-                    "Pending",
-                    savedPayment1
-            );
+            Ticket ticket1 = TicketFactory.createTicket("DRUNK_DRIVING");
 
-            Ticket ticket2 = TicketFactory.createTicket(
-                    2500,
-                    "Paid",
-                    savedPayment2
-            );
+            Ticket ticket2 = TicketFactory.createTicket("NO_LICENSE");
 
             // Persist Tickets and collect saved ones in list
             Ticket savedTicket1 = ticketService.create(ticket1);

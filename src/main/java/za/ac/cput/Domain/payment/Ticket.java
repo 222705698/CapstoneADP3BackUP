@@ -15,6 +15,10 @@ public class Ticket {
     private LocalDate issueDate;
     private String status;
 
+    @Embedded
+    @Enumerated(EnumType.STRING)
+    private TicketType ticketType;
+
     @OneToOne
     @JoinColumn(name = "payment_id")
     private Payment payment;
@@ -27,6 +31,7 @@ public class Ticket {
         this.issueDate = builder.issueDate;
         this.status = builder.status;
         this.payment = builder.payment;
+        this.ticketType = builder.ticketType;
     }
 
     public LocalDate getIssueDate() {
@@ -49,12 +54,17 @@ public class Ticket {
         return payment;
     }
 
+    public TicketType getTicketType() {
+        return ticketType;
+    }
+
     public static class Builder {
         private int ticketId;
         private double ticketAmount;
         private LocalDate issueDate;
         private String status;
         private Payment payment;
+        private TicketType ticketType;
 
         public Builder setIssueDate(LocalDate issueDate) {
             this.issueDate = issueDate;
@@ -81,6 +91,12 @@ public class Ticket {
             return this;
         }
 
+        public Builder setTicketType(TicketType ticketType) {
+            this.ticketType = ticketType;
+            this.ticketAmount = ticketType.getFineAmount();  // Auto-set amount from enum
+            return this;
+        }
+
         public Builder copy(Builder builder) {
             this.ticketId = builder.ticketId;
             this.ticketAmount = builder.ticketAmount;
@@ -102,7 +118,29 @@ public class Ticket {
                 ", ticketId=" + ticketId +
                 ", ticketAmount=" + ticketAmount +
                 ", status='" + status + '\'' +
-                ", payment=" + payment +
+                ", payment=" + payment + '\'' +
+                ", ticketType=" + ticketType +
                 '}';
+    }
+
+    public enum TicketType {
+        SPEEDING_1_10_KMH(500),
+        SPEEDING_30_PLUS_KMH(2500),
+        DRUNK_DRIVING(2000),
+        RED_LIGHT(1500),
+        NO_LICENSE(1500),
+        PHONE_WHILE_DRIVING(1500),
+        NO_SEATBELT(500),
+        RECKLESS_DRIVING(2500);
+
+        private final double fineAmount;
+
+        TicketType(double fineAmount) {
+            this.fineAmount = fineAmount;
+        }
+
+        public double getFineAmount() {
+            return fineAmount;
+        }
     }
 }

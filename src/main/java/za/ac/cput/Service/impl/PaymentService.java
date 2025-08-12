@@ -19,6 +19,7 @@ public class PaymentService implements IPaymentService {
         this.paymentRepository = paymentRepository;
     }
 
+
     @Override
     public Payment create(Payment payment) {
         return paymentRepository.save(payment);
@@ -29,6 +30,7 @@ public class PaymentService implements IPaymentService {
         return paymentRepository.findById(integer).orElse(null);
     }
 
+    @Deprecated
     @Override
     public Payment update(Payment payment) {
         if (paymentRepository.existsById(payment.getPaymentId())) {
@@ -40,7 +42,7 @@ public class PaymentService implements IPaymentService {
     @Deprecated
     @Override
     public void delete(Integer integer) {
-
+        paymentRepository.deleteById(integer);
     }
 
     @Override

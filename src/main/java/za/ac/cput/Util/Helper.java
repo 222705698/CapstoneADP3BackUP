@@ -78,4 +78,5 @@ public class Helper {
     public static Boolean isAmountValid(double amount) {
         return true? !(amount == 0) && isNullOrEmpty(String.valueOf(amount)): false;
     }
+
 }

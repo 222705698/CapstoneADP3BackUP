@@ -25,7 +25,7 @@ class AdminFactoryTest {
 
     Bookings getBooking() {
         return new Bookings.Builder()
-                .setBookingId(1)
+//                .setBookingId(1)
                 .setBookingDate(LocalDate.now())
                 .build();
     }

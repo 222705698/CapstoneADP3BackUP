@@ -8,30 +8,41 @@ import java.time.LocalDate;
 
 public class TicketFactory {
 
-    public static Ticket createTicket(double ticketAmount, String status) {
-        if(Helper.isAmountValid(ticketAmount) || Helper.isNullOrEmpty(status)) {
+    public static Ticket createTicket(String ticketType) {
+
+        if (Helper.isNullOrEmpty(ticketType)) {
             return null;
         }
 
+        String status = "Not Paid";
+
         LocalDate issueDate = LocalDate.now();
 
+        Ticket.TicketType type = Ticket.TicketType.valueOf(ticketType);
+
         return new Ticket.Builder()
-                .setTicketAmount(ticketAmount)
                 .setIssueDate(issueDate)
                 .setStatus(status)
+                .setTicketType(type)
                 .build();
     }
-    public static Ticket createTicket(double ticketAmount, String status,Payment payment) {
-        if(Helper.isAmountValid(ticketAmount) || Helper.isNullOrEmpty(status)) {
+
+    public static Ticket createTicket(String ticketType, Payment payment) {
+
+        if (Helper.isNullOrEmpty(ticketType)) {
             return null;
         }
 
+        String status = "Paid";
+
         LocalDate issueDate = LocalDate.now();
 
+        Ticket.TicketType type = Ticket.TicketType.valueOf(ticketType);
+
         return new Ticket.Builder()
-                .setTicketAmount(ticketAmount)
                 .setIssueDate(issueDate)
                 .setStatus(status)
+                .setTicketType(type)
                 .setPayment(payment)
                 .build();
     }

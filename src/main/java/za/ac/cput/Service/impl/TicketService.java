@@ -38,7 +38,7 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public List<Ticket> getall() {
+    public List<Ticket> getTickets() {
         return this.ticketRepository.findAll();
     }
 
