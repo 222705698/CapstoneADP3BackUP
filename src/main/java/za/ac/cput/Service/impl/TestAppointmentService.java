@@ -1,9 +1,9 @@
-package za.ac.cput.Domain.Service.impl;
+package za.ac.cput.Service.impl;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Repository.TestAppointmentRepository;
-import za.ac.cput.Domain.Service.ITestAppointmentService;
+import za.ac.cput.Service.ITestAppointmentService;
 
 import java.util.List;
 import java.util.Optional;

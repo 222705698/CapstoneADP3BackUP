@@ -3,10 +3,10 @@ package za.ac.cput.Service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.Domain.Service.impl.TestAppointmentService;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
 import za.ac.cput.Factory.bookings.TestAppointmentFactory;
+import za.ac.cput.Service.impl.TestAppointmentService;
 
 import java.time.LocalDate;
 

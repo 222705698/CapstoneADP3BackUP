@@ -14,6 +14,10 @@ import za.ac.cput.Factory.Registration.VehicleFactory;
 import za.ac.cput.Factory.bookings.VehicleDiscFactory;
 import za.ac.cput.Factory.payment.PaymentFactory;
 import za.ac.cput.Factory.payment.TicketFactory;
+import za.ac.cput.Service.impl.PaymentService;
+import za.ac.cput.Service.impl.TicketService;
+import za.ac.cput.Service.impl.VehicleDiscService;
+import za.ac.cput.Service.impl.VehicleService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class VehicleServiceTest {
 
     @Autowired
-    private  VehicleDiscService vehicleDiscService;
+    private VehicleDiscService vehicleDiscService;
     @Autowired
     private PaymentService paymentService;
     @Autowired

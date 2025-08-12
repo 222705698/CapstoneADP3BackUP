@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Factory.bookings.TestAppointmentFactory;
-import za.ac.cput.Domain.Service.impl.TestAppointmentService;
+import za.ac.cput.Service.impl.TestAppointmentService;
 
 import java.util.List;
 
