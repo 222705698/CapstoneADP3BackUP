@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.Registrations.Registration;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Factory.Registration.RegistrationFactory;
-import za.ac.cput.Domain.Service.impl.RegistrationService;
+import za.ac.cput.Service.impl.RegistrationService;
 
 import java.util.List;
 
