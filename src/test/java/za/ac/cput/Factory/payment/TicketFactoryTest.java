@@ -1,11 +1,9 @@
-package za.ac.cput.Factory;
+package za.ac.cput.Factory.payment;
 
 
 import org.junit.jupiter.api.*;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.Ticket;
-import za.ac.cput.Factory.payment.PaymentFactory;
-import za.ac.cput.Factory.payment.TicketFactory;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
