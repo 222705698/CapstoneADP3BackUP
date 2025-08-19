@@ -5,19 +5,22 @@ import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Domain.contact.Contact;
 import za.ac.cput.Domain.payment.Payment;
 
+import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @DiscriminatorValue("ADMIN")
 public class Admin extends User {
 
-    @OneToMany
-    @JoinColumn(name = "admin_id")  // FK column in Payments table pointing to Admin
-    private List<Payment> payments;
+    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     protected Status status;
 
     private String reason;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
     public enum Status {
         PENDING,
@@ -35,9 +38,14 @@ public class Admin extends User {
         this.Contact = builder.Contact;
         this.UserBooks = builder.UserBooks;
         this.Role = builder.Role;
-        this.payments = builder.payments;
+        this.payments = builder.payments != null ? builder.payments : new ArrayList<>();
         this.status = builder.status;
         this.reason = builder.reason;
+
+        // Set admin on each payment for bi-directional consistency
+        for (Payment p : this.payments) {
+            p.setAdmin(this);
+        }
     }
 
     public List<Payment> getPayments() {

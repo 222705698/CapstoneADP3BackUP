@@ -39,8 +39,9 @@ public class ApplicantService implements IApplicantService {
     }
 
     //@Override
-    public void delete(Integer id) {
+    public boolean delete(Integer id) {
         applicantRepository.deleteById(id);
+        return false;
     }
 
     @Override

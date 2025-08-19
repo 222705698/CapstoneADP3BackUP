@@ -32,10 +32,11 @@ public class Applicant extends User {
         this.BirthDate = builder.BirthDate;
         this.address = builder.address;
         this.license = builder.license;
-        this.UserName = builder.UserName;
-        this.UserSurname = builder.UserSurname;
+        this.FirstName = builder.UserName;
+        this.LastName = builder.UserSurname;
         this.Contact = builder.Contact;
         this.UserBooks = builder.UserBooks;
+        this.Password = builder.Password;
         this.Role = builder.Role;
     }
 
@@ -58,14 +59,15 @@ public class Applicant extends User {
     @Override
     public String toString() {
         return "Applicant{" +
-                "UserId=" + UserId +
-                ", IdNumber='" + IdNumber + '\'' +
+                "IdNumber='" + IdNumber + '\'' +
                 ", BirthDate=" + BirthDate +
                 ", address=" + address +
                 ", license=" + license +
-                ", UserName='" + UserName + '\'' +
-                ", UserSurname='" + UserSurname + '\'' +
+                ", UserId=" + UserId +
+                ", FirstName='" + FirstName + '\'' +
+                ", LastName='" + LastName + '\'' +
                 ", Contact=" + Contact +
+                ", Password='" + Password + '\'' +
                 ", UserBooks=" + UserBooks +
                 ", Role=" + Role +
                 '}';
@@ -80,6 +82,7 @@ public class Applicant extends User {
         private String UserName;
         private String UserSurname;
         private Contact Contact;
+        private  String Password;
         private Bookings UserBooks;
         private Role Role;
 
@@ -127,6 +130,11 @@ public class Applicant extends User {
             this.UserBooks = userBooks;
             return this;
         }
+        public  Builder setPassword(String password) {
+            this.Password = password;
+            return this;
+        }
+
 
         public Builder setRole(Role role) {
             this.Role = role;
@@ -139,10 +147,11 @@ public class Applicant extends User {
             this.BirthDate = applicant.BirthDate;
             this.address = applicant.address;
             this.license = applicant.license;
-            this.UserName = applicant.UserName;
-            this.UserSurname = applicant.UserSurname;
+            this.UserName = applicant.FirstName;
+            this.UserSurname = applicant.LastName;
             this.Contact = applicant.Contact;
             this.UserBooks = applicant.UserBooks;
+            this.Password = applicant.Password;
             this.Role = applicant.Role;
             return this;
         }
