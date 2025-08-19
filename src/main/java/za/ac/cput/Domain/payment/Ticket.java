@@ -15,7 +15,6 @@ public class Ticket {
     private LocalDate issueDate;
     private String status;
 
-    @Embedded
     @Enumerated(EnumType.STRING)
     private TicketType ticketType;
 
