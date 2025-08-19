@@ -13,14 +13,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int UserId;
 
-    protected String UserName;
-    protected String UserSurname;
+    protected String FirstName;
+    protected String LastName;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     protected Contact Contact;
-
+protected String Password;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_books_booking_id")
+    @JoinColumn(name = "Bookings_id")
     protected Bookings UserBooks;
 ;
 
@@ -44,20 +44,20 @@ public class User {
         UserId = userId;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getFirstName() {
+        return FirstName;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setFirstName(String firstName) {
+        FirstName = firstName;
     }
 
-    public String getUserSurname() {
-        return UserSurname;
+    public String getLastName() {
+        return LastName;
     }
 
-    public void setUserSurname(String userSurname) {
-        UserSurname = userSurname;
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 
     public Contact getContact() {
@@ -76,6 +76,14 @@ public class User {
         UserBooks = userBooks;
     }
 
+    public String getPassword() {
+        return Password;
+    }
+    @Column(nullable = false)
+    public void setPassword(String password) {
+        Password = password;
+    }
+
     public Role getRole() {
         return Role;
     }
@@ -88,9 +96,10 @@ public class User {
     public String toString() {
         return "User{" +
                 "UserId=" + UserId +
-                ", UserName='" + UserName + '\'' +
-                ", UserSurname='" + UserSurname + '\'' +
+                ", FirstName='" + FirstName + '\'' +
+                ", LastName='" + LastName + '\'' +
                 ", Contact=" + Contact +
+                ", Password='" + Password + '\'' +
                 ", UserBooks=" + UserBooks +
                 ", Role=" + Role +
                 '}';

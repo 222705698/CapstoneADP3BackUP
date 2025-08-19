@@ -1,6 +1,7 @@
 package za.ac.cput.Controller.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.Domain.User.Applicant;
@@ -8,6 +9,7 @@ import za.ac.cput.Service.impl.ApplicantService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000") // ✅ allow frontend calls
 @RestController
 @RequestMapping("/api/applicants")
 public class ApplicantController {
@@ -22,29 +24,40 @@ public class ApplicantController {
     @PostMapping("/create")
     public ResponseEntity<Applicant> create(@RequestBody Applicant applicant) {
         Applicant created = applicantService.create(applicant);
-        return ResponseEntity.ok(created);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @GetMapping("/read/{id}")
     public ResponseEntity<Applicant> read(@PathVariable Integer id) {
         Applicant applicant = applicantService.read(id);
+        if (applicant == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return ResponseEntity.ok(applicant);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Applicant> update(@RequestBody Applicant applicant) {
         Applicant updated = applicantService.update(applicant);
+        if (updated == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        Applicant applicant = applicantService.read(id);
+        if (applicant == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         applicantService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Applicant>> getAll() {
-        return ResponseEntity.ok(applicantService.getAll());
+        List<Applicant> applicants = applicantService.getAll();
+        return ResponseEntity.ok(applicants);
     }
 }

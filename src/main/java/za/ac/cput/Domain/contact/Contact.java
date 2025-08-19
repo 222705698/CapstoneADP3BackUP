@@ -1,16 +1,17 @@
 package za.ac.cput.Domain.contact;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 /*Masibuve Sikhulume
 221807144
  */
 @Entity
 public class Contact {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contactId;
     private String cellphone;
+    @Column(unique = true, nullable = false)
     private String email;
 
     public Contact() {
