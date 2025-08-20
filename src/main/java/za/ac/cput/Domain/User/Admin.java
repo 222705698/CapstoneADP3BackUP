@@ -12,8 +12,10 @@ import java.util.List;
 @DiscriminatorValue("ADMIN")
 public class Admin extends User {
 
-    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "admin_id") // this creates a foreign key in Payment table
     private List<Payment> payments = new ArrayList<>();
+
 
     @Enumerated(EnumType.STRING)
     protected Status status;
@@ -32,20 +34,20 @@ public class Admin extends User {
     }
 
     private Admin(Builder builder) {
-        this.UserId = builder.UserId;
-        this.UserName = builder.UserName;
-        this.UserSurname = builder.UserSurname;
-        this.Contact = builder.Contact;
-        this.UserBooks = builder.UserBooks;
-        this.Role = builder.Role;
+        this.userId = builder.userId;
+        this.firstName= builder.firstName;
+        this.lastName = builder.lastName;
+        this.contact = builder.contact;
+        this.bookings = builder.bookings;
+        this.role = builder.role;
         this.payments = builder.payments != null ? builder.payments : new ArrayList<>();
         this.status = builder.status;
         this.reason = builder.reason;
 
-        // Set admin on each payment for bi-directional consistency
-        for (Payment p : this.payments) {
-            p.setAdmin(this);
-        }
+//        // Set admin on each payment for bi-directional consistency
+//        for (Payment p : this.payments) {
+//            p.setAdmin(this);
+//        }
     }
 
     public List<Payment> getPayments() {
@@ -63,56 +65,60 @@ public class Admin extends User {
     @Override
     public String toString() {
         return "Admin{" +
-                "UserId=" + UserId +
-                ", payments=" + payments +
+                "payments=" + payments +
                 ", status=" + status +
                 ", reason='" + reason + '\'' +
-                ", UserName='" + UserName + '\'' +
-                ", UserSurname='" + UserSurname + '\'' +
-                ", Contact=" + Contact +
-                ", UserBooks=" + UserBooks +
-                ", Role=" + Role +
+                ", user=" + user +
+                ", userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contact=" + contact +
+                ", password='" + password + '\'' +
+                ", bookings=" + bookings +
+                ", role=" + role +
                 '}';
     }
 
     public static class Builder {
-        private int UserId;
-        private String UserName;
-        private String UserSurname;
-        private Contact Contact;
-        private Bookings UserBooks;
-        private Role Role;
+        private int userId;
+        private String firstName;
+        private String lastName;
+        private Contact contact;
+        private Bookings bookings;
+        private Role role;
         private List<Payment> payments;
         private Status status;
         private String reason;
 
         public Builder setUserId(int userId) {
-            this.UserId = userId;
+            this.userId = userId;
             return this;
         }
 
-        public Builder setUserName(String userName) {
-            this.UserName = userName;
+        public Builder setFirstName(String firstName) {
+            firstName = firstName;
             return this;
         }
 
-        public Builder setUserSurname(String userSurname) {
-            this.UserSurname = userSurname;
+        public Builder setLastName(String lastName) {
+            lastName = lastName;
             return this;
         }
+
+       
 
         public Builder setContact(Contact contact) {
-            this.Contact = contact;
+            this.contact = contact;
             return this;
         }
 
-        public Builder setUserBooks(Bookings userBooks) {
-            this.UserBooks = userBooks;
+        public Builder setBookings(Bookings bookings) {
+            this.bookings = bookings;
             return this;
         }
 
         public Builder setRole(Role role) {
-            this.Role = role;
+            this.role = role;
             return this;
         }
 
@@ -132,12 +138,12 @@ public class Admin extends User {
         }
 
         public Builder copy(Admin admin) {
-            this.UserId = admin.UserId;
-            this.UserName = admin.UserName;
-            this.UserSurname = admin.UserSurname;
-            this.Contact = admin.Contact;
-            this.UserBooks = admin.UserBooks;
-            this.Role = admin.Role;
+            this.userId = admin.userId;
+            this.firstName = admin.firstName;
+            this.lastName = admin.lastName;
+            this.contact = admin.contact;
+            this.bookings = admin.bookings;
+            this.role = admin.role;
             this.payments = admin.payments;
             this.status = admin.status;
             this.reason = admin.reason;

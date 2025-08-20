@@ -28,8 +28,8 @@ class AdminServiceTest {
                 .build();
 
         admin = new Admin.Builder()
-                .setUserName("Alice")
-                .setUserSurname("Smith")
+                .setFirstName("Alice")
+                .setFirstName("Smith")
                 .setContact(contact)
                 .setRole(Admin.Role.ADMIN)
                 .setStatus(Admin.Status.ACCEPTED)
@@ -44,16 +44,16 @@ class AdminServiceTest {
         assertTrue(saved.getUserId() > 0);
 
         Admin found = adminService.read(saved.getUserId());
-        assertEquals("Alice", found.getUserName());
+        assertEquals("Alice", found.getLastName());
     }
 
     @Test
     void testUpdateAdmin() {
         Admin saved = adminService.create(admin);
-        saved.setUserName("UpdatedAdmin");
+        saved.getFirstName();
 
         Admin updated = adminService.update(saved);
-        assertEquals("UpdatedAdmin", updated.getUserName());
+        assertEquals("UpdatedAdmin", updated.getFirstName());
     }
 
     @Test

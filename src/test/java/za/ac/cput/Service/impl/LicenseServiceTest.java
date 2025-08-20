@@ -71,14 +71,14 @@ class LicenseServiceTest {
         assertEquals(LocalDate.of(2029, 1, 1), updated.getExpiryDate());
     }
 
-    @Test
-    void testDeleteLicense() {
-        License saved = licenseService.create(license);
-        licenseService.delete(saved.getLicenseId());
-
-        License deleted = licenseService.read(saved.getLicenseId());
-        assertNull(deleted);
-    }
+//    @Test
+//    void testDeleteLicense() {
+//        License saved = licenseService.create(license);
+//        licenseService.delete(saved.getLicenseId());
+//
+//        License deleted = licenseService.read(saved.getLicenseId());
+//        assertNull(deleted);
+//    }
 
     @Test
     void testGetAllLicenses() {

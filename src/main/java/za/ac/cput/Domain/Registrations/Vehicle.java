@@ -12,18 +12,20 @@ import java.util.List;
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int VehicleID;
-    private String VehicleName;
-    private String VehicleType;
-    private String VehicleModel;
-    private String VehicleYear;
-    private String VehicleColor;
 
-@OneToOne //(cascade = CascadeType.ALL)
+    private int vehicleID;
+    private String vehicleName;
+    private String vehicleType;
+    private String vehicleModel;
+    private String vehicleYear;
+    private String vehicleColor;
+
+
+@OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "vehicle_disc_id")
-    private VehicleDisc VehicleDisc;
+    private VehicleDisc vehicleDisc;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // Add cascade here too
     @JoinColumn(name = "vehicle_id")
     private List<Ticket> ticket;
 
@@ -34,44 +36,42 @@ public class Vehicle {
     }
 
     public Vehicle(Builder builder) {
-        this.VehicleID = builder.VehicleID;
-        this.VehicleName = builder.VehicleName;
-        this.VehicleType = builder.VehicleType;
-        this.VehicleModel = builder.VehicleModel;
-        this.VehicleYear = builder.VehicleYear;
-        this.VehicleColor = builder.VehicleColor;
-        this.VehicleDisc = builder.VehicleDisc;
+        this.vehicleID = builder.vehicleID;
+        this.vehicleName = builder.vehicleName;
+        this.vehicleType = builder.vehicleType;
+        this.vehicleModel = builder.vehicleModel;
+        this.vehicleYear = builder.vehicleYear;
+        this.vehicleColor = builder.vehicleColor;
+        this.vehicleDisc = builder.vehicleDisc;
         this.ticket = builder.ticket;
-
 
     }
 
     public int getVehicleID() {
-        return VehicleID;
+        return vehicleID;
     }
 
     public String getVehicleName() {
-        return VehicleName;
+        return vehicleName;
     }
 
     public String getVehicleType() {
-        return VehicleType;
+        return vehicleType;
     }
 
     public String getVehicleModel() {
-        return VehicleModel;
-    }
-
-    public String getVehicleYear() {
-        return VehicleYear;
+        return vehicleModel;
     }
 
     public String getVehicleColor() {
-        return VehicleColor;
+        return vehicleColor;
+    }
+    public String getVehicleYear() {
+        return vehicleYear;
     }
 
     public VehicleDisc getVehicleDisc() {
-        return VehicleDisc;
+        return vehicleDisc;
     }
 
     public List<Ticket> getTicket() {
@@ -81,74 +81,76 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-                "VehicleID=" + VehicleID +
-                ", VehicleName='" + VehicleName + '\'' +
-                ", VehicleType='" + VehicleType + '\'' +
-                ", VehicleModel='" + VehicleModel + '\'' +
-                ", VehicleYear='" + VehicleYear + '\'' +
-                ", VehicleColor='" + VehicleColor + '\'' +
-                ", VehicleDisc=" + VehicleDisc +
+                "vehicleID=" + vehicleID +
+                ", vehicleName='" + vehicleName + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", vehicleModel='" + vehicleModel + '\'' +
+                ", vehicleYear='" + vehicleYear + '\'' +
+                ", vehicleColor='" + vehicleColor + '\'' +
+                ", vehicleDisc=" + vehicleDisc +
                 ", ticket=" + ticket +
                 '}';
     }
 
+
     public static class Builder{
-        private int VehicleID;
-        private String VehicleName;
-        private String VehicleType;
-        private String VehicleModel;
-        private String VehicleYear;
-        private String VehicleColor;
-        private VehicleDisc VehicleDisc;
+        private int vehicleID;
+        private String vehicleName;
+        private String vehicleType;
+        private String vehicleModel;
+        private String vehicleYear;
+        private String vehicleColor;
+        private VehicleDisc vehicleDisc;
         private List<Ticket> ticket;
 
         public Builder setVehicleID(int vehicleID) {
-            VehicleID = vehicleID;
+            this.vehicleID = vehicleID;
             return this;
         }
 
         public Builder setVehicleName(String vehicleName) {
-            VehicleName = vehicleName;
+            this.vehicleName = vehicleName;
             return this;
         }
 
         public Builder setVehicleType(String vehicleType) {
-            VehicleType = vehicleType;
+            this.vehicleType = vehicleType;
             return this;
         }
 
         public Builder setVehicleModel(String vehicleModel) {
-            VehicleModel = vehicleModel;
+            this.vehicleModel = vehicleModel;
             return this;
         }
 
         public Builder setVehicleYear(String vehicleYear) {
-            VehicleYear = vehicleYear;
+            this.vehicleYear = vehicleYear;
             return this;
         }
 
         public Builder setVehicleColor(String vehicleColor) {
-            VehicleColor = vehicleColor;
+            this.vehicleColor = vehicleColor;
             return this;
         }
 
         public Builder setVehicleDisc(VehicleDisc vehicleDisc) {
-            VehicleDisc = vehicleDisc;
+            this.vehicleDisc = vehicleDisc;
             return this;
         }
+
         public Builder setTicket(List<Ticket> ticket) {
             this.ticket = ticket;
             return this;
         }
 
         public Builder copy(Vehicle vehicle) {
-            VehicleID = vehicle.VehicleID;
-            VehicleName = vehicle.VehicleName;
-            VehicleType = vehicle.VehicleType;
-            VehicleModel = vehicle.VehicleModel;
-            VehicleYear = vehicle.VehicleYear;
-            VehicleColor = vehicle.VehicleColor;
-            VehicleDisc = vehicle.VehicleDisc;
+            this.vehicleID = vehicle.vehicleID;
+            this.vehicleName = vehicle.vehicleName;
+            this.vehicleType = vehicle.vehicleType;
+            this.vehicleModel = vehicle.vehicleModel;
+            this.vehicleYear = vehicle.vehicleYear;
+            this.vehicleColor = vehicle.vehicleColor;
+            this.vehicleDisc = vehicle.vehicleDisc;
             ticket = vehicle.ticket;
             return this;
         }

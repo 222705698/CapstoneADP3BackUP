@@ -32,11 +32,11 @@ public class VehicleDiscService implements IVehicleDiscService {
         return this.repository.save(vehicleDisc);
     }
 
-    @Override
-    public void delete(Long id) {
-    this.repository.deleteById(id);
-
-    }
+//    @Override
+//    public void delete(Long id) {
+//    this.repository.deleteById(id);
+//
+//    }
 
     @Override
     public List<VehicleDisc> getAll() {

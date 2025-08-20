@@ -36,8 +36,8 @@ public class LicenseService implements ILicenseService {
         return repository.findAll();
     }
 
-    @Override
-    public void delete(Long id) {
-        this.repository.deleteById(id);
-    }
+//    @Override
+//    public void delete(Long id) {
+//        this.repository.deleteById(id);
+//    }
 }

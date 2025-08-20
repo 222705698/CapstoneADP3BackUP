@@ -11,21 +11,21 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int UserId;
+    protected int userId;
 
-    protected String FirstName;
-    protected String LastName;
+    protected String firstName;
+    protected String lastName;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
-    protected Contact Contact;
-protected String Password;
+    protected Contact contact;
+protected String password;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Bookings_id")
-    protected Bookings UserBooks;
+    protected Bookings bookings;
 ;
 
     @Enumerated(EnumType.STRING)
-    protected Role Role;
+    protected Role role;
 
     public enum Role {
         ADMIN,
@@ -35,73 +35,72 @@ protected String Password;
     public User() {
     }
 
-    // Getters and setters
     public int getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-        UserId = userId;
+        this.userId= userId;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        FirstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public Contact getContact() {
-        return Contact;
+        return contact;
     }
 
     public void setContact(Contact contact) {
-        Contact = contact;
-    }
-
-    public Bookings getUserBooks() {
-        return UserBooks;
-    }
-
-    public void setUserBooks(Bookings userBooks) {
-        UserBooks = userBooks;
+        this.contact = contact;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
-    @Column(nullable = false)
+
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
+    }
+
+    public Bookings getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Bookings bookings) {
+        this.bookings = bookings;
     }
 
     public Role getRole() {
-        return Role;
+        return role;
     }
 
     public void setRole(Role role) {
-        Role = role;
+        this.role = role;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "UserId=" + UserId +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", Contact=" + Contact +
-                ", Password='" + Password + '\'' +
-                ", UserBooks=" + UserBooks +
-                ", Role=" + Role +
+                "UserId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contact=" + contact +
+                ", password='" + password + '\'' +
+                ", bookings=" + bookings +
+                ", role=" + role +
                 '}';
     }
 }

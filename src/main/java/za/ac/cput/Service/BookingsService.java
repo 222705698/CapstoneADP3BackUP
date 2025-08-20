@@ -36,10 +36,10 @@ public class BookingsService implements IBookingsService {
         return this.repository.save(bookings);
     }
 
-    @Override
-    public void delete(Long aLong) {
-
-    }
+//    @Override
+//    public void delete(Long aLong) {
+//
+//    }
     @Override
     public List<Bookings> getAll() {
         return List.of();
