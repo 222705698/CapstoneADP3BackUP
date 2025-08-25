@@ -6,9 +6,9 @@ import za.ac.cput.Util.Helper;
 import java.time.LocalDate;
 
 public class PaymentFactory {
-    public static Payment createPayment(double amount, String paymentMethod, String paymentDetails){
+    public static Payment createPayment(double amount, String paymentMethod, String cardName, Long cardNumber, LocalDate expirationDate, String paymentType, Short cvs){
 
-        if(Helper.isNullOrEmpty(paymentDetails) || Helper.isNullOrEmpty(paymentMethod) || Helper.isAmountValid(amount)){
+        if(Helper.isNullOrEmpty(paymentMethod) || Helper.isAmountValid(amount) || Helper.isNullOrEmpty(cardName) || Helper.isNullOrEmpty(String.valueOf(cvs))){
             return null;
         }
 
@@ -17,8 +17,12 @@ public class PaymentFactory {
         return new Payment.Builder()
                 .setPaymentAmount(amount)
                 .setPaymentDate(paymentDate)
-                .setPaymentMethod(paymentMethod)
-                .setPaymentDetails(paymentDetails)
+                .setPaymentMethod(Helper.getPaymentMethod(paymentMethod))
+                .setPaymentType(Helper.getPaymentType(paymentType))
+                .setCardName(cardName)
+                .setCardNumber(cardNumber)
+                .setCardDate(expirationDate)
+                .setCvs(cvs)
                 .build();
     }
 }
