@@ -29,10 +29,10 @@ public class RegistrationService implements IRegistrationService {
     public Registration update(Registration registration) {
         return this.repository.save(registration);
     }
-    @Override
-    public void delete(Integer integer) {
-        this.repository.deleteById(integer);
-    }
+//    @Override
+//    public void delete(Integer integer) {
+//        this.repository.deleteById(integer);
+//    }
 
     @Override
     public List<Registration> getAll() {

@@ -44,8 +44,8 @@ class ApplicantControllerTest {
                 .build();
 
         Applicant applicant = new Applicant.Builder()
-                .setUserName("Test")
-                .setUserSurname("User")
+                .setLastName("Test")
+                .setFirstName("User")
                 .setIdNumber("9001015800087")
                 .setBirthDate(LocalDate.of(1990, 1, 1))
                 .setContact(contact)
@@ -62,6 +62,6 @@ class ApplicantControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals("Test", response.getBody().getUserName());
+        assertEquals("Test", response.getBody().getFirstName());
     }
 }

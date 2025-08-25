@@ -55,13 +55,13 @@ public class TestAppointmentController {
         TestAppointment updated = service.update(appointment);
         return ResponseEntity.ok(updated);
     }
-
-    // DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+//
+//    // DELETE
+//    @DeleteMapping("/delete/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Long id) {
+//        service.delete(id);
+//        return ResponseEntity.noContent().build();
+//    }
 
     // GET ALL
     @GetMapping("/getall")

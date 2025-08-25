@@ -110,7 +110,7 @@ class RegistrationServiceTest {
         Registration saved = registrationService.create(registration);
         Integer id = saved.getRegistrationId();
 
-        registrationService.delete(id);
+//        registrationService.delete(id);
 
         assertNull(registrationService.read(id));
     }

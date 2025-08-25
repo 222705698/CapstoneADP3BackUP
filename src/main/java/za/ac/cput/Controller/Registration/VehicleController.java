@@ -1,9 +1,11 @@
 package za.ac.cput.Controller.Registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Service.impl.VehicleService;
+
 
 import java.util.List;
 
@@ -16,14 +18,20 @@ public class VehicleController {
     public VehicleController(VehicleService vehicleService) {
         this.vehicleService = vehicleService;
     }
+
     @PostMapping("/create")
     public Vehicle create(@RequestBody Vehicle vehicle) {
         return vehicleService.create(vehicle);
     }
+//    public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+//        Vehicle createdVehicle = vehicleService.create(vehicle);
+//        return ResponseEntity.ok(createdVehicle);
+//    }
 
-    @GetMapping("/read/{VehicleID}")
-    public Vehicle read(@PathVariable int VehicleID) {
-        return vehicleService.read(VehicleID);
+
+    @GetMapping("/read/{vehicleID}")
+    public Vehicle read(@PathVariable int vehicleID) {
+        return vehicleService.read(vehicleID);
     }
 
     @PutMapping("/update")
@@ -31,10 +39,10 @@ public class VehicleController {
         return vehicleService.update(vehicle);
     }
 
-    @DeleteMapping("/delete/{VehicleID}")
-    public void delete(@PathVariable int VehicleID) {
-        vehicleService.delete(VehicleID);
-    }
+//    @DeleteMapping("/delete/{vehicleID}")
+//    public void delete(@PathVariable int vehicleID) {
+//        vehicleService.delete(vehicleID);
+//    }
     @GetMapping("/getAll")
     public List<Vehicle> getAll() {
         return vehicleService.getAll();

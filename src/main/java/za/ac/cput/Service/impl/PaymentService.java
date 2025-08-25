@@ -39,11 +39,11 @@ public class PaymentService implements IPaymentService {
         return null;
     }
 
-    @Deprecated
-    @Override
-    public void delete(Integer integer) {
-        paymentRepository.deleteById(integer);
-    }
+//    @Deprecated
+//    @Override
+//    public void delete(Integer integer) {
+//        paymentRepository.deleteById(integer);
+//    }
 
     @Override
     public List<Payment> getpayments() {

@@ -35,8 +35,8 @@ class AdminControllerTest {
                 .build();
 
         Admin admin = new Admin.Builder()
-                .setUserName("Alice")
-                .setUserSurname("Smith")
+                .setFirstName("Alice")
+                .setLastName("Smith")
                 .setContact(contact)
                 .setRole(Admin.Role.ADMIN)
                 .setStatus(Admin.Status.ACCEPTED)
@@ -52,6 +52,6 @@ class AdminControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals("Alice", response.getBody().getUserName());
+        assertEquals("Alice", response.getBody().getLastName());
     }
 }

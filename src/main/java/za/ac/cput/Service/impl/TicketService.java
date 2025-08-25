@@ -42,8 +42,8 @@ public class TicketService implements ITicketService {
         return this.ticketRepository.findAll();
     }
 
-    @Deprecated
-    @Override
-    public void delete(Integer integer) {
-    }
+//    @Deprecated
+//    @Override
+//    public void delete(Integer integer) {
+//    }
 }

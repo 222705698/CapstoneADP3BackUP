@@ -31,11 +31,11 @@ public class TestAppointmentService implements ITestAppointmentService {
     public TestAppointment update(TestAppointment testAppointment) { // updates
         return testAppointmentRepository.save(testAppointment);
     }
-    @Override
-    public void delete(Long id) {
-        testAppointmentRepository.deleteById(id);
-
-    }
+//    @Override
+//    public void delete(Long id) {
+//        testAppointmentRepository.deleteById(id);
+//
+//    }
 
     @Override
     public Optional<TestAppointment> findById(Long id) {

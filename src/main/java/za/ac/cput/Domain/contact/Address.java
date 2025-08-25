@@ -3,11 +3,13 @@ package za.ac.cput.Domain.contact;
 221807144
  */
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 @Entity
 public class Address {
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addressId;
     private String street;
     private String city;

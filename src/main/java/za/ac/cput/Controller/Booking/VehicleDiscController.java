@@ -32,10 +32,10 @@ public class VehicleDiscController {
     public VehicleDisc update(@RequestBody VehicleDisc vehicleDisc) {
         return vehicleDiscService.update(vehicleDisc);
     }
-    @DeleteMapping("/delete/{discId}")
-    public void delete(@PathVariable Long discId) {
-        vehicleDiscService.delete(discId);
-    }
+//    @DeleteMapping("/delete/{discId}")
+//    public void delete(@PathVariable Long discId) {
+//        vehicleDiscService.delete(discId);
+//    }
     @GetMapping("/getAll")
     public List<VehicleDisc> getAll() {
         return vehicleDiscService.getAll();

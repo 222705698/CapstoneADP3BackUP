@@ -38,10 +38,10 @@ public class ApplicantService implements IApplicantService {
         return null;
     }
 
-    //@Override
-    public void delete(Integer id) {
-        applicantRepository.deleteById(id);
-    }
+//    @Override
+//    public void delete(Integer id) {
+//        applicantRepository.deleteById(id);
+//    }
 
     @Override
     public List<Applicant> getAll() {
