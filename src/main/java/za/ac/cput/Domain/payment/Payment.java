@@ -90,6 +90,10 @@ public class Payment {
                 ", paymentDetails='" + paymentDetails + '\'' +
                 ", paymentAmount=" + paymentAmount +
                 ", paymentDate=" + paymentDate +
+                ", cardName='" + cardName + '\'' +
+                ", cardNumber=" + cardNumber +
+                ", cardDate=" + cardDate +
+                ", cvs=" + cvs +
                 '}';
     }
 
@@ -169,6 +173,7 @@ public class Payment {
             return new Payment(this);
         }
     }
+
     public enum PaymentType {
         Ticket("Payment for ticket."),
         Booking("Payment for booking."),
@@ -187,7 +192,7 @@ public class Payment {
     }
     public enum PaymentMethod{
         Card,
-        Cash;
+        Cash();
     }
 }
 

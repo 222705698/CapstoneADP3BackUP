@@ -40,10 +40,12 @@ class VehicleControllerTest {
     private static List<Ticket> paymentTicketList(){
         List<Ticket> ticketList = new ArrayList<>();
 
-        Payment payment1 = PaymentFactory.createPayment(2000, "PayPal", "Payment for Speeding Ticket");
+        LocalDate date = LocalDate.now();
+
+        Payment payment1 = PaymentFactory.createPayment(2000.0,"Card","Thando", 4538483625767l ,date,"Ticket", (short) 464);
         Ticket ticket1 = TicketFactory.createTicket("NO_LICENSE");
 
-        Payment payment2 = PaymentFactory.createPayment(1500, "Credit Card", "Payment for Parking Ticket");
+        Payment payment2 = PaymentFactory.createPayment(2000.0,"Card","Thando", 4538483625767l ,date,"Ticket", (short) 464);
         Ticket ticket2 = TicketFactory.createTicket("NO_LICENSE", payment2);
 
         ticketList.add(ticket1);
