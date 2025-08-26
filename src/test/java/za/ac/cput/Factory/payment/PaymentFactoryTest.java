@@ -6,13 +6,17 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.payment.Payment;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class PaymentFactoryTest {
 
-    Payment payment = PaymentFactory.createPayment(2000,"PayPal","Payment for Ticket");
+    LocalDate date = LocalDate.now();
+
+    Payment payment = PaymentFactory.createPayment(2000.0,"Card","Thando", 4538483625767l ,date,"Ticket", (short) 464);
 
     Payment payment2 = PaymentFactory.createPayment(2000.0,"Card","Ticket");
 

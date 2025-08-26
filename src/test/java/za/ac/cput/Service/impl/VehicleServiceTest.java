@@ -92,6 +92,8 @@ class VehicleServiceTest {
                     "Fortuner",
                     "2023",
                     "White",
+                    "3287586286582",
+                    "engine37487",
                     savedDisc,
                     savedTickets,
                     payment1,
