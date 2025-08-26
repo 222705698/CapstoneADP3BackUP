@@ -21,6 +21,9 @@ public class Vehicle {
     private String vehicleModel;
     private String vehicleYear;
     private String vehicleColor;
+    @Column(unique = true, nullable = false)
+    private String licensePlate;
+    private String engineNumber;
 
 
 @OneToOne(cascade = CascadeType.ALL)
@@ -53,6 +56,8 @@ public class Vehicle {
         this.vehicleYear = builder.vehicleYear;
         this.vehicleColor = builder.vehicleColor;
         this.vehicleDisc = builder.vehicleDisc;
+        this.licensePlate = builder.licensePlate;
+        this.engineNumber = builder.engineNumber;
         this.ticket = builder.ticket;
         this.payment = builder.payment;
         this.applicant = builder.applicant;
@@ -94,6 +99,14 @@ public class Vehicle {
         return payment;
     }
 
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public String getEngineNumber() {
+        return engineNumber;
+    }
+
     public Applicant getApplicant() {
         return applicant;
     }
@@ -107,6 +120,8 @@ public class Vehicle {
                 ", vehicleModel='" + vehicleModel + '\'' +
                 ", vehicleYear='" + vehicleYear + '\'' +
                 ", vehicleColor='" + vehicleColor + '\'' +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", engineNumber='" + engineNumber + '\'' +
                 ", vehicleDisc=" + vehicleDisc +
                 ", ticket=" + ticket +
                 ", payment=" + payment +
@@ -125,6 +140,8 @@ public class Vehicle {
         private List<Ticket> ticket;
         private Payment payment;
         private Applicant applicant;
+        private String licensePlate;
+        private String engineNumber;
 
         public Builder setVehicleID(int vehicleID) {
             this.vehicleID = vehicleID;
@@ -176,6 +193,16 @@ public class Vehicle {
             return this;
         }
 
+        public Builder setLicensePlate(String licensePlate) {
+            this.licensePlate = licensePlate;
+            return this;
+        }
+
+        public Builder setEngineNumber(String engineNumber) {
+            this.engineNumber = engineNumber;
+            return this;
+        }
+
         public Builder copy(Vehicle vehicle) {
             this.vehicleID = vehicle.vehicleID;
             this.vehicleName = vehicle.vehicleName;
@@ -184,9 +211,12 @@ public class Vehicle {
             this.vehicleYear = vehicle.vehicleYear;
             this.vehicleColor = vehicle.vehicleColor;
             this.vehicleDisc = vehicle.vehicleDisc;
-            ticket = vehicle.ticket;
+            this.licensePlate = vehicle.licensePlate;
+            this.engineNumber = vehicle.engineNumber;
+            this.ticket = vehicle.ticket;
             this.payment = vehicle.payment;
             this.applicant = vehicle.applicant;
+
             return this;
         }
         public Vehicle build() {
