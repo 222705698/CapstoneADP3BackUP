@@ -37,11 +37,11 @@ public class BookingsController {
         return ResponseEntity.ok(updated);
     }
 
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id) {
-//        boolean deleted = bookingsService.delete(id);
-//        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
-//    }
+   @DeleteMapping("/delete/{id}")
+   public ResponseEntity<Void> delete(@PathVariable Long id) {
+     boolean deleted = bookingsService.delete(id);
+       return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+  }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Bookings>> getAll() {
