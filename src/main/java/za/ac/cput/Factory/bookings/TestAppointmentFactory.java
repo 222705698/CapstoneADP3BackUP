@@ -5,6 +5,7 @@ import za.ac.cput.Domain.bookings.TestType;
 import za.ac.cput.Util.Helper;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TestAppointmentFactory {
     public static TestAppointment createTestAppointment(
@@ -13,7 +14,8 @@ public class TestAppointmentFactory {
             LocalDate testDate,
             boolean testResult,
             String licenseCode,
-            TestType testType) {
+            TestType testType,   // testType should come before testTime
+            LocalTime testTime) {
 
         if (Helper.isNullOrEmpty(testAddress) ||
                 Helper.isNullOrEmpty(testVenue) ||
@@ -33,7 +35,8 @@ public class TestAppointmentFactory {
                 .setTestResult(testResult)
                 .setLicenseCode(licenseCode)
                 .setTestype(testType)
-                .setTestAmount(500.00) // example default amount
+                .setTestAmount(500.00)
+                .setTestTime(testTime)
                 .build();
-    }
+}
 }

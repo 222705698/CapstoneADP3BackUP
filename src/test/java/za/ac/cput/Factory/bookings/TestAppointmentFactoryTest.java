@@ -3,8 +3,10 @@ package za.ac.cput.Factory.bookings;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
+import za.ac.cput.Factory.bookings.TestAppointmentFactory;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +20,8 @@ class TestAppointmentFactoryTest {
                 LocalDate.now().plusDays(3),
                 true,
                 "B",
-                TestType.DRIVERSLICENSETEST
+                TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9,0)  // Added default test time
         );
         System.out.println("Test Appointment: " + testAppointment);
         assertNotNull(testAppointment);
@@ -26,39 +29,39 @@ class TestAppointmentFactoryTest {
 
     @Test
     void testCreateTestAppointment_valuesShouldMatch() {
-        Long id = 1001L;
         String address = "10 Main Road";
         String venue = "Test Venue";
         LocalDate date = LocalDate.now().plusDays(3);
         boolean result = true;
         String licenseCode = "10";
         TestType testType = TestType.DRIVERSLICENSETEST;
+        LocalTime time = LocalTime.of(9,0);
 
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                address, venue, date, result, licenseCode, testType
+                address, venue, date, result, licenseCode, testType, time
         );
 
-        //System.out.println("Test Appointment: " + testAppointment);
-        assertEquals(id, testAppointment.getTestAppointmentId());
+        assertNotNull(testAppointment);
         assertEquals(address, testAppointment.getTestAddress());
         assertEquals(venue, testAppointment.getTestVenue());
         assertEquals(date, testAppointment.getTestDate());
-//        assertEquals(result, testAppointment.isTestResult());
+        assertEquals(result, testAppointment.getTestResult());
         assertEquals(licenseCode, testAppointment.getLicenseCode());
         assertEquals(testType, testAppointment.getTestype());
+        assertEquals(time, testAppointment.getTestTime());
     }
 
     @Test
-    void testCreateTestAppointment_invalidData_shouldReturnNotNull() {
+    void testCreateTestAppointment_invalidData_shouldReturnNull() {
         // Null testType
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                 "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", null
+                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", null, LocalTime.of(9,0)
         );
         assertNull(testAppointment);
 
         // Past test date
         testAppointment = TestAppointmentFactory.createTestAppointment(
-                 "123 Road", "Venue", LocalDate.now().minusDays(2), true, "B", TestType.DRIVERSLICENSETEST
+                "123 Road", "Venue", LocalDate.now().minusDays(2), true, "B", TestType.DRIVERSLICENSETEST, LocalTime.of(9,0)
         );
         assertNull(testAppointment);
     }
@@ -66,8 +69,10 @@ class TestAppointmentFactoryTest {
     @Test
     void testCreateTestAppointment_printOutput() {
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", TestType.DRIVERSLICENSETEST
+                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", TestType.DRIVERSLICENSETEST, LocalTime.of(9,0)
         );
         System.out.println(testAppointment);
-    }
+        assertNotNull(testAppointment);
+   }
 }
+

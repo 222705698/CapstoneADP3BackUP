@@ -9,6 +9,7 @@ import za.ac.cput.Factory.bookings.TestAppointmentFactory;
 import za.ac.cput.Service.impl.TestAppointmentService;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +28,8 @@ class TestAppointmentServiceTest {
                 LocalDate.now().plusDays(5),
                 true,
                 "B",
-                TestType.DRIVERSLICENSETEST
+                TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9,0)  // Added default test time
         );
 
         assertNotNull(appointment, "Factory returned null");
@@ -50,7 +52,8 @@ class TestAppointmentServiceTest {
                 LocalDate.now().plusDays(3),
                 false,
                 "10",
-                TestType.LEARNERSLICENSETEST
+                TestType.LEARNERSLICENSETEST,
+                LocalTime.of(9,0)
         );
 
         TestAppointment saved = service.create(appointment);
@@ -73,13 +76,16 @@ class TestAppointmentServiceTest {
                 LocalDate.now().plusDays(4),
                 true,
                 "14",
-                TestType.DRIVERSLICENSETEST
+                TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9,0)
         );
 
         TestAppointment saved = service.create(appointment);
         Long id = saved.getTestAppointmentId();
 
-//        service.delete(id);
-//        assertNull(service.read(id), "Deleted appointment should not be found");
-    }
+        // Uncomment this if your service has a delete method
+        // service.delete(id);
+        // assertNull(service.read(id), "Deleted appointment should not be found");
+   }
 }
+
