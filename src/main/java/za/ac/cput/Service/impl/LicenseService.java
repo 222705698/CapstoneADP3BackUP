@@ -31,8 +31,10 @@ public class LicenseService implements ILicenseService {
         return this.repository.save(license);
     }
 
+
+
     @Override
-    public List<License> getall() {
+    public List<License> getAll() {
         return repository.findAll();
     }
 
