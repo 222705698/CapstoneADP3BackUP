@@ -10,10 +10,10 @@ import za.ac.cput.Util.Helper;
 import java.util.List;
 
 public class AdminFactory {
-    public static Admin createAdmin(String userName, String userSurname, Contact contact, Bookings userBooks, User.Role role,
+    public static Admin createAdmin(String firstName, String lastName, Contact contact, Bookings bookings, User.Role role,
                                     List<Payment> payments, Admin.Status status, String reason) {
-        if (Helper.isNullOrEmpty(userName) || Helper.isNullOrEmpty(userSurname) ||
-                contact == null || userBooks == null || role == null || payments == null || status == null) {
+        if (Helper.isNullOrEmpty(firstName) || Helper.isNullOrEmpty(lastName) ||
+                contact == null || bookings == null || role == null || payments == null || status == null) {
             return null;
         }
 
@@ -25,10 +25,10 @@ public class AdminFactory {
         }
 
         return new Admin.Builder()
-                .setUserName(userName)
-                .setUserSurname(userSurname)
+                .setFirstName(firstName)
+                .setLastName(lastName)
                 .setContact(contact)
-                .setUserBooks(userBooks)
+                .setBookings(bookings)
                 .setRole(role)
                 .setPayments(payments)
                 .setStatus(status)

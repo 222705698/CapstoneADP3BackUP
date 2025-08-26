@@ -28,4 +28,5 @@ public interface IAdminService extends IService<Admin, Integer> {
     List<VehicleDisc> getVehicleDiscs();
 
     List<Ticket> getTickets();
+    boolean delete(Integer id);
 }

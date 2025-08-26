@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @DiscriminatorValue("APPLICANT")
 public class Applicant extends User {
 
-    private String IdNumber;
-    private LocalDate BirthDate;
+    private String idNumber;
+    private LocalDate birthDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
@@ -27,25 +27,25 @@ public class Applicant extends User {
     }
 
     private Applicant(Builder builder) {
-        this.UserId = builder.UserId;
-        this.IdNumber = builder.IdNumber;
-        this.BirthDate = builder.BirthDate;
+        this.userId = builder.UserId;
+        this.idNumber = builder.idNumber;
+        this.birthDate = builder.birthDate;
         this.address = builder.address;
         this.license = builder.license;
-        this.FirstName = builder.UserName;
-        this.LastName = builder.UserSurname;
-        this.Contact = builder.Contact;
-        this.UserBooks = builder.UserBooks;
-        this.Password = builder.Password;
-        this.Role = builder.Role;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.contact = builder.contact;
+        this.bookings = builder.bookings;
+        this.password = builder.password;
+        this.role = builder.role;
     }
 
     public String getIdNumber() {
-        return IdNumber;
+        return idNumber;
     }
 
     public LocalDate getBirthDate() {
-        return BirthDate;
+        return birthDate;
     }
 
     public Address getAddress() {
@@ -59,32 +59,32 @@ public class Applicant extends User {
     @Override
     public String toString() {
         return "Applicant{" +
-                "IdNumber='" + IdNumber + '\'' +
-                ", BirthDate=" + BirthDate +
+                "idNumber='" + idNumber + '\'' +
+                ", birthDate=" + birthDate +
                 ", address=" + address +
                 ", license=" + license +
-                ", UserId=" + UserId +
-                ", FirstName='" + FirstName + '\'' +
-                ", LastName='" + LastName + '\'' +
-                ", Contact=" + Contact +
-                ", Password='" + Password + '\'' +
-                ", UserBooks=" + UserBooks +
-                ", Role=" + Role +
+                ", UserId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contact=" + contact +
+                ", password='" + password + '\'' +
+                ", bookings=" + bookings +
+                ", role=" + role +
                 '}';
     }
 
     public static class Builder {
         private int UserId;
-        private String IdNumber;
-        private LocalDate BirthDate;
+        private String idNumber;
+        private LocalDate birthDate;
         private Address address;
         private License license;
-        private String UserName;
-        private String UserSurname;
-        private Contact Contact;
-        private  String Password;
-        private Bookings UserBooks;
-        private Role Role;
+        private String firstName;
+        private String lastName;
+        private Contact contact;
+        private  String password;
+        private Bookings bookings;
+        private Role role;
 
         public Builder setUserId(int userId) {
             this.UserId = userId;
@@ -92,12 +92,12 @@ public class Applicant extends User {
         }
 
         public Builder setIdNumber(String idNumber) {
-            this.IdNumber = idNumber;
+            this.idNumber = idNumber;
             return this;
         }
 
         public Builder setBirthDate(LocalDate birthDate) {
-            this.BirthDate = birthDate;
+            this.birthDate = birthDate;
             return this;
         }
 
@@ -111,48 +111,48 @@ public class Applicant extends User {
             return this;
         }
 
-        public Builder setUserName(String userName) {
-            this.UserName = userName;
+        public Builder setFirstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
-        public Builder setUserSurname(String userSurname) {
-            this.UserSurname = userSurname;
+        public Builder setLastName(String lastName) {
+            this.lastName = lastName;
             return this;
         }
 
         public Builder setContact(Contact contact) {
-            this.Contact = contact;
+            this.contact = contact;
             return this;
         }
 
-        public Builder setUserBooks(Bookings userBooks) {
-            this.UserBooks = userBooks;
+        public Builder setUserBooks(Bookings bookings) {
+            this.bookings = bookings;
             return this;
         }
         public  Builder setPassword(String password) {
-            this.Password = password;
+            this.password = password;
             return this;
         }
 
 
         public Builder setRole(Role role) {
-            this.Role = role;
+            this.role = role;
             return this;
         }
 
         public Builder copy(Applicant applicant) {
-            this.UserId = applicant.UserId;
-            this.IdNumber = applicant.IdNumber;
-            this.BirthDate = applicant.BirthDate;
+            this.UserId = applicant.userId;
+            this.idNumber = applicant.idNumber;
+            this.birthDate = applicant.birthDate;
             this.address = applicant.address;
             this.license = applicant.license;
-            this.UserName = applicant.FirstName;
-            this.UserSurname = applicant.LastName;
-            this.Contact = applicant.Contact;
-            this.UserBooks = applicant.UserBooks;
-            this.Password = applicant.Password;
-            this.Role = applicant.Role;
+            this.firstName = applicant.firstName;
+            this.lastName = applicant.lastName;
+            this.contact = applicant.contact;
+            this.bookings = applicant.getBookings();
+            this.password = applicant.password;
+            this.role = applicant.role;
             return this;
         }
 

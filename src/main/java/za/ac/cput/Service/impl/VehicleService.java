@@ -34,12 +34,12 @@ public class VehicleService implements IVehicleService {
         return this.vehicleRepository.save(vehicle);
 
     }
-
-    @Override
-    public void delete(Integer integer) {
-    this.vehicleRepository.deleteById(integer);
-
-    }
+//    @Deprecated
+//    @Override
+//    public void delete(Integer integer) {
+//    this.vehicleRepository.deleteById(integer);
+//
+//    }
     @Override
     public List<Vehicle> getAll() {
         return this.vehicleRepository.findAll();

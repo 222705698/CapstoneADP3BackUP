@@ -18,7 +18,7 @@ public class VehicleFactory {
      List<Ticket> ticket
  ) {
     if(Helper.isNullOrEmpty(vehicleName) || Helper.isNullOrEmpty(vehicleType) || Helper.isNullOrEmpty(vehicleModel)||
-    Helper.isNullOrEmpty(vehicleYear) || Helper.isNullOrEmpty(vehicleColor) || vehicleDisc == null || ticket == null
+    Helper.isNullOrEmpty(vehicleYear) || Helper.isNullOrEmpty(vehicleColor) || vehicleDisc == null
     )
         return null;
     return new Vehicle.Builder()

@@ -10,12 +10,12 @@ import za.ac.cput.Util.Helper;
 
 import java.time.LocalDate;
 public class ApplicantFactory {
-    public static Applicant createApplicant(String userName, String userSurname, String idNumber,
+    public static Applicant createApplicant(String firstName, String lastName, String idNumber,
                                             Contact contact, Address address, License license,
-                                            Bookings userBooks, User.Role role) {
+                                            Bookings bookings, User.Role role) {
 
-        if (Helper.isNullOrEmpty(userName) || Helper.isNullOrEmpty(userSurname) ||
-                contact == null || address == null || license == null || userBooks == null ||
+        if (Helper.isNullOrEmpty(firstName) || Helper.isNullOrEmpty(lastName) ||
+                contact == null || address == null || license == null || bookings == null ||
                 role == null) {
             return null;
         }
@@ -27,14 +27,14 @@ public class ApplicantFactory {
         }
 
         return new Applicant.Builder()
-                .setUserName(userName)
-                .setUserSurname(userSurname)
+                .setFirstName(firstName)
+                .setLastName(lastName)
                 .setIdNumber(idNumber)
                 .setBirthDate(birthDate)
                 .setContact(contact)
                 .setAddress(address)
                 .setLicense(license)
-                .setUserBooks(userBooks)
+                .setUserBooks(bookings)
                 .setRole(role)
                 .build();
     }

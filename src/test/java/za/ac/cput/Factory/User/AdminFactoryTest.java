@@ -69,8 +69,8 @@ class AdminFactoryTest {
                 "System Manager"
         );
 
-        assertEquals("Masibuve", admin.getUserName());
-        assertEquals("Sikhulume", admin.getUserSurname());
+        assertEquals("Masibuve", admin.getFirstName());
+        assertEquals("Sikhulume", admin.getLastName());
         assertEquals("admin@example.com", admin.getContact().getEmail());
         assertEquals(Admin.Status.ACCEPTED, admin.getStatus());
     }

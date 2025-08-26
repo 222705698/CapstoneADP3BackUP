@@ -1,4 +1,4 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -71,7 +71,7 @@ class VehicleServiceTest {
             // Create Tickets with persisted Payments
             Ticket ticket1 = TicketFactory.createTicket("DRUNK_DRIVING");
 
-            Ticket ticket2 = TicketFactory.createTicket("NO_LICENSE");
+            Ticket ticket2 = TicketFactory.createTicket("NO_LICENSE",savedPayment1);
 
             // Persist Tickets and collect saved ones in list
             Ticket savedTicket1 = ticketService.create(ticket1);
@@ -130,13 +130,13 @@ class VehicleServiceTest {
 
     }
 
-    @Test
-    void d_delete() {
-        vehicleService.delete(vehicle.getVehicleID());
-        assertNull(vehicleService.read(vehicle.getVehicleID()));
-        System.out.println("Deleted Vehicle: " + vehicle.getVehicleID());
-
-    }
+//    @Test
+//    void d_delete() {
+//        vehicleService.delete(vehicle.getVehicleID());
+//        assertNull(vehicleService.read(vehicle.getVehicleID()));
+//        System.out.println("Deleted Vehicle: " + vehicle.getVehicleID());
+//
+//    }
 
     @Test
     void e_getAll() {
