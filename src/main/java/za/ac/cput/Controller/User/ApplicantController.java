@@ -48,21 +48,13 @@ public class ApplicantController {
         return ResponseEntity.ok(updated);
     }
 
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Integer id) {
-//        Applicant applicant = applicantService.read(id);
-//        if (applicant == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        applicantService.delete(id);
-//        return ResponseEntity.noContent().build();
-//    }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<Applicant>> getAll() {
         List<Applicant> applicants = applicantService.getAll();
         return ResponseEntity.ok(applicants);
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Applicant loginRequest) {
         if (loginRequest.getContact() == null || loginRequest.getContact().getEmail() == null) {
@@ -95,6 +87,7 @@ public class ApplicantController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Applicant not found.");
         }
     }
+
 
 }
 
