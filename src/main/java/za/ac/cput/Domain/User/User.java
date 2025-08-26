@@ -18,7 +18,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     protected Contact contact;
-protected String password;
+    protected String password;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Bookings_id")
     protected Bookings bookings;

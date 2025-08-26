@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.Domain.Registrations.Vehicle;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.VehicleDisc;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.Ticket;
@@ -26,7 +27,7 @@ class VehicleControllerTest {
     private static VehicleDisc disc;
 
     private static List<Ticket> ticketList ;
-
+    private static Applicant applicant;
     private static Vehicle vehicle;
     private static Vehicle createdVehicle;
 
@@ -78,7 +79,9 @@ class VehicleControllerTest {
                 "2023",
                 "White",
                 disc,
-               null
+               null,
+               null,
+                 applicant
         );
 
     }

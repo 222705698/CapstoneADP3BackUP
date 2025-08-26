@@ -7,6 +7,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.Domain.Registrations.Vehicle;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.VehicleDisc;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.Ticket;
@@ -46,6 +47,8 @@ class VehicleServiceTest {
     private static Vehicle createdVehicle;
 
     private static Payment payment1,payment2;
+
+    private static Applicant applicant;
 
 
     @BeforeEach
@@ -96,7 +99,9 @@ class VehicleServiceTest {
                     "2023",
                     "White",
                     savedDisc,
-                    savedTickets
+                    savedTickets,
+                    payment1,
+                    applicant
             );
 
             // Persist vehicle and keep reference to persisted entity

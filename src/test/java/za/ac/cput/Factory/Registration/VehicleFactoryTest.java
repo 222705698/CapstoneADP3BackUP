@@ -3,6 +3,7 @@ package za.ac.cput.Factory.Registration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Domain.Registrations.Vehicle;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.VehicleDisc;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.Ticket;
@@ -21,7 +22,7 @@ class VehicleFactoryTest {
         VehicleDisc disc;
         List<Ticket> tickets;
         Vehicle vehicle;
-
+        Applicant applicant;
         @BeforeEach
         void setup() {
             disc = VehicleDiscFactory.createVehicleDisc(LocalDate.of(2020, 8, 6), LocalDate.of(2024, 2, 6));
@@ -39,7 +40,9 @@ class VehicleFactoryTest {
                     "2023",
                     "White",
                     disc,
-                    tickets
+                    tickets,
+                    payment,
+                    applicant
             );
         }
 
