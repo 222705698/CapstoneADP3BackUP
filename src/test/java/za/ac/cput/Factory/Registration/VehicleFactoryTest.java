@@ -27,7 +27,9 @@ class VehicleFactoryTest {
         void setup() {
             disc = VehicleDiscFactory.createVehicleDisc(LocalDate.of(2020, 8, 6), LocalDate.of(2024, 2, 6));
 
-            Payment payment = PaymentFactory.createPayment(2000, "PayPal", "Payment for Ticket");
+            LocalDate date = LocalDate.now();
+
+            Payment payment = PaymentFactory.createPayment(2000.0,"Card","Thando", 4538483625767l ,date,"Ticket", (short) 464);
 //            Ticket ticketWithPayment = TicketFactory.createTicket(3000, "Pending", payment);
 
             tickets = new ArrayList<>();

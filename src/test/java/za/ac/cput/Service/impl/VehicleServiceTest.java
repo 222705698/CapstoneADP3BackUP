@@ -54,18 +54,12 @@ class VehicleServiceTest {
     @BeforeEach
     void setup() {
 
-            // Create Payment objects (just plain Java objects)
-            Payment payment1 = PaymentFactory.createPayment(
-                    2000,
-                    "PayPal",
-                    "Payment for Speeding Ticket"
-            );
+            LocalDate date = LocalDate.now();
 
-            Payment payment2 = PaymentFactory.createPayment(
-                    1500,
-                    "Credit Card",
-                    "Payment for Parking Ticket"
-            );
+            // Create Payment objects (just plain Java objects)
+            Payment payment1 = PaymentFactory.createPayment(2000.0,"Card","Thando", 4538483625767l ,date,"Ticket", (short) 464);
+
+            Payment payment2 = PaymentFactory.createPayment(3000.0,"Card","Thando", 5455384836257l ,date,"Ticket", (short) 464);
 
             // Persist Payments and replace references with saved instances (with IDs)
             Payment savedPayment1 = paymentService.create(payment1);
@@ -98,6 +92,8 @@ class VehicleServiceTest {
                     "Fortuner",
                     "2023",
                     "White",
+                    "3287586286582",
+                    "engine37487",
                     savedDisc,
                     savedTickets,
                     payment1,
