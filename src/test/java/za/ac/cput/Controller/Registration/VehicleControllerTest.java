@@ -78,6 +78,8 @@ class VehicleControllerTest {
                 "Fortuner",
                 "2023",
                 "White",
+          "CAA1234",
+          "zaa098",
                 disc,
                null,
                null,

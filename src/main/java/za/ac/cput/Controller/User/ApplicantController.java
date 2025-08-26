@@ -85,7 +85,8 @@ public class ApplicantController {
                 response.put("message", "Login successful!");
                 response.put("userId", applicant.getUserId());
                 response.put("firstName", applicant.getFirstName());
-                response.put("lastName" , applicant.getLastName()) ;// optional, for frontend display
+                response.put("lastName" , applicant.getLastName()) ;
+                response.put("idNumber" , applicant.getIdNumber());// optional, for frontend display
                 return ResponseEntity.ok(response);
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password.");

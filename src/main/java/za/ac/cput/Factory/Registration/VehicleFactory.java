@@ -16,13 +16,15 @@ public class VehicleFactory {
      String vehicleModel,
      String vehicleYear,
      String vehicleColor,
+     String licensePlate,
+     String engineNumber,
      VehicleDisc vehicleDisc,
      List<Ticket> ticket,
      Payment payment,
      Applicant applicant
  ) {
     if(Helper.isNullOrEmpty(vehicleName) || Helper.isNullOrEmpty(vehicleType) || Helper.isNullOrEmpty(vehicleModel)||
-    Helper.isNullOrEmpty(vehicleYear) || Helper.isNullOrEmpty(vehicleColor) || vehicleDisc == null || payment == null || applicant == null
+    Helper.isNullOrEmpty(vehicleYear) || Helper.isNullOrEmpty(vehicleColor) || Helper.isNullOrEmpty(licensePlate)|| vehicleDisc == null || payment == null || applicant == null
     )
         return null;
     return new Vehicle.Builder()
@@ -31,6 +33,8 @@ public class VehicleFactory {
             .setVehicleModel(vehicleModel)
             .setVehicleYear(vehicleYear)
             .setVehicleColor(vehicleColor)
+            .setLicensePlate(licensePlate)
+            .setEngineNumber(engineNumber)
             .setVehicleDisc(vehicleDisc)
             .setTicket(ticket)
             .setPayment(payment)
