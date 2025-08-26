@@ -1,11 +1,11 @@
-package za.ac.cput.Service;
+package za.ac.cput.Service.impl;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.Domain.bookings.Bookings;
 import za.ac.cput.Repository.BookingsRepository;
-import za.ac.cput.Repository.LicenseRepository;
 import za.ac.cput.Repository.TestAppointmentRepository;
 import za.ac.cput.Repository.VehicleDiscRepository;
+import za.ac.cput.Service.IBookingsService;
 
 import java.util.List;
 @Service

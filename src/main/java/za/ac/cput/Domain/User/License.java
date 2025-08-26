@@ -28,8 +28,8 @@ public class License {
     public License(Builder builder) {
         this.licenseId = builder.licenseId;
         this.licenseCode = builder.licenseCode;
-        this.issueDate = LocalDate.parse(builder.issueDate);
-        this.expiryDate = LocalDate.parse(builder.expiryDate);
+        this.issueDate = builder.issueDate;
+        this.expiryDate = builder.expiryDate;
 
 
     }
@@ -62,12 +62,12 @@ public class License {
 
     public static class Builder {
 
-        private Long licenseId; // Changed to Long
+        private Long licenseId;
         private String licenseCode;
-        private String issueDate;
-        private String expiryDate;
+        private LocalDate issueDate;
+        private LocalDate expiryDate;
 
-                public Builder setLicenseId(Long licenseId) {
+        public Builder setLicenseId(Long licenseId) {
             this.licenseId = licenseId;
             return this;
         }
@@ -75,29 +75,22 @@ public class License {
             this.licenseCode = licenseCode;
             return this;
         }
-
         public Builder setIssueDate(LocalDate issueDate) {
-            this.issueDate = issueDate.toString();
+            this.issueDate = issueDate;
             return this;
         }
         public Builder setExpiryDate(LocalDate expiryDate) {
-            this.expiryDate = expiryDate.toString();
+            this.expiryDate = expiryDate;
             return this;
         }
-
-
-
         public Builder copy(License license) {
             this.licenseId = license.licenseId;
             this.licenseCode = license.licenseCode;
-            this.issueDate = license.issueDate.toString();
-            this.expiryDate = license.expiryDate.toString();
-
+            this.issueDate = license.issueDate;
+            this.expiryDate = license.expiryDate;
             return this;
         }
-
         public License build() {
             return new License(this);
         }
-    }
-}
+    }}

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000") // ✅ allow frontend calls
 @RestController
-@RequestMapping("/api/applicants")
+@RequestMapping("/applicants")
 public class ApplicantController {
 
     private final ApplicantService applicantService;
@@ -62,22 +62,22 @@ public class ApplicantController {
         return ResponseEntity.ok(applicants);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Applicant loginRequest) {
-        Optional<Applicant> applicantOpt = applicantService.getAll().stream()
-                .filter(a -> a.getContact().getEmail().equalsIgnoreCase(loginRequest.getContact().getEmail()))
-                .findFirst();
-
-        if (applicantOpt.isPresent()) {
-            Applicant applicant = applicantOpt.get();
-            if (applicant.getPassword().equals(loginRequest.getPassword())) {
-                return ResponseEntity.ok("Login successful!");
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password.");
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Applicant not found.");
-        }
-    }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody Applicant loginRequest) {
+//        Optional<Applicant> applicantOpt = applicantService.getAll().stream()
+//                .filter(a -> a.getContact().getEmail().equalsIgnoreCase(loginRequest.getContact().getEmail()))
+//                .findFirst();
+//
+//        if (applicantOpt.isPresent()) {
+//            Applicant applicant = applicantOpt.get();
+//            if (applicant.getPassword().equals(loginRequest.getPassword())) {
+//                return ResponseEntity.ok("Login successful!");
+//            } else {
+//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password.");
+//            }
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Applicant not found.");
+//        }
+//    }
 
 }
