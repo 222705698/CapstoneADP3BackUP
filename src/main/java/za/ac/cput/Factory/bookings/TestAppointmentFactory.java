@@ -8,26 +8,32 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TestAppointmentFactory {
+
     public static TestAppointment createTestAppointment(
             String testAddress,
             String testVenue,
             LocalDate testDate,
             boolean testResult,
             String licenseCode,
-            TestType testType,   // testType should come before testTime
-            LocalTime testTime) {
+            TestType testType,     // ✅ stays here
+            LocalTime testTime,
+            double testAmount      // ✅ now included
+    ) {
 
+        // Basic validations
         if (Helper.isNullOrEmpty(testAddress) ||
                 Helper.isNullOrEmpty(testVenue) ||
                 Helper.isNullOrEmpty(licenseCode) ||
-                testType == null) {
+                testType == null ||
+                testAmount <= 0) {
             return null;
         }
 
         if (testDate.isBefore(LocalDate.now())) {
-            return null;
+            return null; // Appointment cannot be in the past
         }
 
+        // Build and return the appointment
         return new TestAppointment.Builder()
                 .setTestAddress(testAddress)
                 .setTestVenue(testVenue)
@@ -35,8 +41,8 @@ public class TestAppointmentFactory {
                 .setTestResult(testResult)
                 .setLicenseCode(licenseCode)
                 .setTestype(testType)
-                .setTestAmount(500.00)
                 .setTestTime(testTime)
+                .setTestAmount(testAmount)   // ✅ dynamic amount
                 .build();
-}
+    }
 }
