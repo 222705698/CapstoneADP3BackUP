@@ -21,7 +21,8 @@ class TestAppointmentFactoryTest {
                 true,
                 "B",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9,0)  // Added default test time
+                LocalTime.of(9,0),   // ✅ Added default test time
+                500.0                // ✅ Added amount
         );
         System.out.println("Test Appointment: " + testAppointment);
         assertNotNull(testAppointment);
@@ -36,9 +37,10 @@ class TestAppointmentFactoryTest {
         String licenseCode = "10";
         TestType testType = TestType.DRIVERSLICENSETEST;
         LocalTime time = LocalTime.of(9,0);
+        double amount = 750.0;
 
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                address, venue, date, result, licenseCode, testType, time
+                address, venue, date, result, licenseCode, testType, time, amount
         );
 
         assertNotNull(testAppointment);
@@ -49,19 +51,28 @@ class TestAppointmentFactoryTest {
         assertEquals(licenseCode, testAppointment.getLicenseCode());
         assertEquals(testType, testAppointment.getTestype());
         assertEquals(time, testAppointment.getTestTime());
+        assertEquals(amount, testAppointment.getTestAmount());
     }
 
     @Test
     void testCreateTestAppointment_invalidData_shouldReturnNull() {
         // Null testType
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", null, LocalTime.of(9,0)
+                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", null, LocalTime.of(9,0), 400.0
         );
         assertNull(testAppointment);
 
         // Past test date
         testAppointment = TestAppointmentFactory.createTestAppointment(
-                "123 Road", "Venue", LocalDate.now().minusDays(2), true, "B", TestType.DRIVERSLICENSETEST, LocalTime.of(9,0)
+                "123 Road", "Venue", LocalDate.now().minusDays(2), true, "B",
+                TestType.DRIVERSLICENSETEST, LocalTime.of(9,0), 400.0
+        );
+        assertNull(testAppointment);
+
+        // Negative amount
+        testAppointment = TestAppointmentFactory.createTestAppointment(
+                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B",
+                TestType.DRIVERSLICENSETEST, LocalTime.of(9,0), -100.0
         );
         assertNull(testAppointment);
     }
@@ -69,10 +80,11 @@ class TestAppointmentFactoryTest {
     @Test
     void testCreateTestAppointment_printOutput() {
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
-                "123 Road", "Venue", LocalDate.now().plusDays(2), true, "B", TestType.DRIVERSLICENSETEST, LocalTime.of(9,0)
+                "123 Road", "Venue", LocalDate.now().plusDays(2),
+                true, "B", TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9,0), 650.0
         );
         System.out.println(testAppointment);
         assertNotNull(testAppointment);
-   }
+    }
 }
-

@@ -8,6 +8,7 @@ import za.ac.cput.Service.impl.TestAppointmentService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000") // allow React frontend
 @RestController
 @RequestMapping("/api/test-appointments")
 public class TestAppointmentController {
@@ -21,7 +22,7 @@ public class TestAppointmentController {
     // CREATE
     @PostMapping("/create")
     public ResponseEntity<TestAppointment> create(@RequestBody TestAppointment appointment) {
-        // Factory validation
+        // Use factory for validation + creation
         TestAppointment created = TestAppointmentFactory.createTestAppointment(
                 appointment.getTestAddress(),
                 appointment.getTestVenue(),
@@ -29,7 +30,8 @@ public class TestAppointmentController {
                 appointment.getTestResult(),
                 appointment.getLicenseCode(),
                 appointment.getTestype(),
-                appointment.getTestTime()
+                appointment.getTestTime(),
+                appointment.getTestAmount()   // ✅ make sure your entity + factory both have this
         );
 
         if (created == null) {
@@ -69,5 +71,5 @@ public class TestAppointmentController {
     public ResponseEntity<List<TestAppointment>> getAll() {
         List<TestAppointment> list = service.getAll();
         return ResponseEntity.ok(list);
- }
+    }
 }

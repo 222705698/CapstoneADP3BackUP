@@ -37,7 +37,8 @@ class TestAppointmentControllerTest {
                 true,
                 "B",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9, 0)  // default test time
+                LocalTime.of(9, 0),
+                650.00   // ✅ added amount
         );
 
         HttpHeaders headers = new HttpHeaders();
@@ -52,6 +53,7 @@ class TestAppointmentControllerTest {
         assertNotNull(response.getBody());
         assertNotNull(response.getBody().getTestAppointmentId());
         assertEquals("10 Main Road", response.getBody().getTestAddress());
+        assertEquals(650.00, response.getBody().getTestAmount()); // ✅ check amount
     }
 
     @Test
@@ -64,7 +66,8 @@ class TestAppointmentControllerTest {
                 true,
                 "C1",
                 TestType.LEARNERSLICENSETEST,
-                LocalTime.of(9, 0)
+                LocalTime.of(9, 0),
+                500.00   // ✅ added amount
         );
 
         TestAppointment created = restTemplate.postForEntity(
@@ -82,6 +85,7 @@ class TestAppointmentControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("123 Street", response.getBody().getTestAddress());
+        assertEquals(500.00, response.getBody().getTestAmount()); // ✅ check amount
     }
 
     @Test
@@ -94,7 +98,8 @@ class TestAppointmentControllerTest {
                 false,
                 "EB",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9, 0)
+                LocalTime.of(9, 0),
+                700.00   // ✅ added amount
         );
 
         TestAppointment created = restTemplate.postForEntity(
@@ -105,10 +110,11 @@ class TestAppointmentControllerTest {
 
         assertNotNull(created);
 
-        // Update
+        // Update (change venue & amount)
         TestAppointment updated = new TestAppointment.Builder()
                 .copy(created)
                 .setTestVenue("Updated Venue")
+                .setTestAmount(800.00)  // ✅ updating amount
                 .build();
 
         HttpHeaders headers = new HttpHeaders();
@@ -124,6 +130,7 @@ class TestAppointmentControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Updated Venue", response.getBody().getTestVenue());
+        assertEquals(800.00, response.getBody().getTestAmount()); // ✅ check updated amount
     }
 
     @Test
@@ -135,4 +142,3 @@ class TestAppointmentControllerTest {
         assertNotNull(response.getBody());
     }
 }
-
