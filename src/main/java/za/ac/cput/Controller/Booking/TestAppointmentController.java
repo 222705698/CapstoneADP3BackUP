@@ -28,7 +28,8 @@ public class TestAppointmentController {
                 appointment.getTestDate(),
                 appointment.getTestResult(),
                 appointment.getLicenseCode(),
-                appointment.getTestype()
+                appointment.getTestype(),
+                appointment.getTestTime()
         );
 
         if (created == null) {
@@ -68,5 +69,5 @@ public class TestAppointmentController {
     public ResponseEntity<List<TestAppointment>> getAll() {
         List<TestAppointment> list = service.getAll();
         return ResponseEntity.ok(list);
-    }
+ }
 }

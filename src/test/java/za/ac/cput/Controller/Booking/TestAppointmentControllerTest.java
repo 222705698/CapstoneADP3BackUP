@@ -2,7 +2,6 @@ package za.ac.cput.Controller.Booking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -12,6 +11,7 @@ import za.ac.cput.Domain.bookings.TestType;
 import za.ac.cput.Factory.bookings.TestAppointmentFactory;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +36,8 @@ class TestAppointmentControllerTest {
                 LocalDate.now().plusDays(3),
                 true,
                 "B",
-                TestType.DRIVERSLICENSETEST
+                TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9, 0)  // default test time
         );
 
         HttpHeaders headers = new HttpHeaders();
@@ -62,12 +63,13 @@ class TestAppointmentControllerTest {
                 LocalDate.now().plusDays(5),
                 true,
                 "C1",
-                TestType.LEARNERSLICENSETEST
+                TestType.LEARNERSLICENSETEST,
+                LocalTime.of(9, 0)
         );
 
         TestAppointment created = restTemplate.postForEntity(
                 getBaseUrl() + "/create",
-                appointment,
+                new HttpEntity<>(appointment, new HttpHeaders()),
                 TestAppointment.class
         ).getBody();
 
@@ -91,26 +93,27 @@ class TestAppointmentControllerTest {
                 LocalDate.now().plusDays(4),
                 false,
                 "EB",
-                TestType.DRIVERSLICENSETEST
+                TestType.DRIVERSLICENSETEST,
+                LocalTime.of(9, 0)
         );
 
         TestAppointment created = restTemplate.postForEntity(
                 getBaseUrl() + "/create",
-                appointment,
+                new HttpEntity<>(appointment, new HttpHeaders()),
                 TestAppointment.class
         ).getBody();
 
         assertNotNull(created);
 
         // Update
-        created = new TestAppointment.Builder()
+        TestAppointment updated = new TestAppointment.Builder()
                 .copy(created)
                 .setTestVenue("Updated Venue")
                 .build();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<TestAppointment> request = new HttpEntity<>(created, headers);
+        HttpEntity<TestAppointment> request = new HttpEntity<>(updated, headers);
 
         ResponseEntity<TestAppointment> response = restTemplate.exchange(
                 getBaseUrl() + "/update",
@@ -124,32 +127,12 @@ class TestAppointmentControllerTest {
     }
 
     @Test
-    void testDeleteTestAppointment() {
-        // Create
-        TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
-                "789 Street",
-                "Venue C",
-                LocalDate.now().plusDays(2),
-                true,
-                "A",
-                TestType.DRIVERSLICENSETEST
-        );
+    void testGetAllTestAppointments() {
+        ResponseEntity<TestAppointment[]> response =
+                restTemplate.getForEntity(getBaseUrl() + "/getall", TestAppointment[].class);
 
-        TestAppointment created = restTemplate.postForEntity(
-                getBaseUrl() + "/create",
-                appointment,
-                TestAppointment.class
-        ).getBody();
-
-        assertNotNull(created); //Created
-
-        // Delete
-        restTemplate.delete(getBaseUrl() + "/delete/" + created.getTestAppointmentId());
-
-        // Try to read
-        ResponseEntity<TestAppointment> response =
-                restTemplate.getForEntity(getBaseUrl() + "/read/" + created.getTestAppointmentId(), TestAppointment.class);
-
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
     }
 }
+

@@ -2,6 +2,7 @@ package za.ac.cput.Domain.bookings;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,7 @@ public class TestAppointment {
     private String testAddress;
     private String testVenue;
     private LocalDate testDate;
+    private LocalTime testTime;
     private Boolean testResult;
     private String licenseCode;
 
@@ -33,6 +35,7 @@ public class TestAppointment {
         this.licenseCode = builder.licenseCode;
         this.testAmount = builder.testAmount;
         this.testype = builder.testype;
+        this.testTime = getTestTime();
     }
 
     public Long getTestAppointmentId() {
@@ -50,6 +53,11 @@ public class TestAppointment {
     public LocalDate getTestDate() {
         return testDate;
     }
+
+    public LocalTime getTestTime() {
+        return testTime != null ? testTime : LocalTime.of(9, 0);
+    }
+
 
     public boolean getTestResult() {
         return testResult;
@@ -69,33 +77,26 @@ public class TestAppointment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TestAppointment)) return false;
-        TestAppointment test = (TestAppointment) o;
-        return testResult == test.testResult &&
-                Double.compare(test.testAmount, testAmount) == 0 &&
-                Objects.equals(testAppointmentId, test.testAppointmentId) &&
-                Objects.equals(testAddress, test.testAddress) &&
-                Objects.equals(testVenue, test.testVenue) &&
-                Objects.equals(testDate, test.testDate) &&
-                Objects.equals(licenseCode, test.licenseCode) &&
-                testype == test.testype;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestAppointment that = (TestAppointment) o;
+        return Double.compare(testAmount, that.testAmount) == 0 && Objects.equals(testAppointmentId, that.testAppointmentId) && Objects.equals(testAddress, that.testAddress) && Objects.equals(testVenue, that.testVenue) && Objects.equals(testDate, that.testDate) && Objects.equals(testTime, that.testTime) && Objects.equals(testResult, that.testResult) && Objects.equals(licenseCode, that.licenseCode) && testype == that.testype;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(testAppointmentId, testAddress, testVenue, testDate, testResult, licenseCode, testype, testAmount);
+        return Objects.hash(testAppointmentId, testAddress, testVenue, testDate, testTime, testResult, licenseCode, testype, testAmount);
     }
 
     @Override
     public String toString() {
         return "TestAppointment{" +
-                "testAppointmentId=" + testAppointmentId +
+                "licenseCode='" + licenseCode + '\'' +
+                ", testAppointmentId=" + testAppointmentId +
                 ", testAddress='" + testAddress + '\'' +
                 ", testVenue='" + testVenue + '\'' +
                 ", testDate=" + testDate +
+                ", testTime=" + testTime +
                 ", testResult=" + testResult +
-                ", licenseCode='" + licenseCode + '\'' +
                 ", testype=" + testype +
                 ", testAmount=" + testAmount +
                 '}';
@@ -110,6 +111,7 @@ public class TestAppointment {
         private String licenseCode;
         private TestType testype;
         private double testAmount;
+        private LocalTime testTime;
 
         public Builder setTestAppointmentId(Long testAppointmentId) {
             this.testAppointmentId = testAppointmentId;
@@ -150,6 +152,10 @@ public class TestAppointment {
             this.testAmount = testAmount;
             return this;
         }
+        public Builder setTestTime(LocalTime testTime) {
+            this.testTime = testTime;
+            return this;
+        }
 
         public Builder copy(TestAppointment test) {
             this.testAppointmentId = test.testAppointmentId;
@@ -160,11 +166,12 @@ public class TestAppointment {
             this.licenseCode = test.licenseCode;
             this.testype = test.testype;
             this.testAmount = test.testAmount;
+            this.testTime = test.testTime;
             return this;
         }
 
         public TestAppointment build() {
             return new TestAppointment(this);
-        }
-    }
+ }
+}
 }
