@@ -7,12 +7,12 @@ import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.User.License;
 import za.ac.cput.Domain.User.User;
 import za.ac.cput.Domain.bookings.Bookings;
+import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.VehicleDisc;
 import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Domain.payment.Ticket;
-import za.ac.cput.Factory.Registration.VehicleFactory;
 import za.ac.cput.Factory.bookings.VehicleDiscFactory;
 import za.ac.cput.Factory.payment.PaymentFactory;
 
@@ -30,7 +30,8 @@ public class ApplicantFactoryTest {
     private Bookings bookings;
     private VehicleDisc disc;
     private List<Ticket> tickets;
-    private List<Vehicle> vehicle;
+    private List<Vehicle> vehicles;
+    private List<TestAppointment> testAppointments;
 
     @BeforeEach
     public void setUp() {
@@ -56,27 +57,20 @@ public class ApplicantFactoryTest {
                 .setBookingDate(LocalDate.now())
                 .build();
 
-        disc = VehicleDiscFactory.createVehicleDisc(LocalDate.of(2020, 8, 6), LocalDate.of(2024, 2, 6));
+        disc = VehicleDiscFactory.createVehicleDisc(
+                LocalDate.of(2020, 8, 6),
+                LocalDate.of(2024, 2, 6)
+        );
 
         Payment payment = PaymentFactory.createPayment(2000, "PayPal", "Payment for Ticket");
-//            Ticket ticketWithPayment = TicketFactory.createTicket(3000, "Pending", payment);
 
         tickets = new ArrayList<>();
-//            tickets.add(ticketWithPayment);
+        vehicles = new ArrayList<>();
+        testAppointments = new ArrayList<>();
 
-//        vehicle = VehicleFactory.createvehicle(
-//                "Toyota",
-//                "SUV",
-//                "Fortuner",
-//                "2023",
-//                "White",
-//                disc,
-//                tickets,
-//                payment
-//        );
-
-        vehicle = new ArrayList<>();
-        vehicle.add((Vehicle) vehicle);
+        // If you later create Vehicle objects via VehicleFactory, add them here
+        // Vehicle vehicle = VehicleFactory.createvehicle(...);
+        // vehicles.add(vehicle);
     }
 
     @Test
@@ -90,8 +84,8 @@ public class ApplicantFactoryTest {
                 license,
                 bookings,
                 User.Role.APPLICANT,
-                vehicle
-
+                vehicles,
+                testAppointments
         );
 
         System.out.println(applicant); // prints the object result
@@ -114,7 +108,8 @@ public class ApplicantFactoryTest {
                 license,
                 bookings,
                 User.Role.APPLICANT,
-                vehicle
+                vehicles,
+                testAppointments
         );
 
         System.out.println(applicant); // prints null
@@ -132,7 +127,8 @@ public class ApplicantFactoryTest {
                 license,
                 bookings,
                 User.Role.APPLICANT,
-                vehicle
+                vehicles,
+                testAppointments
         );
 
         System.out.println(applicant); // prints null

@@ -6,8 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Factory.bookings.TestAppointmentFactory;
 
 import java.time.LocalDate;
@@ -25,11 +27,14 @@ class TestAppointmentControllerTest {
     private TestRestTemplate restTemplate;
 
     private String getBaseUrl() {
-        return "http://localhost:" + port + "/api/test-appointments";
+        return "http://localhost:" + port + "/test-appointments";
     }
 
     @Test
     void testCreateTestAppointment() {
+        Payment payment = new Payment();
+        Applicant applicant = null; // no applicant for this test
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "10 Main Road",
                 "Test Venue",
@@ -38,12 +43,13 @@ class TestAppointmentControllerTest {
                 "B",
                 TestType.DRIVERSLICENSETEST,
                 LocalTime.of(9, 0),
-                650.00   // ✅ added amount
+                650.00,
+                payment,
+                applicant // ✅ added applicant
         );
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
         HttpEntity<TestAppointment> request = new HttpEntity<>(appointment, headers);
 
         ResponseEntity<TestAppointment> response =
@@ -53,12 +59,14 @@ class TestAppointmentControllerTest {
         assertNotNull(response.getBody());
         assertNotNull(response.getBody().getTestAppointmentId());
         assertEquals("10 Main Road", response.getBody().getTestAddress());
-        assertEquals(650.00, response.getBody().getTestAmount()); // ✅ check amount
+        assertEquals(650.00, response.getBody().getTestAmount());
     }
 
     @Test
     void testReadTestAppointment() {
-        // Create
+        Payment payment = new Payment();
+        Applicant applicant = null;
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "123 Street",
                 "Venue A",
@@ -67,7 +75,9 @@ class TestAppointmentControllerTest {
                 "C1",
                 TestType.LEARNERSLICENSETEST,
                 LocalTime.of(9, 0),
-                500.00   // ✅ added amount
+                500.00,
+                payment,
+                applicant
         );
 
         TestAppointment created = restTemplate.postForEntity(
@@ -79,18 +89,19 @@ class TestAppointmentControllerTest {
         assertNotNull(created);
         assertNotNull(created.getTestAppointmentId());
 
-        // Read
         ResponseEntity<TestAppointment> response =
                 restTemplate.getForEntity(getBaseUrl() + "/read/" + created.getTestAppointmentId(), TestAppointment.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("123 Street", response.getBody().getTestAddress());
-        assertEquals(500.00, response.getBody().getTestAmount()); // ✅ check amount
+        assertEquals(500.00, response.getBody().getTestAmount());
     }
 
     @Test
     void testUpdateTestAppointment() {
-        // Create
+        Payment payment = new Payment();
+        Applicant applicant = null;
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "456 Street",
                 "Venue B",
@@ -99,7 +110,9 @@ class TestAppointmentControllerTest {
                 "EB",
                 TestType.DRIVERSLICENSETEST,
                 LocalTime.of(9, 0),
-                700.00   // ✅ added amount
+                700.00,
+                payment,
+                applicant
         );
 
         TestAppointment created = restTemplate.postForEntity(
@@ -110,11 +123,11 @@ class TestAppointmentControllerTest {
 
         assertNotNull(created);
 
-        // Update (change venue & amount)
+        // Update venue & amount
         TestAppointment updated = new TestAppointment.Builder()
                 .copy(created)
                 .setTestVenue("Updated Venue")
-                .setTestAmount(800.00)  // ✅ updating amount
+                .setTestAmount(800.00)
                 .build();
 
         HttpHeaders headers = new HttpHeaders();
@@ -130,7 +143,7 @@ class TestAppointmentControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals("Updated Venue", response.getBody().getTestVenue());
-        assertEquals(800.00, response.getBody().getTestAmount()); // ✅ check updated amount
+        assertEquals(800.00, response.getBody().getTestAmount());
     }
 
     @Test

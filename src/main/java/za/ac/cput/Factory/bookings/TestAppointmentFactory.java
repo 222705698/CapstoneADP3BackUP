@@ -1,7 +1,9 @@
 package za.ac.cput.Factory.bookings;
 
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Util.Helper;
 
 import java.time.LocalDate;
@@ -17,7 +19,9 @@ public class TestAppointmentFactory {
             String licenseCode,
             TestType testType,     // ✅ stays here
             LocalTime testTime,
-            double testAmount      // ✅ now included
+            double testAmount,
+            Payment payment,
+            Applicant applicant// ✅ now included
     ) {
 
         // Basic validations
@@ -42,7 +46,9 @@ public class TestAppointmentFactory {
                 .setLicenseCode(licenseCode)
                 .setTestype(testType)
                 .setTestTime(testTime)
-                .setTestAmount(testAmount)   // ✅ dynamic amount
+                .setTestAmount(testAmount)
+                .setPayment(payment)
+                .setApplicant(applicant)// ✅ dynamic amount
                 .build();
     }
 }

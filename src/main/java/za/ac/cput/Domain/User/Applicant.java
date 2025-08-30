@@ -3,6 +3,7 @@ package za.ac.cput.Domain.User;
 import jakarta.persistence.*;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Domain.bookings.Bookings;
+import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.contact.Address;
 import za.ac.cput.Domain.contact.Contact;
 
@@ -28,6 +29,9 @@ public class Applicant extends User {
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vehicle>  vehicle ;
 
+    @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TestAppointment> testAppointment;
+
 
     public Applicant() {
     }
@@ -45,6 +49,7 @@ public class Applicant extends User {
         this.password = builder.password;
         this.role = builder.role;
         this.vehicle = builder.vehicle;
+        this.testAppointment = builder.testAppointment;
     }
 
     public String getIdNumber() {
@@ -67,21 +72,19 @@ public class Applicant extends User {
         return vehicle;
     }
 
+    public List<TestAppointment> getTestAppointment() {
+        return testAppointment;
+    }
+
     @Override
     public String toString() {
         return "Applicant{" +
-                "idNumber='" + idNumber + '\'' +
+                "address=" + address +
+                ", idNumber='" + idNumber + '\'' +
                 ", birthDate=" + birthDate +
-                ", address=" + address +
                 ", license=" + license +
                 ", vehicle=" + vehicle +
-                ", userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contact=" + contact +
-                ", password='" + password + '\'' +
-                ", bookings=" + bookings +
-                ", role=" + role +
+                ", testAppointment=" + testAppointment +
                 '}';
     }
 
@@ -98,6 +101,7 @@ public class Applicant extends User {
         private Bookings bookings;
         private Role role;
         private List<Vehicle> vehicle;
+        private List<TestAppointment> testAppointment;
 
 
         public Builder setUserId(int userId) {
@@ -160,6 +164,10 @@ public class Applicant extends User {
             this.vehicle = vehicle;
             return this;
         }
+        public Builder setTestAppointment(List<TestAppointment> testAppointment) {
+            this.testAppointment = testAppointment;
+            return this;
+        }
 
         public Builder copy(Applicant applicant) {
             this.userId = applicant.userId;
@@ -174,6 +182,7 @@ public class Applicant extends User {
             this.password = applicant.password;
             this.role = applicant.role;
             this.vehicle = applicant.vehicle;
+            this.testAppointment = applicant.testAppointment;
             return this;
         }
 

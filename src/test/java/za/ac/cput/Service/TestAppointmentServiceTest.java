@@ -3,8 +3,10 @@ package za.ac.cput.Service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Domain.bookings.TestType;
+import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Factory.bookings.TestAppointmentFactory;
 import za.ac.cput.Service.impl.TestAppointmentService;
 
@@ -21,7 +23,9 @@ class TestAppointmentServiceTest {
 
     @Test
     void createAndReadTestAppointment() {
-        // Create a TestAppointment object using the factory
+        Payment payment = new Payment();
+        Applicant applicant = null; // No applicant for this test
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "10 Main Road",
                 "Test Venue",
@@ -29,7 +33,10 @@ class TestAppointmentServiceTest {
                 true,
                 "B",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9,0)  // Added default test time
+                LocalTime.of(9,0),
+                500.0,
+                payment,
+                applicant // Added applicant parameter
         );
 
         assertNotNull(appointment, "Factory returned null");
@@ -46,6 +53,9 @@ class TestAppointmentServiceTest {
 
     @Test
     void updateTestAppointment() {
+        Payment payment = new Payment();
+        Applicant applicant = null;
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "123 Road",
                 "Venue A",
@@ -53,7 +63,10 @@ class TestAppointmentServiceTest {
                 false,
                 "10",
                 TestType.LEARNERSLICENSETEST,
-                LocalTime.of(9,0)
+                LocalTime.of(9,0),
+                600.0,
+                payment,
+                applicant
         );
 
         TestAppointment saved = service.create(appointment);
@@ -70,6 +83,9 @@ class TestAppointmentServiceTest {
 
     @Test
     void deleteTestAppointment() {
+        Payment payment = new Payment();
+        Applicant applicant = null;
+
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "456 Street",
                 "Venue B",
@@ -77,15 +93,17 @@ class TestAppointmentServiceTest {
                 true,
                 "14",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9,0)
+                LocalTime.of(9,0),
+                700.0,
+                payment,
+                applicant
         );
 
         TestAppointment saved = service.create(appointment);
         Long id = saved.getTestAppointmentId();
 
-        // Uncomment this if your service has a delete method
+        // Uncomment if your service has a delete method
         // service.delete(id);
         // assertNull(service.read(id), "Deleted appointment should not be found");
-   }
+    }
 }
-
