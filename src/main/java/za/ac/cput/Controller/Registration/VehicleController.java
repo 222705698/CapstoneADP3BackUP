@@ -49,4 +49,16 @@ public class VehicleController {
     public List<Vehicle> getAll() {
         return vehicleService.getAll();
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Vehicle> getVehiclesByUser(@PathVariable int userId) {
+        return vehicleService.getVehiclesByUser(userId);
+    }
+
+    @GetMapping("/expired/user/{userId}")
+    public List<Vehicle> getExpiredDiscsForUser(@PathVariable int userId) {
+        return vehicleService.getExpiredDiscsByUser(userId);
+    }
+
+
 }
