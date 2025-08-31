@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestAppointmentFactoryTest {
 
     @Test
-    void testCreateTestAppointment_shouldNotBeNull() {
+    void testCreateTestAppointment_shouldNotBeNull() { // updated method name
         Payment payment = new Payment();
         Applicant applicant = null; // no applicant for this test
 

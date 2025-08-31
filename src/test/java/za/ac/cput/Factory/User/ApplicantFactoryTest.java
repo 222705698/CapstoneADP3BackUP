@@ -36,7 +36,7 @@ public class ApplicantFactoryTest {
     @BeforeEach
     public void setUp() {
         contact = new Contact.Builder()
-                .setEmail("applicant@email.com")
+                .setEmail("applicant@email.com") //updated
                 .setCellphone("0812345678")
                 .build();
 

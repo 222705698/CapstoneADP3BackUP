@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test-appointments")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000") //updated
 public class TestAppointmentController {
     private TestAppointmentService testAppointmentService;
 

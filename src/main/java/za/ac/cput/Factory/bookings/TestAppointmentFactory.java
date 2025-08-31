@@ -6,7 +6,7 @@ import za.ac.cput.Domain.bookings.TestType;
 import za.ac.cput.Domain.payment.Payment;
 import za.ac.cput.Util.Helper;
 
-import java.time.LocalDate;
+import java.time.LocalDate; //updated
 import java.time.LocalTime;
 
 public class TestAppointmentFactory {
