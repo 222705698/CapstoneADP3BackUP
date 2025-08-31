@@ -66,7 +66,7 @@ public class ApplicantController {
                 .findFirst();
 
         if (applicantOpt.isPresent()) {
-            Applicant applicant = applicantOpt.get();
+            Applicant applicant = applicantOpt.get(); //updated
             if (loginRequest.getPassword().equals(applicant.getPassword())) {
                 // Return the full applicant object
                 return ResponseEntity.ok(applicant);

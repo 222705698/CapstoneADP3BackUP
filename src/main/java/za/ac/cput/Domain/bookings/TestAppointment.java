@@ -24,7 +24,7 @@ public class TestAppointment {
     @Enumerated(EnumType.STRING)
     private TestType testype;
 
-    private double testAmount;
+    private double testAmount; //updated
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id")

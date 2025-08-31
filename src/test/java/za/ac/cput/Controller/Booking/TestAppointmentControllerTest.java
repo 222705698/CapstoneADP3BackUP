@@ -31,7 +31,7 @@ class TestAppointmentControllerTest {
     }
 
     @Test
-    void testCreateTestAppointment() {
+    void testCreateTestAppointment() { //updated
         Payment payment = new Payment();
         Applicant applicant = null; // no applicant for this test //updated
 

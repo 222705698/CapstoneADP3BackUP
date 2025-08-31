@@ -45,7 +45,7 @@ public class TestAppointmentService implements ITestAppointmentService {
 
     @Override
     public List<TestAppointment> getAll() {
-        return testAppointmentRepository.findAll();
+        return testAppointmentRepository.findAll(); //updated
     }
     @Override
     public List<TestAppointment> getByApplicantId(Long applicantId) {

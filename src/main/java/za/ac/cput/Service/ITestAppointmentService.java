@@ -10,7 +10,7 @@ public interface ITestAppointmentService extends IService<TestAppointment, Long>
 
     Optional<TestAppointment> findById(Long id);
 
-    List<TestAppointment> getAll();
+    List<TestAppointment> getAll(); //updated
 
     List<TestAppointment> getByApplicantId(Long applicantId);
     //TestAppointment create(TestAppointment testAppointment);

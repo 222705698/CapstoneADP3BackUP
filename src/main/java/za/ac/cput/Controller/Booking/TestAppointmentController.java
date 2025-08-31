@@ -41,7 +41,7 @@ public class TestAppointmentController {
 
     @GetMapping("/getAll")
     public List<TestAppointment> getAll() {
-        return testAppointmentService.getAll();
+        return testAppointmentService.getAll(); //updated
     }
     @GetMapping("/by-applicant/{applicantId}")
     public List<TestAppointment> getByApplicant(@PathVariable Long applicantId) {

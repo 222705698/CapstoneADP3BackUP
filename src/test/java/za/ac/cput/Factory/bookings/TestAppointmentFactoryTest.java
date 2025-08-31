@@ -21,7 +21,7 @@ class TestAppointmentFactoryTest {
         TestAppointment testAppointment = TestAppointmentFactory.createTestAppointment(
                 "10 Main Road",
                 "Test Venue",
-                LocalDate.now().plusDays(3),
+                LocalDate.now().plusDays(3), // updated to LocalDate
                 true,
                 "B",
                 TestType.DRIVERSLICENSETEST,
