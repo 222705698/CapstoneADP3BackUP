@@ -22,7 +22,7 @@ class TestAppointmentServiceTest {
     private TestAppointmentService service;
 
     @Test
-    void createAndReadTestAppointment() {
+    void createAndReadTestAppointment() { //updated
         Payment payment = new Payment();
         Applicant applicant = null; // No applicant for this test
 

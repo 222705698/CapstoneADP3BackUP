@@ -18,7 +18,7 @@ public class Applicant extends User {
     private String idNumber;
     private LocalDate birthDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) //updated
     @JoinColumn(name = "address_id")
     private Address address;
 

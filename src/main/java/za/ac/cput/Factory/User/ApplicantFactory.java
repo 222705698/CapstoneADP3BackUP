@@ -31,7 +31,7 @@ public class ApplicantFactory {
         }
 
         return new Applicant.Builder()
-                .setFirstName(firstName)
+                .setFirstName(firstName)//updated
                 .setLastName(lastName)
                 .setIdNumber(idNumber)
                 .setBirthDate(birthDate)

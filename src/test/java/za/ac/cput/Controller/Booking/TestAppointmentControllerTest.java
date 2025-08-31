@@ -33,7 +33,7 @@ class TestAppointmentControllerTest {
     @Test
     void testCreateTestAppointment() {
         Payment payment = new Payment();
-        Applicant applicant = null; // no applicant for this test
+        Applicant applicant = null; // no applicant for this test //updated
 
         TestAppointment appointment = TestAppointmentFactory.createTestAppointment(
                 "10 Main Road",
