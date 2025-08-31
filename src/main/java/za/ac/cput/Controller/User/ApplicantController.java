@@ -24,7 +24,7 @@ public class ApplicantController {
 
     // Create a new applicant
     @PostMapping("/create")
-    public ResponseEntity<Applicant> create(@RequestBody Applicant applicant) {
+    public ResponseEntity<Applicant> create(@RequestBody Applicant applicant) { //updated
         Applicant created = applicantService.create(applicant);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }

@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Entity
-@DiscriminatorValue("APPLICANT")
+@DiscriminatorValue("APPLICANT") //updated
 public class Applicant extends User {
 
     private String idNumber;
