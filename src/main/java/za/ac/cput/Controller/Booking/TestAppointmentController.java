@@ -2,6 +2,7 @@ package za.ac.cput.Controller.Booking;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.TestAppointment;
 import za.ac.cput.Service.impl.TestAppointmentService;
 
@@ -40,6 +41,11 @@ public class TestAppointmentController {
 
     @GetMapping("/getAll")
     public List<TestAppointment> getAll() {
-        return testAppointmentService.getAll();
+        return testAppointmentService.getAll(); //updated
     }
+    @GetMapping("/by-applicant/{applicantId}")
+    public List<TestAppointment> getByApplicant(@PathVariable Long applicantId) {
+        return testAppointmentService.getByApplicantId(applicantId);
+    }
+
 }

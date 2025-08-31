@@ -33,7 +33,7 @@ class TestAppointmentServiceTest {
                 true,
                 "B",
                 TestType.DRIVERSLICENSETEST,
-                LocalTime.of(9,0),
+                LocalTime.of(9,0), // Updated to LocalTime
                 500.0,
                 payment,
                 applicant // Added applicant parameter

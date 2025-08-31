@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface TestAppointmentRepository extends JpaRepository<TestAppointment, Long> {
 
+    List<TestAppointment> findByApplicantUserId(Long userId); //updated
+
+
     //TestAppointment findByTestAppointmentId(Long testAppointmentId); // Corrected method name
 
 //   TestAppointment findByTestId(Long testAppointmentId);
