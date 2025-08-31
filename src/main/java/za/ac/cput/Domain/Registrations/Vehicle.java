@@ -2,6 +2,7 @@ package za.ac.cput.Domain.Registrations;
  /*Vehicle POJO class
      Author: Sibahle shange (222529571)*/
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import za.ac.cput.Domain.User.Applicant;
 import za.ac.cput.Domain.bookings.VehicleDisc;
@@ -40,6 +41,7 @@ public class Vehicle {
 
     @ManyToOne
     @JoinColumn(name = "applicant_id", nullable = false)
+    @JsonBackReference  // <-- this is the child side
     private Applicant applicant;
 
     //    @OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)

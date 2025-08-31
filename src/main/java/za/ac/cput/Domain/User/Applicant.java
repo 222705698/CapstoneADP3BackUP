@@ -1,5 +1,6 @@
 package za.ac.cput.Domain.User;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import za.ac.cput.Domain.Registrations.Vehicle;
 import za.ac.cput.Domain.bookings.Bookings;
@@ -26,8 +27,11 @@ public class Applicant extends User {
     @JoinColumn(name = "license_id")
     private License license;
 
-    @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vehicle>  vehicle ;
+    @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference  // <-- this is the parent side
+    private List<Vehicle> vehicle;
+
+
 
     @OneToMany(mappedBy = "applicant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TestAppointment> testAppointment;
